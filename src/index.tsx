@@ -3,14 +3,36 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { Provider } from 'react-redux';
+import { applyMiddleware, combineReducers, Store } from 'redux';
+import { configureStore } from '@reduxjs/toolkit';
+import data from './store/Data';
+import view from './store/View';
+import ons from './core/Ons';
+
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
+const rootReducer = combineReducers({
+  data,
+  view
+})
+export type RootState = ReturnType<typeof rootReducer>;
+
+const store: Store = configureStore({
+  reducer: rootReducer
+})
+
+ons.init(store);
+
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <Provider store={store}>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function
