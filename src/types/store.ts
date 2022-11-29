@@ -1,3 +1,5 @@
+import Utils from '../core/Utils';
+
 export type StoreStateType = {
     data: StoreStateDataType;
     view: StoreStateViewType;
@@ -55,3 +57,17 @@ export const initLoadingOption: LodingOptionType = {
     size: 40,
     thickness: 3.6,
 };
+
+export const initialViewState: StoreStateViewType = {
+    alertMessage: "",
+    alertOption: initAlertOption,
+    loadingType: "",
+    loadingOption: initLoadingOption
+}
+
+export const initialDataState: StoreStateDataType = {
+    sysdate: Utils.sysdate(new Date()),
+    systime: Utils.systime(new Date()),
+    isMobile: Utils.isMobile(),
+    academyName: '랑아트 미술학원'
+}

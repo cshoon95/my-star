@@ -1,5 +1,5 @@
 import { createAction } from "@reduxjs/toolkit";
-import { StoreStateViewType, AlertOptionType, LodingOptionType, initAlertOption, initLoadingOption } from '../types/store';
+import { initialViewState, AlertOptionType, LodingOptionType, initAlertOption } from '../types/store';
 
 // types
 export const SHOW_ALERT = "view/SHOW_ALERT";
@@ -23,14 +23,6 @@ export const showLoading = createAction<{
 export const hideLoading = createAction<{
     loadingType?: string
 }>(HIDE_LOADING)
-
-
-export const initialViewState: StoreStateViewType = {
-    alertMessage: "",
-    alertOption: initAlertOption,
-    loadingType: "",
-    loadingOption: initLoadingOption
-}
 
 const viewReducer = (state = initialViewState, action: any) => {
     switch (action.type) {
