@@ -12,9 +12,9 @@ export type StoreStateDataType = {
 
 export type StoreStateViewType = {
     alertMessage: string;
-    alertOptions: AlertOptionType;
+    alertOption: AlertOptionType;
     loadingType: string;
-    loadingOptions: LodingOptionType;
+    loadingOption: LodingOptionType;
 };
 
 // Option Types

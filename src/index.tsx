@@ -4,12 +4,10 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
-import { applyMiddleware, combineReducers, Store } from 'redux';
-import { configureStore } from '@reduxjs/toolkit';
-import data from './store/Data';
-import view from './store/View';
 import { store } from './store/Store';
 import ons from './core/Ons';
+import Alert from './manager/Alert';
+import Loading from './manager/Loading';
 
 
 const root = ReactDOM.createRoot(
@@ -21,6 +19,10 @@ ons.init(store);
 root.render(
   <Provider store={store}>
     <React.StrictMode>
+      <div>
+        <Alert/>
+        <Loading/>
+      </div>
       <App />
     </React.StrictMode>
   </Provider>

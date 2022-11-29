@@ -27,9 +27,9 @@ export const hideLoading = createAction<{
 
 export const initialViewState: StoreStateViewType = {
     alertMessage: "",
-    alertOptions: initAlertOption,
+    alertOption: initAlertOption,
     loadingType: "",
-    loadingOptions: initLoadingOption
+    loadingOption: initLoadingOption
 }
 
 const viewReducer = (state = initialViewState, action: any) => {
@@ -45,7 +45,7 @@ const viewReducer = (state = initialViewState, action: any) => {
                 loadingName: ''
             }
         case SHOW_ALERT:
-            const param: AlertOptionType = action.payload.alertOptions;
+            const param: AlertOptionType = action.payload.alertOption;
             const options: AlertOptionType = {
                 title: (param && param.title) || '',
                 confirm: (param && param.confirm) || '확인',
@@ -57,13 +57,13 @@ const viewReducer = (state = initialViewState, action: any) => {
             return {
                 ...state,
                 alertMessage: action.payload.message,
-                alertOptions: options
+                alertOption: options
             };
         case HIDE_ALERT:
             return {    
                 ...state,
                 alertMessage: '',
-                alertOptions: initAlertOption
+                alertOption: initAlertOption
             };
         default:
             return state;
