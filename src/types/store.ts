@@ -1,25 +1,24 @@
+export type StoreStateType = {
+    data: StoreStateDataType;
+    view: StoreStateViewType;
+}
+
 export type StoreStateDataType = {
     sysdate: string;
     systime: string;
     isMobile: boolean;
-    academyName: ScrollSetting;
+    academyName: string;
 }
 
 export type StoreStateViewType = {
-    showAlertMessage: string;
-    showAlertOptions: ShowAlertOptionType;
-    showLoadingType: string;
-    showLoadingOptions: ShowLodingOptionType;
+    alertMessage: string;
+    alertOptions: AlertOptionType;
+    loadingType: string;
+    loadingOptions: LodingOptionType;
 };
-
-export type StoreStateType = {
-    data: StoreStateDataType;
-    view: StoreStateViewType;
-};
-
 
 // Option Types
-export type ShowAlertOptionType = {
+export type AlertOptionType = {
     title: string;
     confirm: string;
     color: 'error' | 'info' | 'success' | 'warning';
@@ -27,7 +26,7 @@ export type ShowAlertOptionType = {
     callbackFunc: Function;
 };
 
-export type ShowLodingOptionType = {
+export type LodingOptionType = {
     color:
         | 'inherit'
         | 'primary'
@@ -39,4 +38,20 @@ export type ShowLodingOptionType = {
     disableShrink: boolean;
     size: number | string;
     thickness: number;
+};
+
+// init
+export const initAlertOptions: AlertOptionType = {
+    title: '',
+    confirm: '확인',
+    color: 'success',
+    compFunc: () => {},
+    callbackFunc: () => {},
+};
+
+export const initLoadingOptions: LodingOptionType = {
+    color: 'primary',
+    disableShrink: false,
+    size: 40,
+    thickness: 3.6,
 };
