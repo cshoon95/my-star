@@ -1,5 +1,5 @@
 import { createAction } from "@reduxjs/toolkit";
-import { StoreStateViewType, ShowAlertOptionType, ShowLodingOptionType } from '../types/store';
+import { StoreStateViewType, AlertOptionType, LodingOptionType, initAlertOption, initLoadingOption } from '../types/store';
 
 // types
 export const SHOW_ALERT = "view/SHOW_ALERT";
@@ -10,87 +10,61 @@ export const HIDE_LOADING = "view/HIDE_LOADING";
 // actions
 export const showAlert = createAction<{
     message: string,
-    alertOptions?: ShowAlertOptionType
+    alertOptions?: AlertOptionType
 }>(SHOW_ALERT);
 
 export const hideAlert = createAction(HIDE_LOADING);
 
 export const showLoading = createAction<{
     loadingType: string,
-    loadingOptions?: ShowLodingOptionType
+    loadingOptions?: LodingOptionType
 }>(SHOW_LOADING)
 
 export const hideLoading = createAction<{
     loadingType?: string
 }>(HIDE_LOADING)
 
-// state
-const initAlertOptions: ShowAlertOptionType = {    
-    title: '',
-    confirm: '확인',
-    color: 'success',
-    compFunc: ()=>{},
-    callbackFunc: ()=>{}
-}
-
-const initLoadingOptions: ShowLodingOptionType = {
-    color: 'success',
-    disableShrink: false,
-    size: 40,
-    thickness: 3.6
-}
 
 export const initialViewState: StoreStateViewType = {
-    showAlertMessage: "",
-    showAlertOptions: initAlertOptions,
-    showLoadingType: "",
-    showLoadingOptions: initLoadingOptions
+    alertMessage: "",
+    alertOptions: initAlertOption,
+    loadingType: "",
+    loadingOptions: initLoadingOption
 }
 
-const viewReducer = (state = initialViewState, action:{
-    type: string,
-    payload: any
-}) => {
-    switch(action.type) {
-        case SHOW_ALERT:
-            const alertParam: ShowAlertOptionType = action.payload.alertOptions;
-            const alertOptions: ShowAlertOptionType = {
-                title: (alertParam && alertParam.title) || '',
-                color: (alertParam && alertParam.color) || 'success',
-                confirm: (alertParam && alertParam.confirm) || '확인',
-                compFunc: (alertParam && alertParam.compFunc) || (() => {}),
-                callbackFunc: (alertParam && alertParam.callbackFunc) || (() => {})
-            }
-            return {
-                ...state,
-                showAlertMessage: action.payload.message,
-                showAlertOptions: alertOptions
-            }        
-        case HIDE_ALERT:
-            return {
-                ...state,
-                showAlertMessage: '',
-                showAlertOptions: initAlertOptions
-            }
+const viewReducer = (state = initialViewState, action: any) => {
+    switch (action.type) {
         case SHOW_LOADING:
-            const loadingParam: ShowLodingOptionType = action.payload.loadingOptions;
-            const loadingOptions: ShowLodingOptionType = {
-                color: (loadingParam && loadingParam.color) || 'success',
-                size: (loadingParam && loadingParam.size) || 40,
-                thickness: (loadingParam && loadingParam.thickness) || 3.6,
-                disableShrink: (loadingParam && loadingParam.disableShrink) || false,
-            }
             return {
                 ...state,
-                showLoadingType: action.payload.loadingType,
-                showLoadingOptions: loadingOptions
+                loadingName: action.payload.loadingName
             }
         case HIDE_LOADING:
             return {
                 ...state,
-                showLoadingType: '',
-                showLoadingOptions: null
+                loadingName: ''
             }
+        case SHOW_ALERT:
+            const param: AlertOptionType = action.payload.alertOptions;
+            const options: AlertOptionType = {
+                title: (param && param.title) || '',
+                confirm: (param && param.confirm) || '확인',
+                color: (param && param.color) || 'success',
+                compFunc: (param && param.compFunc) || (() => {}),
+                callbackFunc:
+                    (param && param.callbackFunc) || (() => {}),
+            };
+            return {
+                ...state,
+                alertMessage: action.payload.message,
+                alertOptions: options
+            };
+        case HIDE_ALERT:
+            return {    
+                ...state,
+                alertMessage: '',
+                alertOptions: initAlertOption
+            };
         default:
             return state;
     }

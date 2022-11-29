@@ -1,15 +1,14 @@
 import { Store } from "redux";
 import { initialDataState, setState } from "../store/Data";
-import { hideAlert, showAlert, initialViewState, showLoading } from "../store/View";
-import { StoreStateType, ShowAlertOptionType, ShowLodingOptionType } from "../types/store";
+import { hideAlert, showAlert, initialViewState, showLoading, hideLoading} from "../store/View";
+import { StoreStateType, AlertOptionType, LodingOptionType } from "../types/store";
 
 type StateType = keyof typeof initialDataState | keyof typeof initialViewState;
 
 export class Ons {
-    // store의 값은 무조건 할당
     private _store!: Store;
-
-    public init(inStore: Store): any {
+    
+    public init(inStore: Store) {
         this._store = inStore;
     }
 
@@ -18,7 +17,7 @@ export class Ons {
     }
 
     public set store(inStore: Store) {
-        this._store = inStore;
+        this.store = inStore;
     }
 
     public get state(): StoreStateType {
@@ -35,7 +34,7 @@ export class Ons {
         ));
     }
 
-    public alert(message: string, options?: ShowAlertOptionType) {
+    public alert(message: string, options?: AlertOptionType) {
         if (message === 'hide') {
             this.store.dispatch(hideAlert());
         } else {
@@ -46,14 +45,45 @@ export class Ons {
         }
     }
 
-    public showLoading(type: string, options?: ShowLodingOptionType) {
+    public showLoading(type: string, options?: LodingOptionType) {
         this.store.dispatch(showLoading({
             loadingType: type,
             loadingOptions: options
         }))
     }
+
+    public hideLoading(type: string ='normal') {
+        if (!this.store) return;
+        this.store.dispatch(hideLoading({
+            loadingType: type
+        }))
+    }
+
+    public log(message: any) {
+        console.log(message);
+    }
+
+    public warnLog(message: any) {
+        console.warn(message);
+    }
+
+    public infoLog(message: any) {
+        console.info(message);
+    }
+
+    public groupLog(messages: Array<any>) {
+        console.group();
+        messages.map(message => console.log(message));
+        console.groupEnd();
+    }
+
+    public timeLog(message: any, func: Function) {
+        console.time(message);
+        func();
+        console.timeEnd(message);
+    }
 }
 
-(window as any).devons = new Ons();
+const ons = (window as any).devons = new Ons();
 
-export default new Ons();
+export default ons;

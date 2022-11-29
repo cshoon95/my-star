@@ -8,22 +8,13 @@ import { applyMiddleware, combineReducers, Store } from 'redux';
 import { configureStore } from '@reduxjs/toolkit';
 import data from './store/Data';
 import view from './store/View';
+import { store } from './store/Store';
 import ons from './core/Ons';
 
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
-
-const rootReducer = combineReducers({
-  data,
-  view
-})
-export type RootState = ReturnType<typeof rootReducer>;
-
-const store: Store = configureStore({
-  reducer: rootReducer
-})
 
 ons.init(store);
 

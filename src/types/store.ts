@@ -41,7 +41,7 @@ export type LodingOptionType = {
 };
 
 // init
-export const initAlertOptions: AlertOptionType = {
+export const initAlertOption: AlertOptionType = {
     title: '',
     confirm: '확인',
     color: 'success',
@@ -49,7 +49,7 @@ export const initAlertOptions: AlertOptionType = {
     callbackFunc: () => {},
 };
 
-export const initLoadingOptions: LodingOptionType = {
+export const initLoadingOption: LodingOptionType = {
     color: 'primary',
     disableShrink: false,
     size: 40,
