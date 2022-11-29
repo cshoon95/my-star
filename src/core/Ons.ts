@@ -1,7 +1,8 @@
 import { Store } from "redux";
-import { initialDataState, setState } from "../store/Data";
-import { hideAlert, showAlert, initialViewState, showLoading, hideLoading} from "../store/View";
-import { StoreStateType, AlertOptionType, LodingOptionType } from "../types/store";
+import { initialDataState, initialViewState } from "../type/Type";
+import { setState } from "../store/Data";
+import { hideAlert, showAlert, showLoading, hideLoading} from "../store/View";
+import { StoreStateType, AlertOptionType, LodingOptionType } from "../type/Type";
 
 type StateType = keyof typeof initialDataState | keyof typeof initialViewState;
 
