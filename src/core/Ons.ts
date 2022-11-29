@@ -35,21 +35,21 @@ export class Ons {
         ));
     }
 
-    public alert(message: string, options?: AlertOptionType) {
+    public alert(message: string, option?: AlertOptionType) {
         if (message === 'hide') {
             this.store.dispatch(hideAlert());
         } else {
             this.store.dispatch(showAlert({
                 message,
-                alertOptions: options
+                alertOption: option
             }))
         }
     }
 
-    public showLoading(type: string, options?: LodingOptionType) {
+    public showLoading(type: string, option?: LodingOptionType) {
         this.store.dispatch(showLoading({
             loadingType: type,
-            loadingOptions: options
+            loadingOption: option
         }))
     }
 

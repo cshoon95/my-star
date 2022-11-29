@@ -1,5 +1,5 @@
 import { createAction } from "@reduxjs/toolkit";
-import { initialViewState, AlertOptionType, LodingOptionType, initAlertOption } from '../types/store';
+import { initialViewState, AlertOptionType, LodingOptionType, initAlertOption } from '../type/Type';
 
 // types
 export const SHOW_ALERT = "view/SHOW_ALERT";
@@ -10,14 +10,14 @@ export const HIDE_LOADING = "view/HIDE_LOADING";
 // actions
 export const showAlert = createAction<{
     message: string,
-    alertOptions?: AlertOptionType
+    alertOption?: AlertOptionType
 }>(SHOW_ALERT);
 
 export const hideAlert = createAction(HIDE_LOADING);
 
 export const showLoading = createAction<{
     loadingType: string,
-    loadingOptions?: LodingOptionType
+    loadingOption?: LodingOptionType
 }>(SHOW_LOADING)
 
 export const hideLoading = createAction<{
@@ -38,7 +38,7 @@ const viewReducer = (state = initialViewState, action: any) => {
             }
         case SHOW_ALERT:
             const param: AlertOptionType = action.payload.alertOption;
-            const options: AlertOptionType = {
+            const option: AlertOptionType = {
                 title: (param && param.title) || '',
                 confirm: (param && param.confirm) || '확인',
                 color: (param && param.color) || 'success',
@@ -49,7 +49,7 @@ const viewReducer = (state = initialViewState, action: any) => {
             return {
                 ...state,
                 alertMessage: action.payload.message,
-                alertOption: options
+                alertOption: option
             };
         case HIDE_ALERT:
             return {    
