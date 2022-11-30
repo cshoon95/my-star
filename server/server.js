@@ -1,22 +1,22 @@
-const express = require("express"); 
+const express = require("express");
 const app = express();
-const port = 3001; // react의 기본값은 3000이니까 3000이 아닌 아무 수
-const cors = require("cors");
-const bodyParser = require("body-parser");
+const mysql = require("mysql");
+const PORT = process.env.port || 3001;
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-app.use(cors());
-
-app.get('/', (req, res) =>{
-    res.send('send!')
-})
-
-app.post("/idplz", (req,res)=>{
-    const serverid = req.body.plzid;
-    console.log(serverid);
+const db = mysql.createPool({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "star",
 });
 
-app.listen(port, ()=>{
-    console.log(`Connect at http://localhost:${port}`);
-})
+app.get("/", (req, res) => {
+    const sqlQuery = "INSERT INTO customers (rowno) VALUES (1)";
+    db.query(sqlQuery, (err, result) => {
+        res.send("success!");
+    });
+});
+
+app.listen(PORT, () => {
+    console.log(`running on port ${PORT}`);
+});
