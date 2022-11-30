@@ -1,5 +1,5 @@
 import { createAction } from '@reduxjs/toolkit';
-import { initialDataState } from '../types/store';
+import { initialDataState } from '../type/Type';
 
 // types
 const GET_STATE = 'data/GET_STATE';
@@ -7,7 +7,7 @@ const SET_STATE = 'data/SET_STATE';
 
 // actions
 export const getState = createAction<{
-    getState: any;
+    state: any;
 }>(GET_STATE);
 
 export const setState = createAction<{

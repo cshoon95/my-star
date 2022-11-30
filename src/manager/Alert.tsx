@@ -4,7 +4,7 @@ import Ons from '../core/Ons';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
-import { StoreStateType } from '../types/store';
+import { StoreStateType } from '../type/Type';
 
 // ㅇㅣ쁘게 디자인 하면 이뻐질듯
 const boxStyle = {

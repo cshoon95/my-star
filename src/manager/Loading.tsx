@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { StoreStateType } from '../types/store';
+import { StoreStateType } from '../type/Type';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 
