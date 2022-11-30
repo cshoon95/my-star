@@ -17,7 +17,7 @@ const root = ReactDOM.createRoot(
 ons.init(store);
 
 root.render(
-  <Provider store={store}>
+  <Provider store = {store}>
     <React.StrictMode>
       <div>
         <Alert/>
