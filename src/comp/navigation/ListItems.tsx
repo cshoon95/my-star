@@ -28,7 +28,7 @@ export const mainListItems = (
       <ListItemIcon>
         <PeopleIcon />
       </ListItemIcon>
-      <ListItemText primary="Customers" />
+        <ListItemText primary="Customers" onClick={() => {console.log('sgs')}}/>
     </ListItemButton>
     <ListItemButton>
       <ListItemIcon>
