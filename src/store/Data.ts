@@ -19,14 +19,19 @@ const dataReducer = (
     state = initialDataState,
     action: {
         type: string;
-        payLoad?: any;
+        payload?: any;
     }
 ) => {
     switch(action.type) {
-        case GET_STATE: case SET_STATE:
+        case GET_STATE: 
             return {
                 ...state,
-                ...action.payLoad
+                ...action.payload
+            };
+        case SET_STATE:
+            return {
+                ...state,
+                ...action.payload
             };
         default:
             return state;

@@ -29,17 +29,21 @@ export class Ons {
         return this._store.getState()[type][key];
     }
 
-    public setState(key: StateType, value: any): void {
-        this._store.dispatch(setState(
-            {[key]: value}
-        ));
+    public setState(key: StateType, value: any, isDispatch?: boolean, type: string = 'data'): void {
+        if (isDispatch) {
+            this._store.dispatch(setState({
+                [key]: value
+            }));
+        } else {
+            this._store.getState()[type][key] = value;
+        }
     }
 
     public alert(message: string, option?: AlertOptionType) {
         if (message === 'hide') {
-            this.store.dispatch(hideAlert());
+            this._store.dispatch(hideAlert());
         } else {
-            this.store.dispatch(showAlert({
+            this._store.dispatch(showAlert({
                 message,
                 alertOption: option
             }))
@@ -47,15 +51,14 @@ export class Ons {
     }
 
     public showLoading(type: string, option?: LodingOptionType) {
-        this.store.dispatch(showLoading({
+        this._store.dispatch(showLoading({
             loadingType: type,
             loadingOption: option
         }))
     }
 
     public hideLoading(type: string ='normal') {
-        if (!this.store) return;
-        this.store.dispatch(hideLoading({
+        this._store.dispatch(hideLoading({
             loadingType: type
         }))
     }
