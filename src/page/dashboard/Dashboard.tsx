@@ -1,4 +1,10 @@
-import * as React from 'react';
+import Chart from './Chart';
+import Deposits from './Deposits';
+import Orders from './Orders';
+import Drawer from '../../comp/navigation/Drawer';
+import AppBar from '../../comp/header/AppBar';
+
+// start -- MUI 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
@@ -6,23 +12,16 @@ import Toolbar from '@mui/material/Toolbar';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-import Chart from './Chart';
-import Deposits from './Deposits';
-import Orders from './Orders';
-import Drawer from '../../comp/navigation/Drawer';
-import AppBar from '../../comp/header/AppBar';
-import ons from '../../core/Ons';
+// end -- MUI
 
-const mdTheme = createTheme();
-interface Iii {
-  open: boolean;
-}
 function DashboardContent() {
+  const mdTheme = createTheme();
+
   return (
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
-        <AppBar/>
+        <AppBar open={true}/>
         <Drawer open={true}/>
         <Box
           component="main"

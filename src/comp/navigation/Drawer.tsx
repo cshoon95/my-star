@@ -1,15 +1,19 @@
 import { useState } from 'react';
+import { mainListItems, secondaryListItems } from './ListItems';
+
+// start -- MUI 
 import MuiDrawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import { mainListItems, secondaryListItems } from './ListItems';
 import { styled } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
+// end -- MUI
 
 const Drawer = (open: any) => {
     const [isOpen, setOpen] = useState(open);
+    const drawerWidth: number = 240;
 
     // MUI Drawer
     const StyledDrawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
@@ -17,7 +21,7 @@ const Drawer = (open: any) => {
         '& .MuiDrawer-paper': {
           position: 'relative',
           whiteSpace: 'nowrap',
-          width: 240,
+          width: drawerWidth,
           transition: theme.transitions.create('width', {
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.enteringScreen,
