@@ -1,30 +1,54 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import { store } from './store/Store';
 import ons from './core/Ons';
 import Alert from './manager/Alert';
 import Loading from './manager/Loading';
+import AppBar from './comp/header/AppBar';
+import Drawer from './comp/navigation/Drawer';
+import Dashboard from './page/dashboard/Dashboard';
+import Customers from './page/customers/Customers';
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
+
+// start -- MUI 
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import Box from '@mui/material/Box';
+// end -- MUI
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
+const mdTheme = createTheme();
+
 ons.init(store);
 
 root.render(
   <Provider store = {store}>
-    <React.StrictMode>
-      <div>
-        <Alert/>
-        <Loading/>
-      </div>
-      <App />
-    </React.StrictMode>
+    <ThemeProvider theme={mdTheme}>
+      <React.StrictMode>
+        <div>
+          <Alert/>
+          <Loading/>
+        </div>
+        <Box sx={{ display: 'flex' }}>
+          <CssBaseline />
+          <AppBar open={true}/>
+          <Drawer open={true}/>
+          <Router>
+            <Routes>
+              <Route path="/" element={ <Dashboard /> } />
+              <Route path="/customers" element={ <Customers /> } />
+            </Routes>
+          </Router>        
+         </Box>
+      </React.StrictMode>
+    </ThemeProvider>
   </Provider>
 );
 

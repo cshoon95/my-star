@@ -16,7 +16,7 @@ export const mainListItems = (
         <ListItemIcon>
             <DashboardIcon />
         </ListItemIcon>
-        <ListItemText primary="Dashboard" />
+        <ListItemText primary="Dashboard" onClick={() => { window.location.href ='/' }}/>
         </ListItemButton>
         <ListItemButton>
         <ListItemIcon>
@@ -28,7 +28,7 @@ export const mainListItems = (
         <ListItemIcon>
             <PeopleIcon />
         </ListItemIcon>
-            <ListItemText primary="Customers" onClick={() => {console.log('sgs')}}/>
+            <ListItemText primary="Customers" onClick={() => { window.location.href ='/customers' }}/>
         </ListItemButton>
         <ListItemButton>
         <ListItemIcon>
