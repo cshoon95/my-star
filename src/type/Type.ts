@@ -17,6 +17,7 @@ export type StoreStateViewType = {
     alertOption: AlertOptionType;
     loadingType: string;
     loadingOption: LodingOptionType;
+    pageName: string;
 };
 
 // Option Types
@@ -62,7 +63,8 @@ export const initialViewState: StoreStateViewType = {
     alertMessage: "",
     alertOption: initAlertOption,
     loadingType: "",
-    loadingOption: initLoadingOption
+    loadingOption: initLoadingOption,
+    pageName: "Dashboard"
 }
 
 export const initialDataState: StoreStateDataType = {

@@ -1,7 +1,7 @@
 import { Store } from "redux";
 import { initialDataState, initialViewState } from "../type/Type";
 import { setState } from "../store/Data";
-import { hideAlert, showAlert, showLoading, hideLoading} from "../store/View";
+import { hideAlert, showAlert, showLoading, hideLoading, movePage } from "../store/View";
 import { StoreStateType, AlertOptionType, LodingOptionType } from "../type/Type";
 
 type StateType = keyof typeof initialDataState | keyof typeof initialViewState;
@@ -61,6 +61,13 @@ export class Ons {
         this._store.dispatch(hideLoading({
             loadingType: type
         }))
+    }
+    
+    public route(path: string) {
+        this._store.dispatch(movePage({
+            pageName: path === '' ? 'Dashboard' : path
+        }))
+        // window.location.pathname =('./' + path);
     }
 
     public log(message: any) {

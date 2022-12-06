@@ -6,23 +6,28 @@ export const SHOW_ALERT = "view/SHOW_ALERT";
 export const HIDE_ALERT = "view/HIDE_ALERT";
 export const SHOW_LOADING = "view/SHOW_LOADING";
 export const HIDE_LOADING = "view/HIDE_LOADING";
+export const MOVE_PAGE = "view/MOVE_PAGE";
 
 // actions
 export const showAlert = createAction<{
     message: string,
     alertOption?: AlertOptionType
-}>(SHOW_ALERT);
+}>(SHOW_ALERT);;
 
 export const hideAlert = createAction(HIDE_LOADING);
 
 export const showLoading = createAction<{
     loadingType: string,
     loadingOption?: LodingOptionType
-}>(SHOW_LOADING)
+}>(SHOW_LOADING);
 
 export const hideLoading = createAction<{
     loadingType?: string
-}>(HIDE_LOADING)
+}>(HIDE_LOADING);
+
+export const movePage = createAction<{
+    pageName: string
+}>(MOVE_PAGE);
 
 const viewReducer = (state = initialViewState, action: any) => {
     switch (action.type) {
@@ -57,6 +62,11 @@ const viewReducer = (state = initialViewState, action: any) => {
                 alertMessage: '',
                 alertOption: initAlertOption
             };
+        case MOVE_PAGE:
+            return {
+                ...state,
+                pageName: action.payload.pageName
+            }
         default:
             return state;
     }

@@ -1,4 +1,7 @@
 import * as React from 'react';
+import ons from '../../core/Ons';
+
+// start -- MUI 
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
@@ -9,6 +12,7 @@ import PeopleIcon from '@mui/icons-material/People';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import LayersIcon from '@mui/icons-material/Layers';
 import AssignmentIcon from '@mui/icons-material/Assignment';
+// end -- MUI
 
 export const mainListItems = (
     <React.Fragment>
@@ -16,7 +20,7 @@ export const mainListItems = (
         <ListItemIcon>
             <DashboardIcon />
         </ListItemIcon>
-        <ListItemText primary="Dashboard" onClick={() => { window.location.href ='/' }}/>
+        <ListItemText primary="Dashboard" onClick={() => { ons.route('') }}/>
         </ListItemButton>
         <ListItemButton>
         <ListItemIcon>
@@ -28,7 +32,7 @@ export const mainListItems = (
         <ListItemIcon>
             <PeopleIcon />
         </ListItemIcon>
-            <ListItemText primary="Customers" onClick={() => { window.location.href ='/customers' }}/>
+            <ListItemText primary="Customers" onClick={() => { ons.route('customers') }}/>
         </ListItemButton>
         <ListItemButton>
         <ListItemIcon>
