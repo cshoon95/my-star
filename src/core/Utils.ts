@@ -22,6 +22,9 @@ class Utils {
 
         return hh + mm + ss;
     }
+    changeToUpperCaseFirst(str: string): string {
+        return str.replace(/^[a-z]/, char => char.toUpperCase());
+    }
 }
 
 export default new Utils();

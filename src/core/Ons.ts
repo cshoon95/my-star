@@ -3,6 +3,9 @@ import { initialDataState, initialViewState } from "../type/Type";
 import { setState } from "../store/Data";
 import { hideAlert, showAlert, showLoading, hideLoading, movePage } from "../store/View";
 import { StoreStateType, AlertOptionType, LodingOptionType } from "../type/Type";
+import Message from "./Message";
+import List from "./List";
+import utils from "./Utils";
 
 type StateType = keyof typeof initialDataState | keyof typeof initialViewState;
 
@@ -25,6 +28,14 @@ export class Ons {
         return this.store.getState();
     }
 
+    public get list() {
+        return List;
+    }
+
+    public get message() {
+        return Message;
+    }
+
     public getState(key: StateType, type: string = 'data') {
         return this._store.getState()[type][key];
     }
@@ -38,7 +49,7 @@ export class Ons {
             this._store.getState()[type][key] = value;
         }
     }
-
+    
     public alert(message: string, option?: AlertOptionType) {
         if (message === 'hide') {
             this._store.dispatch(hideAlert());
@@ -64,12 +75,13 @@ export class Ons {
     }
     
     public route(path: string) {
-        this._store.dispatch(movePage({
-            pageName: path === '' ? 'Dashboard' : path
-        }))
-        // window.location.pathname =('./' + path);
-    }
+        const updatePath = path === '' ? 'Dashboard' : utils.changeToUpperCaseFirst(path);
 
+        this._store.dispatch(movePage({
+            pageName: updatePath,
+            headerTitle: List.headerTitle[updatePath]
+        }))
+    }
     public log(message: any) {
         console.log(message);
     }

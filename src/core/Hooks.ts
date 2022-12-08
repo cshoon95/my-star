@@ -16,12 +16,13 @@ export const useClick = (onClick: Function) => {
     return element;
 }
 
-export const useClickRouter = (page: string) => {
+export const useClickRouter = (page: string, callback?: Function) => {
     const navigate = useNavigate();
    
     const navigateToPurchase = () => {
       navigate("/" + page);
     };
+    callback && callback();
 
     return navigateToPurchase;
 }

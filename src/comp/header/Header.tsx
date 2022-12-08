@@ -1,4 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { hideAlert, showAlert, showLoading, hideLoading, movePage } from "../../store/View";
+import { StoreStateType } from '../../type/Type';
 import ons from '../../core/Ons';
 
 // start -- MUI 
@@ -15,7 +18,6 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 interface AppBarProps extends MuiAppBarProps {
     open?: boolean;
 }
-
 const StyledAppBar = styled(MuiAppBar, {
     shouldForwardProp: (prop) => prop !== 'open',
 })<AppBarProps>(({ theme, open }) => ({
@@ -31,12 +33,16 @@ const StyledAppBar = styled(MuiAppBar, {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.enteringScreen,
     }),
-    }),
+}),
 }));
 
 const Header = (open: any) => {
     const [isOpen, setOpen] = useState(open);
-
+    const { headerTitle } = useSelector((state: StoreStateType) => {
+        return {
+            headerTitle: state.view.headerTitle
+        }
+    });
     return(
         <StyledAppBar position="absolute" open={true}>
              <Toolbar
@@ -65,7 +71,7 @@ const Header = (open: any) => {
                     noWrap
                     sx={{ flexGrow: 1 }}
                     >
-                    Dashboard
+                    {headerTitle}
                 </Typography>
                 <IconButton color="inherit">
                     <Badge badgeContent={4} color="secondary">

@@ -1,6 +1,7 @@
 import React from 'react';
 import ons from '../../core/Ons';
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useClick, useClickRouter } from "../../core/Hooks";
 
 // start -- MUI 
 import ListItemButton from '@mui/material/ListItemButton';
@@ -15,7 +16,13 @@ import LayersIcon from '@mui/icons-material/Layers';
 
 const MasterList = () => {
     const navigate = useNavigate();
-
+    
+    const onClick = (path: string) => {
+        return (event: React.MouseEvent) => {
+            navigate('/' + path);
+            ons.route(path)
+        }
+    }
     return (
         <React.Fragment>
             <ListItemButton>
@@ -27,13 +34,13 @@ const MasterList = () => {
                 <ListItemIcon>
                     <ShoppingCartIcon />
                 </ListItemIcon>
-                <ListItemText primary="Orders" />
+                <ListItemText primary="Orders"  onClick={onClick('')}/>
             </ListItemButton>
             <ListItemButton>
                 <ListItemIcon>
                     <PeopleIcon />
                 </ListItemIcon>
-                    <ListItemText primary="Customers" onClick={() => {navigate('/customers')}}/>
+                    <ListItemText primary="Customers" onClick={onClick('customers')}/>
             </ListItemButton>
             <ListItemButton>
                 <ListItemIcon>
