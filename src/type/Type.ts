@@ -1,4 +1,4 @@
-import Utils from '../core/Utils';
+import utils from '../core/Utils';
 
 export type StoreStateType = {
     data: StoreStateDataType;
@@ -18,6 +18,7 @@ export type StoreStateViewType = {
     loadingType: string;
     loadingOption: LodingOptionType;
     pageName: string;
+    headerTitle: string;
 };
 
 // Option Types
@@ -64,12 +65,13 @@ export const initialViewState: StoreStateViewType = {
     alertOption: initAlertOption,
     loadingType: "",
     loadingOption: initLoadingOption,
-    pageName: "Dashboard"
+    pageName: "Dashboard",
+    headerTitle: "랑아트"
 }
 
 export const initialDataState: StoreStateDataType = {
-    sysdate: Utils.sysdate(new Date()),
-    systime: Utils.systime(new Date()),
-    isMobile: Utils.isMobile(),
+    sysdate: utils.sysdate(new Date()),
+    systime: utils.systime(new Date()),
+    isMobile: utils.isMobile(),
     academyName: '랑아트 미술학원'
 }

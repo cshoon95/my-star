@@ -27,6 +27,7 @@ export const hideLoading = createAction<{
 
 export const movePage = createAction<{
     pageName: string
+    headerTitle: string
 }>(MOVE_PAGE);
 
 const viewReducer = (state = initialViewState, action: any) => {
@@ -65,7 +66,8 @@ const viewReducer = (state = initialViewState, action: any) => {
         case MOVE_PAGE:
             return {
                 ...state,
-                pageName: action.payload.pageName
+                pageName: action.payload.pageName,
+                headerTitle: action.payload.headerTitle
             }
         default:
             return state;
