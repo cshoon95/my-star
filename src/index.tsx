@@ -11,7 +11,8 @@ import Header from './comp/header/Header';
 import Drawer from './comp/navigation/Drawer';
 import Dashboard from './page/dashboard/Dashboard';
 import Customers from './page/customers/Customers';
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { RecoilRoot } from "recoil";
 
 
 // start -- MUI 
@@ -30,25 +31,27 @@ ons.init(store);
 
 root.render(
     <Provider store = {store}>
-        <ThemeProvider theme={mdTheme}>
-            <React.StrictMode>
-                <Router>
-                    <div>
-                        <Alert/>
-                        <Loading/>
-                    </div>
-                    <Box sx={{ display: 'flex' }}>
-                    <CssBaseline />
-                    <Header open={true}/>
-                    <Drawer open={true}/>
-                    <Routes>
-                        <Route path="/" element={ <Dashboard /> } />
-                        <Route path="/customers" element={ <Customers /> } />
-                    </Routes>
-                    </Box>
-                </Router>        
-            </React.StrictMode>
-        </ThemeProvider>
+        <RecoilRoot>
+            <ThemeProvider theme={mdTheme}>
+                <React.StrictMode>
+                    <Router>
+                        <div>
+                            <Alert/>
+                            <Loading/>
+                        </div>
+                        <Box sx={{ display: 'flex' }}>
+                        <CssBaseline />
+                        <Header open={true}/>
+                        <Drawer open={true}/>
+                        <Routes>
+                            <Route path="/" element={ <Dashboard /> } />
+                            <Route path="/customers" element={ <Customers /> } />
+                        </Routes>
+                        </Box>
+                    </Router>        
+                </React.StrictMode>
+            </ThemeProvider>
+        </RecoilRoot>
     </Provider>
 );
 
