@@ -34,11 +34,8 @@ const StyledAppBar = styled(MuiAppBar, {
     }),
 }));
 
-const AppBar = (open: any) => {
-   
-
+const Header = (open: any) => {
     const [isOpen, setOpen] = useState(open);
-
 
     return(
         <StyledAppBar position="absolute" open={true}>
@@ -80,4 +77,4 @@ const AppBar = (open: any) => {
     )
 }
 
-export default AppBar;
+export default Header;

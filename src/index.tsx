@@ -7,7 +7,7 @@ import { store } from './store/Store';
 import ons from './core/Ons';
 import Alert from './manager/Alert';
 import Loading from './manager/Loading';
-import AppBar from './comp/header/AppBar';
+import Header from './comp/header/Header';
 import Drawer from './comp/navigation/Drawer';
 import Dashboard from './page/dashboard/Dashboard';
 import Customers from './page/customers/Customers';
@@ -39,7 +39,7 @@ root.render(
                     </div>
                     <Box sx={{ display: 'flex' }}>
                     <CssBaseline />
-                    <AppBar open={true}/>
+                    <Header open={true}/>
                     <Drawer open={true}/>
                     <Routes>
                         <Route path="/" element={ <Dashboard /> } />
