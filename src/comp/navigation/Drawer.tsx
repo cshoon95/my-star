@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { mainListItems, secondaryListItems } from './ListItems';
+import MasterList from './MasterList';
+import SubList from './SubList';
 
 // start -- MUI 
 import MuiDrawer from '@mui/material/Drawer';
@@ -60,9 +61,9 @@ const Drawer = (open: any) => {
             </Toolbar>
             <Divider />
             <List component="nav">
-                {mainListItems}
+                <MasterList/>
                 <Divider sx={{ my: 1 }} />
-                {secondaryListItems}
+                <SubList/>
             </List>
         </StyledDrawer>
     )

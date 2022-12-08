@@ -29,27 +29,27 @@ const mdTheme = createTheme();
 ons.init(store);
 
 root.render(
-  <Provider store = {store}>
-    <ThemeProvider theme={mdTheme}>
-      <React.StrictMode>
-        <div>
-          <Alert/>
-          <Loading/>
-        </div>
-        <Box sx={{ display: 'flex' }}>
-          <CssBaseline />
-          <AppBar open={true}/>
-          <Drawer open={true}/>
-          <Router>
-            <Routes>
-              <Route path="/" element={ <Dashboard /> } />
-              <Route path="/customers" element={ <Customers /> } />
-            </Routes>
-          </Router>        
-         </Box>
-      </React.StrictMode>
-    </ThemeProvider>
-  </Provider>
+    <Provider store = {store}>
+        <ThemeProvider theme={mdTheme}>
+            <React.StrictMode>
+                <Router>
+                    <div>
+                        <Alert/>
+                        <Loading/>
+                    </div>
+                    <Box sx={{ display: 'flex' }}>
+                    <CssBaseline />
+                    <AppBar open={true}/>
+                    <Drawer open={true}/>
+                    <Routes>
+                        <Route path="/" element={ <Dashboard /> } />
+                        <Route path="/customers" element={ <Customers /> } />
+                    </Routes>
+                    </Box>
+                </Router>        
+            </React.StrictMode>
+        </ThemeProvider>
+    </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function
