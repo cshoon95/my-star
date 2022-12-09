@@ -1,12 +1,19 @@
 import * as React from 'react';
+import { useSelector } from 'react-redux';
+import { StoreStateType } from '../../type/Type';
+import Title from './Title';
+import ons from '../../core/Ons';
+
+// start -- MUI 
 import Link from '@mui/material/Link';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import Title from './Title';
+// end -- MUI
 
+// 등록날짜, D+??, 이름, 날짜, 학교(유치원), 계좌입금명, 학원비 
 // Generate Order Data
 function createData(
   id: number,
@@ -55,21 +62,26 @@ const rows = [
   ),
 ];
 
-function preventDefault(event: React.MouseEvent) {
-  event.preventDefault();
-}
+const Board = (option: any) => {
+  const { pageName } = useSelector((state: StoreStateType) => {
+      return {
+          pageName: state.view.pageName
+      }
+  });
 
-export default function Orders() {
+  const preventDefault = (event: React.MouseEvent) => {
+    event.preventDefault();
+  }
+
   return (
     <React.Fragment>
-      <Title>Recent Orders</Title>
+      <Title>{option.title}</Title>
       <Table size="small">
         <TableHead>
           <TableRow>
             <TableCell>Date</TableCell>
             <TableCell>Name</TableCell>
             <TableCell>Ship To</TableCell>
-            <TableCell>Payment Method</TableCell>
             <TableCell align="right">Sale Amount</TableCell>
           </TableRow>
         </TableHead>
@@ -79,15 +91,17 @@ export default function Orders() {
               <TableCell>{row.date}</TableCell>
               <TableCell>{row.name}</TableCell>
               <TableCell>{row.shipTo}</TableCell>
-              <TableCell>{row.paymentMethod}</TableCell>
               <TableCell align="right">{`$${row.amount}`}</TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
-      <Link color="primary" href="#" onClick={preventDefault} sx={{ mt: 3 }}>
+      {pageName === 'Dashboard' ? <Link color="primary" href="#" onClick={preventDefault} sx={{ mt: 3 }}>
         See more orders
-      </Link>
+      </Link> : ''}
+      
     </React.Fragment>
   );
 }
+
+export default Board;

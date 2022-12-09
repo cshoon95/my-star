@@ -1,7 +1,9 @@
 class List {
     headerTitle: any = {
-        'Dashboard': '랑아트',
-        'Customers': '고객 정보'
+        'Dashboard': 'Dashboard',
+        'Customers': '고객 정보',
+        'Attendance': '출석 정보',
+        'Reports': '보고서'
     }
 }
 

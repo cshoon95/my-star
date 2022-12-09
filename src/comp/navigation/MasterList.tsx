@@ -2,6 +2,7 @@ import React from 'react';
 import ons from '../../core/Ons';
 import { useNavigate } from "react-router-dom";
 import { useClick, useClickRouter } from "../../core/Hooks";
+import { getList } from "../../core/Server";
 
 // start -- MUI 
 import ListItemButton from '@mui/material/ListItemButton';
@@ -12,29 +13,31 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import PeopleIcon from '@mui/icons-material/People';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import LayersIcon from '@mui/icons-material/Layers';
+import CreateIcon from '@mui/icons-material/Create';
 // end -- MUI
 
 const MasterList = () => {
     const navigate = useNavigate();
     
     const onClick = (path: string) => {
-        return (event: React.MouseEvent) => {
+        return (e: React.MouseEvent) => {
             navigate('/' + path);
             ons.route(path)
         }
     }
     return (
         <React.Fragment>
-            <ListItemButton>
+            <ListItemButton onClick={onClick('')}>
                 <ListItemIcon>
                     <DashboardIcon />
                 </ListItemIcon>
+                <ListItemText primary="Dashboard"  onClick={onClick('')}/>
             </ListItemButton>
             <ListItemButton>
                 <ListItemIcon>
-                    <ShoppingCartIcon />
+                    <CreateIcon />
                 </ListItemIcon>
-                <ListItemText primary="Orders"  onClick={onClick('')}/>
+                <ListItemText primary="Attendance"  onClick={onClick('attendance')}/>
             </ListItemButton>
             <ListItemButton>
                 <ListItemIcon>
@@ -46,7 +49,9 @@ const MasterList = () => {
                 <ListItemIcon>
                     <BarChartIcon />
                 </ListItemIcon>
-            <ListItemText primary="Reports" />
+            <ListItemText primary="Reports" onClick={() => {
+                getList();
+            }}/>
             </ListItemButton>
             <ListItemButton>
                 <ListItemIcon>

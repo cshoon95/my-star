@@ -12,7 +12,7 @@ export const MOVE_PAGE = "view/MOVE_PAGE";
 export const showAlert = createAction<{
     message: string,
     alertOption?: AlertOptionType
-}>(SHOW_ALERT);;
+}>(SHOW_ALERT);
 
 export const hideAlert = createAction(HIDE_LOADING);
 

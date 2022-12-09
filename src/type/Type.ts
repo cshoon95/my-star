@@ -66,7 +66,7 @@ export const initialViewState: StoreStateViewType = {
     loadingType: "",
     loadingOption: initLoadingOption,
     pageName: "Dashboard",
-    headerTitle: "랑아트"
+    headerTitle: "Dashboard"
 }
 
 export const initialDataState: StoreStateDataType = {

@@ -1,3 +1,5 @@
+import Board from "../../comp/module/Board";
+
 // start -- MUI 
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -22,6 +24,7 @@ function Customers() {
         >
         <Toolbar />
         <p>위치파악용 문구</p>
+        <Board/>
         </Box>  
     )
 }

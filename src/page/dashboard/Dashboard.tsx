@@ -1,6 +1,6 @@
 import Chart from './Chart';
 import Deposits from './Deposits';
-import Orders from './Orders';
+import Board from '../../comp/module/Board';
 
 // start -- MUI 
 import Box from '@mui/material/Box';
@@ -56,7 +56,7 @@ function Dashboard() {
             {/* Recent Orders */}
             <Grid item xs={12}>
               <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                <Orders />
+                <Board />
               </Paper>
             </Grid>
           </Grid>
