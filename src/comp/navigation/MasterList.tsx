@@ -2,14 +2,12 @@ import React from 'react';
 import ons from '../../core/Ons';
 import { useNavigate } from "react-router-dom";
 import { useClick, useClickRouter } from "../../core/Hooks";
-import { getList } from "../../core/Server";
 
 // start -- MUI 
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import DashboardIcon from '@mui/icons-material/Dashboard';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import PeopleIcon from '@mui/icons-material/People';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import LayersIcon from '@mui/icons-material/Layers';
@@ -50,7 +48,20 @@ const MasterList = () => {
                     <BarChartIcon />
                 </ListItemIcon>
             <ListItemText primary="Reports" onClick={() => {
-                getList();
+                ons.server.run({
+                    method:'get', 
+                    url:'customers/list'
+                }, (response: any) => {
+                    ons.log(response);
+                    // axios({
+                    //     url: '/user/12345',
+                    //     method: 'put',
+                    //     data: {
+                    //       firstName: 'Fred',
+                    //       lastName: 'Flintstone'
+                    //     }
+                    //   })
+                });
             }}/>
             </ListItemButton>
             <ListItemButton>

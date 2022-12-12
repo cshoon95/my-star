@@ -87,16 +87,16 @@ export class Ons {
             headerTitle: List.headerTitle[updatePath]
         }))
     }
-    public log(message: any) {
-        console.log(message);
+    public log(message: any, message2?: any) {
+        console.log(message, message2);
     }
 
-    public warnLog(message: any) {
-        console.warn(message);
+    public warnLog(message: any, message2?: any) {
+        console.warn(message, message2);
     }
 
-    public infoLog(message: any) {
-        console.info(message);
+    public infoLog(message: any, message2?: any) {
+        console.info(message, message2);
     }
 
     public groupLog(messages: Array<any>) {

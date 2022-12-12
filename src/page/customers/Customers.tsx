@@ -24,7 +24,7 @@ function Customers() {
         >
         <Toolbar />
         <p>위치파악용 문구</p>
-        <Board/>
+        <Board />
         </Box>  
     )
 }
