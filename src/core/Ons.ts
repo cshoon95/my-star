@@ -3,6 +3,7 @@ import { initialDataState, initialViewState } from "../type/Type";
 import { setState } from "../store/Data";
 import { hideAlert, showAlert, showLoading, hideLoading, movePage } from "../store/View";
 import { StoreStateType, AlertOptionType, LodingOptionType } from "../type/Type";
+import Server from "./Server";
 import Message from "./Message";
 import List from "./List";
 import utils from "./Utils";
@@ -34,6 +35,10 @@ export class Ons {
 
     public get message() {
         return Message;
+    }
+
+    public get server() {
+        return Server;
     }
 
     public getState(key: StateType, type: string = 'data') {

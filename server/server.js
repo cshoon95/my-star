@@ -1,44 +1,41 @@
 const express = require("express");
-const cors = require("cors");
-const app = express();
-const mysql = require("mysql");
-const PORT = 3001;
+const cors    = require("cors");
+const mysql   = require("mysql");
+const app     = express();
+const PORT    = 3001;
 
 const db = mysql.createPool({
-    host: "localhost",
+    host: "127.0.0.1",
     user: "root",
     password: "",
     database: "star",
 });
 
+const printRes = (err, result) => {
+  (result) ? console.log(result) : console.log(err);
+}
+
 app.use(cors({
     origin: "localhost:3001",
-    credentials: true, // 응답 헤더에 Access-Control-Allow-Credentials 추가
-    optionsSuccessStatus: 200, // 응답 상태 200으로 설정
+    credentials: true,          // 응답 헤더에 Access-Control-Allow-Credentials 추가
+    optionsSuccessStatus: 200,  // 응답 상태 200으로 설정
 }))
 
-app.get("/123", (req, res) => {
-    const sqlQuery = "INSERT INTO customers (rowno) VALUES (1)";
-    db.query(sqlQuery, (err, result) => {
-        res.send("success!");
-    });
+app.listen(PORT, () => {
+    console.log(`server running on port ${PORT}`);
 });
 
+// customers
+app.get("/api/customers/list", (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  
+  const sqlQuery = "SELECT * FROM CUSTOMERS";
 
-app.get("/customers/api/list", (req, res) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    console.log("list!!!");
-    const sqlQuery =
-      "SELECT * FROM CUSTOMERS"
-    db.query(sqlQuery, (err, result) => {
-      // select문 결과를 클라이언트에게 반환
-      res.send(result);
-      console.log(err);
-    });
+  db.query(sqlQuery, (err, result) => {
+    res.send(result);
+
+    printRes(err, result);
   });
-
-app.listen(PORT, () => {
-    console.log(`running on port ${PORT}`);
 });
 
 
