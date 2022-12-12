@@ -66,7 +66,7 @@ export class Ons {
         }
     }
 
-    public showLoading(type: string, option?: LodingOptionType) {
+    public showLoading(type?: string, option?: LodingOptionType) {
         this._store.dispatch(showLoading({
             loadingType: type,
             loadingOption: option

@@ -17,7 +17,7 @@ export const showAlert = createAction<{
 export const hideAlert = createAction(HIDE_LOADING);
 
 export const showLoading = createAction<{
-    loadingType: string,
+    loadingType?: string,
     loadingOption?: LodingOptionType
 }>(SHOW_LOADING);
 

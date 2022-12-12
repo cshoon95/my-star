@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
-import Ons from '../core/Ons';
+import ons from '../core/Ons';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
@@ -29,7 +29,7 @@ const btnStyle = {
 
 function Alert() {
     const refBtn = useRef<HTMLButtonElement>(null);
-    let { alertMessage, alertOption } = useSelector(
+    const { alertMessage, alertOption } = useSelector(
         (state: StoreStateType) => {
             return {
                 alertMessage: state.view.alertMessage,
@@ -47,7 +47,7 @@ function Alert() {
     return (
         <div>
             <Modal
-                open={alertMessage === '' ? false : true}
+                open={['','hide'].includes(alertMessage) ? false : true}
                 aria-labelledby="parent-modal-title"
                 aria-describedby="parent-modal-description"
                 color={alertOption.color}
@@ -61,7 +61,7 @@ function Alert() {
                         sx={btnStyle}
                         ref={refBtn}
                         onClick={() => {
-                            Ons.alert('hide');
+                            ons.alert('');
                             if (alertOption?.callbackFunc)
                             alertOption.callbackFunc();
                         }}
