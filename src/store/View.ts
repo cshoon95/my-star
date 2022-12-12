@@ -35,12 +35,12 @@ const viewReducer = (state = initialViewState, action: any) => {
         case SHOW_LOADING:
             return {
                 ...state,
-                loadingName: action.payload.loadingName
+                loadingType: action.payload.loadingType
             }
         case HIDE_LOADING:
             return {
                 ...state,
-                loadingName: ''
+                loadingType: ''
             }
         case SHOW_ALERT:
             const param: AlertOptionType = action.payload.alertOption;

@@ -26,10 +26,10 @@ function Loading() {
             ) : (
                 <Box sx={style}>
                     <CircularProgress
-                        color={loadingOption.color}
-                        disableShrink={loadingOption.disableShrink}
-                        size={loadingOption.size}
-                        thickness={loadingOption.thickness}
+                        color = {loadingOption.color}
+                        disableShrink = {loadingOption.disableShrink}
+                        size = {loadingOption.size}
+                        thickness = {loadingOption.thickness}
                     />
                 </Box>
             )}
