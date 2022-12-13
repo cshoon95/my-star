@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { StoreStateType } from '../../type/Type';
 import Title from './Title';
@@ -24,6 +24,8 @@ type customersType = {
 }
 
 const Board = () => {
+  const [rows, setRows] = useState([]);
+
   const { pageName } = useSelector((state: StoreStateType) => {
       return {
           pageName: state.view.pageName
@@ -34,45 +36,33 @@ const Board = () => {
     event.preventDefault();
   }
 
-  let options: any;
-  
   useEffect(() => {
     ons.server.run({
       method:'get', 
       url:'customers/list'
     }, (response: any) => {
-      options = response;
-        // axios({
-        //     url: '/user/12345',
-        //     method: 'put',
-        //     data: {
-        //       firstName: 'Fred',
-        //       lastName: 'Flintstone'
-        //     }
-        //   })
+      setRows(response);
     });
   }, [])
-  
-  ons.log(options);
+
   return (
     <>
       <Title>타이틀</Title>
       <Table size="small">
         <TableHead>
           <TableRow>
-            <TableCell>번호</TableCell>
+            <TableCell>No</TableCell>
             <TableCell>이름</TableCell>
-            <TableCell>학교(유치원)</TableCell>
+            <TableCell>학교</TableCell>
             <TableCell>휴대폰 번호</TableCell>
             <TableCell>등록 날짜</TableCell>
-            <TableCell align="right">회비 금액</TableCell>
+            <TableCell>회비</TableCell>
             <TableCell>비고</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {
-            options? 
-            options.map((row: customersType, idx: number) => (
+            rows.map((row: customersType, idx: number) => (
               <TableRow key={row.ID + '-' + idx}>
                 <TableCell>{idx}</TableCell>
                 <TableCell>{row.NAME}</TableCell>
@@ -82,9 +72,8 @@ const Board = () => {
                 <TableCell align="right">{row.FEE}</TableCell>
                 <TableCell>{row.NOTE}</TableCell>
               </TableRow>
-         ))
-        :
-        ''}
+            ))
+          }
         </TableBody>
       </Table>
       {pageName === 'Dashboard' ? <Link color="primary" href="#" onClick={preventDefault} sx={{ mt: 3 }}>
