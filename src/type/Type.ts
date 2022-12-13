@@ -19,6 +19,8 @@ export type StoreStateViewType = {
     loadingOption: LodingOptionType;
     pageName: string;
     headerTitle: string;
+    popupName: string;
+    popupOption: PopupOptionType;
 };
 
 // Option Types
@@ -44,6 +46,13 @@ export type LodingOptionType = {
     thickness: number;
 };
 
+export type PopupOptionType = {
+    title: string;
+    confirm: string;
+    compFunc: Function;
+    callbackFunc: Function;
+}
+
 // init
 export const initAlertOption: AlertOptionType = {
     title: '',
@@ -60,13 +69,22 @@ export const initLoadingOption: LodingOptionType = {
     thickness: 3.6,
 };
 
+export const initPopupOption: PopupOptionType = {
+    title: '',
+    confirm: '확인',
+    compFunc: () => {},
+    callbackFunc: () => {},
+}
+
 export const initialViewState: StoreStateViewType = {
     alertMessage: "",
     alertOption: initAlertOption,
     loadingType: "",
     loadingOption: initLoadingOption,
     pageName: "Dashboard",
-    headerTitle: "Dashboard"
+    headerTitle: "Dashboard",
+    popupName: "",
+    popupOption: initPopupOption
 }
 
 export const initialDataState: StoreStateDataType = {

@@ -1,8 +1,15 @@
 import { Store } from "redux";
 import { initialDataState, initialViewState } from "../type/Type";
 import { setState } from "../store/Data";
-import { hideAlert, showAlert, showLoading, hideLoading, movePage } from "../store/View";
-import { StoreStateType, AlertOptionType, LodingOptionType } from "../type/Type";
+import { hideAlert, 
+        showAlert, 
+        showLoading, 
+        hideLoading,
+        showPopup,
+        hidePopup, 
+        movePage 
+} from "../store/View";
+import { StoreStateType, AlertOptionType, LodingOptionType, PopupOptionType } from "../type/Type";
 import Server from "./Server";
 import Message from "./Message";
 import List from "./List";
@@ -79,6 +86,20 @@ export class Ons {
         }))
     }
     
+    public showPopup(name: string, option?: PopupOptionType) {
+        this._store.dispatch(showPopup({
+            popupName: name,
+            popupOption: option
+        }))
+    }
+
+    public hidePopup(type: string ='normal') {
+        this._store.dispatch(hideLoading({
+            loadingType: type
+        }))
+    }
+    
+
     public route(path: string) {
         const updatePath = path === '' ? 'Dashboard' : utils.changeToUpperCaseFirst(path);
 
