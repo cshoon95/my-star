@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { StoreStateType } from '../../type/Type';
 import Title from './Title';
 import ons from '../../core/Ons';
+import { useNavigate } from "react-router-dom";
 
 // start -- MUI 
 import Link from '@mui/material/Link';
@@ -24,6 +25,7 @@ type customersType = {
 }
 
 const Board = () => {
+  const navigate = useNavigate();
   const [rows, setRows] = useState([]);
 
   const { pageName } = useSelector((state: StoreStateType) => {
@@ -31,10 +33,6 @@ const Board = () => {
           pageName: state.view.pageName
       }
   });
-
-  const preventDefault = (event: React.MouseEvent) => {
-    event.preventDefault();
-  }
 
   useEffect(() => {
     ons.server.run({
@@ -47,7 +45,9 @@ const Board = () => {
 
   return (
     <>
-      <Title>타이틀</Title>
+    {pageName === 'Dashboard' ? <Title>회원 정보</Title>
+    : ''
+    }
       <Table size="small">
         <TableHead>
           <TableRow>
@@ -76,10 +76,16 @@ const Board = () => {
           }
         </TableBody>
       </Table>
-      {pageName === 'Dashboard' ? <Link color="primary" href="#" onClick={preventDefault} sx={{ mt: 3 }}>
-        더보기
-      </Link> : ''}
-      
+      {pageName === 'Dashboard' ? 
+        <Link color="primary" onClick={() => {
+          navigate('/customers');
+          ons.route('customers')
+        
+        }} sx={{ mt: 3 }}>
+          더보기
+        </Link> 
+        : 
+        ''}     
     </>
   );
 }
