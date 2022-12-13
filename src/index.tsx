@@ -13,7 +13,9 @@ import Dashboard from './page/dashboard/Dashboard';
 import Customers from './page/customers/Customers';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { RecoilRoot } from "recoil";
-
+import Attendance from './page/attendance/Attendance';
+import Setting from './page/setting/Setting';
+import Reports from './page/reports/Reports';
 
 // start -- MUI 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -46,6 +48,9 @@ root.render(
                         <Routes>
                             <Route path="/" element={ <Dashboard /> } />
                             <Route path="/customers" element={ <Customers /> } />
+                            <Route path="/attendance" element={ <Attendance /> } />
+                            <Route path="/reports" element={ <Reports /> } />
+                            <Route path="/setting" element={ <Setting /> } />
                         </Routes>
                         </Box>
                     </Router>        
