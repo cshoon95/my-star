@@ -1,5 +1,6 @@
 import React from 'react';
 import ons from '../../core/Ons';
+import util from '../../core/Utils';
 import { useNavigate } from "react-router-dom";
 import { useClick, useClickRouter } from "../../core/Hooks";
 
@@ -16,44 +17,49 @@ import SettingsIcon from '@mui/icons-material/Settings';
 
 const MasterList = () => {
     const navigate = useNavigate();
-    
+
     const onClick = (path: string) => {
+        const currPage = ons.getState('pageName', 'view');
+
+        if (currPage === util.changeToUpperCaseFirst(path)) return;
+        
         return (e: React.MouseEvent) => {
             navigate('/' + path);
             ons.route(path)
         }
     }
+    
     return (
         <React.Fragment>
             <ListItemButton onClick={onClick('')}>
                 <ListItemIcon>
                     <DashboardIcon />
                 </ListItemIcon>
-                <ListItemText primary="Dashboard"  onClick={onClick('')}/>
+                <ListItemText primary="Dashboard" />
             </ListItemButton>
-            <ListItemButton>
+            <ListItemButton onClick={onClick('attendance')}>
                 <ListItemIcon>
                     <CreateIcon />
                 </ListItemIcon>
-                <ListItemText primary="Attendance"  onClick={onClick('attendance')}/>
+                <ListItemText primary="Attendance" />
             </ListItemButton>
-            <ListItemButton>
+            <ListItemButton onClick={onClick('customers')}>
                 <ListItemIcon>
                     <PeopleIcon />
                 </ListItemIcon>
-                    <ListItemText primary="Customers" onClick={onClick('customers')}/>
+                    <ListItemText primary="Customers" />
             </ListItemButton>
-            <ListItemButton>
+            <ListItemButton onClick={onClick('reports')}>
                 <ListItemIcon>
                     <BarChartIcon />
                 </ListItemIcon>
-                    <ListItemText primary="Reports" onClick={onClick('reports')}/>
+                    <ListItemText primary="Reports" />
             </ListItemButton>
-            <ListItemButton>
+            <ListItemButton onClick={onClick('setting')}>
                 <ListItemIcon>
                     <SettingsIcon />
                 </ListItemIcon>
-                <ListItemText primary="Setting" onClick={onClick('settings')}/>
+                <ListItemText primary="Setting" />
             </ListItemButton>
         </React.Fragment>
     )
