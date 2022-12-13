@@ -10,8 +10,8 @@ import ListItemText from '@mui/material/ListItemText';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import PeopleIcon from '@mui/icons-material/People';
 import BarChartIcon from '@mui/icons-material/BarChart';
-import LayersIcon from '@mui/icons-material/Layers';
 import CreateIcon from '@mui/icons-material/Create';
+import SettingsIcon from '@mui/icons-material/Settings';
 // end -- MUI
 
 const MasterList = () => {
@@ -47,28 +47,13 @@ const MasterList = () => {
                 <ListItemIcon>
                     <BarChartIcon />
                 </ListItemIcon>
-            <ListItemText primary="Reports" onClick={() => {
-                ons.server.run({
-                    method:'get', 
-                    url:'customers/list'
-                }, (response: any) => {
-                    ons.log(response);
-                    // axios({
-                    //     url: '/user/12345',
-                    //     method: 'put',
-                    //     data: {
-                    //       firstName: 'Fred',
-                    //       lastName: 'Flintstone'
-                    //     }
-                    //   })
-                });
-            }}/>
+                    <ListItemText primary="Reports" onClick={onClick('reports')}/>
             </ListItemButton>
             <ListItemButton>
                 <ListItemIcon>
-                    <LayersIcon />
+                    <SettingsIcon />
                 </ListItemIcon>
-            <ListItemText primary="Integrations" />
+                <ListItemText primary="Setting" onClick={onClick('settings')}/>
             </ListItemButton>
         </React.Fragment>
     )
