@@ -34,11 +34,11 @@ root.render(
         <RecoilRoot>
             <ThemeProvider theme={mdTheme}>
                 <React.StrictMode>
+                    <div>
+                        <Alert/>
+                        <Loading/>
+                    </div>
                     <Router>
-                        <div>
-                            <Alert/>
-                            <Loading/>
-                        </div>
                         <Box sx={{ display: 'flex' }}>
                         <CssBaseline />
                         <Header open={true}/>
