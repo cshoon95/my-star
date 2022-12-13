@@ -1,6 +1,10 @@
+import InitPage from "../../comp/module/InitPage";
+
 const Attendance = () => {
     return (
-        <p>sdfds</p>
+        <InitPage>
+            <p>sdfds</p>
+        </InitPage>
     )
 }
 
