@@ -16,6 +16,8 @@ export const HIDE_LOADING = "view/HIDE_LOADING";
 export const MOVE_PAGE = "view/MOVE_PAGE";
 export const SHOW_POPUP = "view/SHOW_POPUP";
 export const HIDE_POPUP = "view/HIDE_POPUP";
+export const SHOW_DRAWER = "view/SHOW_DRAWER";
+export const HIDE_DRAWER = "view/HIDE_DRAWER";
 
 // actions
 export const showAlert = createAction<{
@@ -45,6 +47,8 @@ export const showPopup = createAction<{
 }>(SHOW_POPUP);
 
 export const hidePopup = createAction(HIDE_POPUP);
+export const showDrawer = createAction(SHOW_DRAWER);
+export const hideDrawer = createAction(HIDE_DRAWER);
 
 const viewReducer = (state = initialViewState, action: any) => {
     switch (action.type) {
@@ -103,6 +107,16 @@ const viewReducer = (state = initialViewState, action: any) => {
                 ...state,
                 popupName: '',
                 popupOption: initPopupOption
+            }
+        case SHOW_DRAWER:
+            return {
+                ...state,
+                isShown: true
+            }
+        case HIDE_DRAWER:
+            return {
+                ...state,
+                isShown: false
             }
         default:
             return state;

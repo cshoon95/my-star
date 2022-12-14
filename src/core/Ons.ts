@@ -7,7 +7,9 @@ import { hideAlert,
         hideLoading,
         showPopup,
         hidePopup, 
-        movePage 
+        movePage,
+        showDrawer,
+        hideDrawer
 } from "../store/View";
 import { StoreStateType, AlertOptionType, LodingOptionType, PopupOptionType } from "../type/Type";
 import Server from "./Server";
@@ -99,6 +101,13 @@ export class Ons {
         }))
     }
     
+    public showDrawer(isShown: boolean) {
+        this._store.dispatch(showDrawer());
+    }
+
+    public hideDrawer(isShown: boolean) {
+        this._store.dispatch(hideDrawer());
+    }
 
     public route(path: string) {
         const updatePath = path === '' ? 'Dashboard' : utils.changeToUpperCaseFirst(path);

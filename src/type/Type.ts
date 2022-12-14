@@ -21,6 +21,7 @@ export type StoreStateViewType = {
     headerTitle: string;
     popupName: string;
     popupOption: PopupOptionType;
+    shownDrawer: false;
 };
 
 // Option Types
@@ -84,7 +85,8 @@ export const initialViewState: StoreStateViewType = {
     pageName: "Dashboard",
     headerTitle: "Dashboard",
     popupName: "",
-    popupOption: initPopupOption
+    popupOption: initPopupOption,
+    shownDrawer: false
 }
 
 export const initialDataState: StoreStateDataType = {
