@@ -13,11 +13,15 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Typography from '@mui/material/Typography';
 import Badge from '@mui/material/Badge';
 import NotificationsIcon from '@mui/icons-material/Notifications';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import MenuItem from '@mui/material/MenuItem';
+import Menu from '@mui/material/Menu';
 // end -- MUI
 
 interface AppBarProps extends MuiAppBarProps {
     open?: boolean;
 }
+
 const StyledAppBar = styled(MuiAppBar, {
     shouldForwardProp: (prop) => prop !== 'open',
 })<AppBarProps>(({ theme, open }) => ({
@@ -37,14 +41,18 @@ const StyledAppBar = styled(MuiAppBar, {
 }));
 
 const Header = (open: any) => {
-    const [isOpen, setOpen] = useState(open);
-    const { headerTitle } = useSelector((state: StoreStateType) => {
-        return {
-            headerTitle: state.view.headerTitle
+    const { isShownDrawer, drawerWidth, headerTitle } = useSelector(
+        (state: StoreStateType) => {
+            return {
+                isShownDrawer: state.view.isShownDrawer,
+                drawerWidth: state.view.drawerWidth,
+                headerTitle: state.view.headerTitle
+            }
         }
-    });
+    )
+
     return(
-        <StyledAppBar position="absolute" open={true}>
+        <StyledAppBar position="absolute" open={isShownDrawer}>
              <Toolbar
                 sx={{
                 pr: '24px', // keep right padding when drawer closed
@@ -55,11 +63,11 @@ const Header = (open: any) => {
                     color="inherit"
                     aria-label="open drawer"
                     onClick={() => {
-                        setOpen(!isOpen);
+                        isShownDrawer ? ons.hideDrawer() : ons.showDrawer();
                     }}
                     sx={{
                         marginRight: '36px',
-                        ...(isOpen && { display: 'none' }),
+                        ...(isShownDrawer && { display: 'none' }),
                     }}
                 >
                     <MenuIcon />
@@ -70,14 +78,9 @@ const Header = (open: any) => {
                     color="inherit"
                     noWrap
                     sx={{ flexGrow: 1 }}
-                    >
+                >
                     {headerTitle}
                 </Typography>
-                <IconButton color="inherit">
-                    <Badge badgeContent={4} color="secondary">
-                        <NotificationsIcon />
-                    </Badge>
-                </IconButton>
             </Toolbar>
         </StyledAppBar>
     )

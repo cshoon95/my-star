@@ -48,8 +48,8 @@ root.render(
                     <Router>
                         <Box sx={{ display: 'flex' }}>
                         <CssBaseline />
-                        <Header open={true}/>
-                        <Drawer open={true}/>
+                        <Header open={ons.getState('isShownDrawer', 'view')}/>
+                        <Drawer />
                         <Routes>
                             <Route path="/" element={ <Dashboard /> } />
                             <Route path="/customers" element={ <Customers /> } />

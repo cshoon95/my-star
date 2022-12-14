@@ -1,6 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import MasterList from './MasterList';
 import SubList from './SubList';
+import { StoreStateType } from '../../type/Type';
+import ons from "../../core/Ons";
 
 // start -- MUI 
 import MuiDrawer from '@mui/material/Drawer';
@@ -12,11 +15,16 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 // end -- MUI
 
-const Drawer = (open: any) => {
-    const [isOpen, setOpen] = useState(open);
-    const drawerWidth: number = 240;
+const Drawer = () => {
+    const { isShownDrawer, drawerWidth } = useSelector(
+        (state: StoreStateType) => {
+            return {
+              isShownDrawer: state.view.isShownDrawer,
+              drawerWidth: state.view.drawerWidth
+            };
+        },
+    );
 
-    // MUI Drawer
     const StyledDrawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
       ({ theme }) => ({
         '& .MuiDrawer-paper': {
@@ -28,7 +36,7 @@ const Drawer = (open: any) => {
             duration: theme.transitions.duration.enteringScreen,
           }),
           boxSizing: 'border-box',
-          ...(!isOpen && {
+          ...(!isShownDrawer && {
             overflowX: 'hidden',
             transition: theme.transitions.create('width', {
               easing: theme.transitions.easing.sharp,
@@ -44,7 +52,7 @@ const Drawer = (open: any) => {
     );
 
     return (
-        <StyledDrawer variant="permanent" open={isOpen}>
+        <StyledDrawer variant="permanent" open={isShownDrawer}>
             <Toolbar
                 sx={{
                     display: 'flex',
@@ -54,7 +62,7 @@ const Drawer = (open: any) => {
                 }}
             >
                 <IconButton onClick={() => {
-                    setOpen(!isOpen);
+                    isShownDrawer ? ons.hideDrawer() : ons.showDrawer();
                 }}>
                     <ChevronLeftIcon />
                 </IconButton>
