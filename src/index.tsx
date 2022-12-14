@@ -27,7 +27,12 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
-const mdTheme = createTheme();
+// const darkTheme = createTheme();
+const mdTheme = createTheme({
+    palette: {
+      mode: 'dark',
+    },
+  });
 
 ons.init(store);
 
