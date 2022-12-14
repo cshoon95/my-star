@@ -1,8 +1,12 @@
 import * as React from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useSelector } from 'react-redux';
+
+// start -- MUI 
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+// end -- MUI
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -17,13 +21,19 @@ const style = {
 };
 
 function Popup() {
+    // const { popup, popupOption } = useSelector(
+    //     (state: StoreStateType) => {
+    //         return {
+    //             alertMessage: state.view.alertMessage,
+    //             alertOption: state.view.alertOption,
+    //         };
+    //     },
+    // );
     const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
     return (
         <div>
-            <Button onClick={handleOpen}>Open modal</Button>
             <Modal
                 open={open}
                 onClose={handleClose}
