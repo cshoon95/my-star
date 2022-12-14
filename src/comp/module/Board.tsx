@@ -64,7 +64,7 @@ const Board = () => {
           {
             rows.map((row: customersType, idx: number) => (
               <TableRow key={row.ID + '-' + idx}>
-                <TableCell>{idx}</TableCell>
+                <TableCell>{idx+1}</TableCell>
                 <TableCell>{row.NAME}</TableCell>
                 <TableCell>{row.SCHOOL}</TableCell>
                 <TableCell>{row.TEL}</TableCell>
@@ -80,7 +80,6 @@ const Board = () => {
         <Link color="primary" onClick={() => {
           navigate('/customers');
           ons.route('customers')
-        
         }} sx={{ mt: 3 }}>
           더보기
         </Link> 
