@@ -1,12 +1,14 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import ons from '../core/Ons';
-import Box from '@mui/material/Box';
-import Modal from '@mui/material/Modal';
-import Button from '@mui/material/Button';
 import { StoreStateType } from '../type/Type';
 
-// ㅇㅣ쁘게 디자인 하면 이뻐질듯
+// start -- MUI
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
+// end -- MUI
+
 const boxStyle = {
     position: 'absolute',
     top: '50%',
