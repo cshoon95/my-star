@@ -101,11 +101,11 @@ export class Ons {
         }))
     }
     
-    public showDrawer(isShown: boolean) {
+    public showDrawer() {
         this._store.dispatch(showDrawer());
     }
 
-    public hideDrawer(isShown: boolean) {
+    public hideDrawer() {
         this._store.dispatch(hideDrawer());
     }
 

@@ -111,12 +111,12 @@ const viewReducer = (state = initialViewState, action: any) => {
         case SHOW_DRAWER:
             return {
                 ...state,
-                isShown: true
+                isShownDrawer: true
             }
         case HIDE_DRAWER:
             return {
                 ...state,
-                isShown: false
+                isShownDrawer: false
             }
         default:
             return state;

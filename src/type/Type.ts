@@ -13,6 +13,7 @@ export type StoreStateDataType = {
 }
 
 export type StoreStateViewType = {
+    [x: string]: any;
     alertMessage: string;
     alertOption: AlertOptionType;
     loadingType: string;
@@ -21,7 +22,8 @@ export type StoreStateViewType = {
     headerTitle: string;
     popupName: string;
     popupOption: PopupOptionType;
-    shownDrawer: false;
+    isShownDrawer: boolean;
+    drawerWidth: number;
 };
 
 // Option Types
@@ -86,7 +88,8 @@ export const initialViewState: StoreStateViewType = {
     headerTitle: "Dashboard",
     popupName: "",
     popupOption: initPopupOption,
-    shownDrawer: false
+    isShownDrawer: false,
+    drawerWidth: 240
 }
 
 export const initialDataState: StoreStateDataType = {
