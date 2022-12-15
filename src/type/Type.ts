@@ -24,6 +24,7 @@ export type StoreStateViewType = {
     popupOption: PopupOptionType;
     isShownDrawer: boolean;
     drawerWidth: number;
+    viewMode: string;
 };
 
 // Option Types
@@ -89,7 +90,8 @@ export const initialViewState: StoreStateViewType = {
     popupName: "",
     popupOption: initPopupOption,
     isShownDrawer: false,
-    drawerWidth: 240
+    drawerWidth: 240,
+    viewMode: 'dark'
 }
 
 export const initialDataState: StoreStateDataType = {
