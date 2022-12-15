@@ -36,6 +36,8 @@ const mdTheme = createTheme({
 
 ons.init(store);
 
+const isShowDrawer = ons.getState('isShownDrawer', 'view');
+
 root.render(
     <Provider store = {store}>
         <RecoilRoot>
@@ -47,16 +49,16 @@ root.render(
                     </div>
                     <Router>
                         <Box sx={{ display: 'flex' }}>
-                        <CssBaseline />
-                        <Header open={ons.getState('isShownDrawer', 'view')}/>
-                        <Drawer />
-                        <Routes>
-                            <Route path="/" element={ <Dashboard /> } />
-                            <Route path="/customers" element={ <Customers /> } />
-                            <Route path="/attendance" element={ <Attendance /> } />
-                            <Route path="/reports" element={ <Reports /> } />
-                            <Route path="/setting" element={ <Setting /> } />
-                        </Routes>
+                            <CssBaseline />
+                            <Header open={isShowDrawer}/>
+                            <Drawer />
+                            <Routes>
+                                <Route path="/" element={ <Dashboard /> } />
+                                <Route path="/customers" element={ <Customers /> } />
+                                <Route path="/attendance" element={ <Attendance /> } />
+                                <Route path="/reports" element={ <Reports /> } />
+                                <Route path="/setting" element={ <Setting /> } />
+                            </Routes>
                         </Box>
                     </Router>        
                 </React.StrictMode>
