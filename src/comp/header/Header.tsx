@@ -22,24 +22,6 @@ interface AppBarProps extends MuiAppBarProps {
     open?: boolean;
 }
 
-const StyledAppBar = styled(MuiAppBar, {
-    shouldForwardProp: (prop) => prop !== 'open',
-})<AppBarProps>(({ theme, open }) => ({
-    zIndex: theme.zIndex.drawer + 1,
-    transition: theme.transitions.create(['width', 'margin'], {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-    }),
-    ...(open && {
-    marginLeft: 240,
-    width: `calc(100% - ${240}px)`,
-    transition: theme.transitions.create(['width', 'margin'], {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.enteringScreen,
-    }),
-}),
-}));
-
 const Header = (open: any) => {
     const { isShownDrawer, drawerWidth, headerTitle } = useSelector(
         (state: StoreStateType) => {
@@ -51,11 +33,29 @@ const Header = (open: any) => {
         }
     )
 
+    const StyledAppBar = styled(MuiAppBar, {
+        shouldForwardProp: (prop) => prop !== 'open',
+    })<AppBarProps>(({ theme, open }) => ({
+        zIndex: theme.zIndex.drawer + 1,
+        transition: theme.transitions.create(['width', 'margin'], {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+        }),
+        ...(open && {
+        marginLeft: drawerWidth,
+        width: `calc(100% - ${drawerWidth}px)`,
+        transition: theme.transitions.create(['width', 'margin'], {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.enteringScreen,
+        }),
+    }),
+    }));
+
     return(
         <StyledAppBar position="absolute" open={isShownDrawer}>
              <Toolbar
                 sx={{
-                pr: '24px', // keep right padding when drawer closed
+                    pr: '24px', // keep right padding when drawer closed
                 }} 
             >
                 <IconButton
