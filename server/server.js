@@ -12,7 +12,7 @@ const db = mysql.createPool({
 });
 
 const printRes = (err, result) => {
-  (result) ? console.log(result) : console.log(err);
+    (result) ? console.log(result) : console.log(err);
 }
 
 app.use(cors({
@@ -27,52 +27,47 @@ app.listen(PORT, () => {
 
 // customers
 app.get("/api/customers/list", (req, res) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  
-  const sqlQuery = "SELECT * FROM CUSTOMERS";
+    res.header("Access-Control-Allow-Origin", "*");
+    const sqlQuery = "SELECT * FROM CUSTOMERS";
 
-  db.query(sqlQuery, (err, result) => {
-    res.send(result);
-
-    printRes(err, result);
-  });
+    db.query(sqlQuery, (err, result) => {
+        res.send(result);
+        printRes(err, result);
+    });
 });
 
 // environment
 app.get("/api/environment/list", (req, res) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  
-  const sqlQuery = "SELECT * FROM ENVIRONMENT";
+    res.header("Access-Control-Allow-Origin", "*");
+    
+    const sqlQuery = "SELECT * FROM ENVIRONMENT";
 
-  db.query(sqlQuery, (err, result) => {
-    res.send(result);
-
-    printRes(err, result);
-  });
+    db.query(sqlQuery, (err, result) => {
+        res.send(result);
+        printRes(err, result);
+    });
 });
 
 app.get("/api/environment/info/:id", (req, res) => {
-  res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Origin", "*");
   
-  const ID = req.params.ID;
-  const sqlQuery = "SELECT * FROM ENVIRONMENT WHERE ID = ?;";
+    const ID = req.params.ID;
+    const sqlQuery = "SELECT * FROM ENVIRONMENT WHERE ID = ?;";
 
-  db.query(sqlQuery, [ID], (err, result) => {
-    res.send(result);
-
-    printRes(err, result);
-  });
+    db.query(sqlQuery, [ID], (err, result) => {
+        res.send(result);
+        printRes(err, result);
+    });
 });
 
 app.get("/api/environment/update", (req, res) => {
-  res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Origin", "*");
 
-  const { ID } = req.params;
-  const sqlQuery = "UPDATE ENVIRONMENT SET MODE = ?, UPDATE_ID = 'SOOHOON' WHERE ID = '1';";
+    const { ID } = req.params;
+    const sqlQuery = "UPDATE ENVIRONMENT SET MODE = ?, UPDATE_ID = 'SOOHOON' WHERE ID = '1';";
 
-  db.query(sqlQuery, ID, (err, result) => {
-    res.send(result);
-
-    printRes(err, result);
-  });
+    db.query(sqlQuery, ID, (err, result) => {
+        res.send(result);
+        printRes(err, result);
+    });
 });
