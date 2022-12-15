@@ -21,6 +21,9 @@ app.use(cors({
     optionsSuccessStatus: 200,  // 응답 상태 200으로 설정
 }))
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }))
+
 app.listen(PORT, () => {
     console.log(`server running on port ${PORT}`);
 });
@@ -60,13 +63,14 @@ app.get("/api/environment/info/:id", (req, res) => {
     });
 });
 
-app.get("/api/environment/update", (req, res) => {
+app.post("/api/environment/update", (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
+    console.log('asdasdasdasdasdas', req.body)
+    var num = req.body.num
 
-    const { ID } = req.params;
     const sqlQuery = "UPDATE ENVIRONMENT SET MODE = ?, UPDATE_ID = 'SOOHOON' WHERE ID = '1';";
 
-    db.query(sqlQuery, ID, (err, result) => {
+    db.query(sqlQuery, [num], (err, result) => {
         res.send(result);
         printRes(err, result);
     });
