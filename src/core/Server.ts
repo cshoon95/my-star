@@ -27,8 +27,11 @@ class Server{
 		return this._guid;
 	}
 
-    private axios = this.initAxios();
+    public axios1() {
+        this.initAxios();
+    }
 
+    private axios = this.initAxios();
     public get(options: OptionsType, callbackFunc?: Function) {
         ons.showLoading();
 

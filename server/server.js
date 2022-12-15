@@ -3,7 +3,6 @@ const cors    = require("cors");
 const mysql   = require("mysql");
 const app     = express();
 const PORT    = 3001;
-const router = express.Router();
 
 const db = mysql.createPool({
     host: "127.0.0.1",
@@ -39,7 +38,19 @@ app.get("/api/customers/list", (req, res) => {
   });
 });
 
-// environmentapi/envrionment/update 
+// environment
+app.get("/api/environment/list", (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  
+  const sqlQuery = "SELECT * FROM ENVIRONMENT";
+
+  db.query(sqlQuery, (err, result) => {
+    res.send(result);
+
+    printRes(err, result);
+  });
+});
+
 app.get("/api/environment/info/:id", (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
   
@@ -53,13 +64,13 @@ app.get("/api/environment/info/:id", (req, res) => {
   });
 });
 
-app.post("/api/environment/update", (req, res) => {
+app.get("/api/environment/update", (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
 
-  const mode = req.body.data['mode'];
+  const { ID } = req.params;
   const sqlQuery = "UPDATE ENVIRONMENT SET MODE = ?, UPDATE_ID = 'SOOHOON' WHERE ID = '1';";
 
-  db.query(sqlQuery, [mode], (err, result) => {
+  db.query(sqlQuery, ID, (err, result) => {
     res.send(result);
 
     printRes(err, result);
