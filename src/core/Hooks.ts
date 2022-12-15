@@ -18,9 +18,9 @@ export const useClick = (onClick: Function) => {
 
 export const useClickRouter = (page: string, callback?: Function) => {
     const navigate = useNavigate();
-   
+    
     const navigateToPurchase = () => {
-      navigate("/" + page);
+        navigate("/" + page);
     };
     callback && callback();
 

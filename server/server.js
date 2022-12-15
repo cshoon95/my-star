@@ -50,7 +50,7 @@ app.get("/api/environment/list", (req, res) => {
 
 app.get("/api/environment/info/:id", (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
-  
+
     const ID = req.params.ID;
     const sqlQuery = "SELECT * FROM ENVIRONMENT WHERE ID = ?;";
 

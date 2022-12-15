@@ -46,15 +46,15 @@ class Server{
 
             response = response.data;
             if (callbackFunc) callbackFunc(response);
-          })
-          .catch(function (error) {
-            response = error;
-          })
-          .then(function () {
-            ons.hideLoading();
-          });  
+        })
+        .catch(function (error) {
+        response = error;
+        })
+        .then(function () {
+        ons.hideLoading();
+        });  
 
-          return response;
+        return response;
     }
     public run(options: OptionsType, callbackFunc?: Function) {
         ons.showLoading();
