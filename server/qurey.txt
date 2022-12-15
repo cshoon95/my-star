@@ -1,0 +1,32 @@
+* 고객 테이블 *
+create table CUSTOMERS (
+	ID int not null auto_increment primary key,
+	NAME nvarchar(10),
+	NOTE nvarchar(500),
+    TEL nvarchar(15),
+    DATE nvarchar(12),
+    SCHOOL nvarchar(15),
+    FEE int(100),
+	REGISTER_ID nvarchar(20),
+	REGISTER_DATE DATETIME DEFAULT now(),
+	UPDATER_ID nvarchar(20),
+	UPDATER_DATE DATETIME DEFAULT now()
+);
+
+INSERT INTO CUSTOMERS (ID, NAME, NOTE, TEL, DATE, SCHOOL, FEE, REGISTER_ID, UPDATER_ID)
+VALUE(4, '박민영', '', '01012322322', '20221209', '김비서', '5000', 'SOOHOON', 'SOOHOON');
+
+* 환경 테이블 *
+create table ENVIRONMENT (
+	ID int not null auto_increment primary key,
+	MODE nvarchar(10),
+	REGISTER_ID nvarchar(20),
+	REGISTER_DATE DATETIME DEFAULT now(),
+	UPDATER_ID nvarchar(20),
+	UPDATER_DATE DATETIME DEFAULT now()
+);
+
+INSERT INTO ENVIRONMENT (ID, MODE, REGISTER_ID, UPDATE_ID)
+VALUE(1, 'DARK', 'SOOHOON', 'SOOHOON');
+
+"UPDATE ENVIRONMENT SET MODE = " +  mode + "WHERE Name = '홍길동';";
