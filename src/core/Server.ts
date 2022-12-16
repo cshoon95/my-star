@@ -4,6 +4,7 @@ import ons from './Ons'
 type OptionsType = {
     url: string;
     data?: any;
+    hideLoading?: boolean;
     callbackFunc: Function;
 }
 class Server{
@@ -16,8 +17,18 @@ class Server{
     
     private axios = this.initAxios();
     
+    /**
+     * get 방식으로 서버 호출
+     * @param options OptionsType
+     * 
+     * @see
+     * get과 post가 메소드 빼고는 코드가 일치하는데..
+     * 합칠 수 있을 거 같은데 흐음..
+     */
     public get(options: OptionsType) {
-        ons.showLoading();
+        if (!options.hideLoading) {
+            ons.showLoading();
+        }
 
         this.axios.get(options.url, {
             params: options.data
@@ -30,12 +41,22 @@ class Server{
         }).catch(function (err) {
             throw new Error(err);
         }).then(function () {
-            ons.hideLoading();
+            if (!options.hideLoading) ons.hideLoading();
         }); 
     }
 
+    /**
+     * post 방식으로 서버 호출
+     * @param options OptionsType
+     * 
+     * @see
+     * get과 post가 메소드 빼고는 코드가 일치하는데..
+     * 합칠 수 있을 거 같은데 흐음..
+     */
     public post(options: OptionsType) {
-        ons.showLoading();
+        if (!options.hideLoading) {
+            ons.showLoading();
+        }
 
         this.axios.post(
             options.url, 
@@ -49,7 +70,7 @@ class Server{
         }).catch((err: any) => {
             throw new Error(err);
         }).then(() => {
-            ons.hideLoading();
+            if (!options.hideLoading) ons.hideLoading();
         }) 
     }
 }

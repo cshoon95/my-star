@@ -9,7 +9,8 @@ import { hideAlert,
         hidePopup, 
         movePage,
         showDrawer,
-        hideDrawer
+        hideDrawer,
+        changeMode
 } from "../store/View";
 import { StoreStateType, AlertOptionType, LodingOptionType, PopupOptionType } from "../type/Type";
 import Server from "./Server";
@@ -117,15 +118,37 @@ export class Ons {
             headerTitle: List.headerTitle[updatePath]
         }))
     }
+
+    public changeMode(viewMode: string) {
+        this._store.dispatch(changeMode({
+            viewMode: viewMode
+        }));
+    }
+    
     public log(message: any, message2?: any) {
-        console.log(message, message2);
+        if (message2) {
+            console.log(message, message2);
+            return;
+        }
+
+        console.log(message);
     }
 
     public warnLog(message: any, message2?: any) {
+        if (message2) {
+            console.warn(message, message2);
+            return;
+        }
+
         console.warn(message, message2);
     }
 
     public infoLog(message: any, message2?: any) {
+        if (message2) {
+            console.info(message, message2);
+            return;
+        }
+
         console.info(message, message2);
     }
 
