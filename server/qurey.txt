@@ -16,6 +16,11 @@ create table CUSTOMERS (
 INSERT INTO CUSTOMERS (ID, NAME, NOTE, TEL, DATE, SCHOOL, FEE, REGISTER_ID, UPDATER_ID)
 VALUE(4, '박민영', '', '01012322322', '20221209', '김비서', '5000', 'SOOHOON', 'SOOHOON');
 
+// 키 추가
+ALTER table customers
+add column showYn CHAR(2);
+;
+
 * 환경 테이블 *
 create table ENVIRONMENT (
 	ID int not null auto_increment primary key,
