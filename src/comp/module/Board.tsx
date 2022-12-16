@@ -35,12 +35,11 @@ const Board = () => {
   });
 
   useEffect(() => {
-    ons.server.run({
-      method:'get', 
-      url:'customers/list'
-    }, (response: any) => {
-      setRows(response);
-    });
+    ons.server.get({
+      url: 'customers/list',
+      callbackFunc: (response: any) => {
+        setRows(response.data);
+    }});
   }, [])
 
   return (

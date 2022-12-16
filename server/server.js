@@ -65,12 +65,10 @@ app.get("/api/environment/info/:id", (req, res) => {
 
 app.post("/api/environment/update", (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
-    console.log('asdasdasdasdasdas', req.body)
-    var num = req.body.num
-
+    const mode = req.body.mode
     const sqlQuery = "UPDATE ENVIRONMENT SET MODE = ?, UPDATE_ID = 'SOOHOON' WHERE ID = '1';";
 
-    db.query(sqlQuery, [num], (err, result) => {
+    db.query(sqlQuery, [mode], (err, result) => {
         res.send(result);
         printRes(err, result);
     });
