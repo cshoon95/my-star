@@ -51,13 +51,11 @@ app.get("/api/environment/list", (req, res) => {
     });
 });
 
-app.get("/api/environment/info/:id", (req, res) => {
+app.get("/api/environment/info", (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
+    const sqlQuery = "SELECT * FROM ENVIRONMENT WHERE ID = '1';";
 
-    const ID = req.params.ID;
-    const sqlQuery = "SELECT * FROM ENVIRONMENT WHERE ID = ?;";
-
-    db.query(sqlQuery, [ID], (err, result) => {
+    db.query(sqlQuery, (err, result) => {
         res.send(result);
         printRes(err, result);
     });
