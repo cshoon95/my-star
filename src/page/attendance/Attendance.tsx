@@ -2,18 +2,25 @@ import InitPage from "../../comp/module/InitPage";
 import { useEffect } from "react";
 import ons from "../../core/Ons";
 import axios from "axios";
+import { useSelector } from 'react-redux';
+import { StoreStateType } from '../../type/Type';
+
+
+import Button from '@mui/material/Button';
 
 const Attendance = () => {
-    ons.server.post({
-        url: 'environment/update',
-        callbackFunc: ((res: any) => {
-            console.log("detail =>", res.data);
-        })
-    })
-    
+    const { viewMode } = useSelector((state: StoreStateType) => {
+        return {
+            viewMode: state.view.viewMode
+        }
+    });
+
     return (
         <InitPage>
-            <p>sdfds</p>
+            <Button onClick={() => {
+               
+            }}>{viewMode} </Button>
+            <p>{viewMode}</p>
         </InitPage>
     )
 }

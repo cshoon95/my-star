@@ -91,7 +91,7 @@ export const initialViewState: StoreStateViewType = {
     popupOption: initPopupOption,
     isShownDrawer: false,
     drawerWidth: 240,
-    viewMode: 'dark'
+    viewMode: 'light'
 }
 
 export const initialDataState: StoreStateDataType = {

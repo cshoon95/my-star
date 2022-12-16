@@ -1,6 +1,7 @@
 import BoardTransfer from "../../comp/module/BoardTransfer";
 import InitPage from "../../comp/module/InitPage";
 import Title from '../../comp/module/Title';
+import Switch from "./SwitchButton";
 
 const Setting = () => {
     return(
@@ -11,6 +12,7 @@ const Setting = () => {
             </div>
             <div>
                 <Title>화면 모드</Title>
+                <Switch/>
             </div>
         </InitPage>
     )

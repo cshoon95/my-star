@@ -18,6 +18,7 @@ export const SHOW_POPUP = "view/SHOW_POPUP";
 export const HIDE_POPUP = "view/HIDE_POPUP";
 export const SHOW_DRAWER = "view/SHOW_DRAWER";
 export const HIDE_DRAWER = "view/HIDE_DRAWER";
+export const CHANGE_MODE = "view/CHANGE_MODE";
 
 // actions
 export const showAlert = createAction<{
@@ -47,6 +48,11 @@ export const showPopup = createAction<{
 }>(SHOW_POPUP);
 
 export const hidePopup = createAction(HIDE_POPUP);
+
+export const changeMode = createAction<{
+    viewMode: string;
+}>(CHANGE_MODE)
+
 export const showDrawer = createAction(SHOW_DRAWER);
 export const hideDrawer = createAction(HIDE_DRAWER);
 
@@ -117,6 +123,11 @@ const viewReducer = (state = initialViewState, action: any) => {
             return {
                 ...state,
                 isShownDrawer: false
+            }
+        case CHANGE_MODE:
+            return {
+                ...state,
+                viewMode: action.payload.viewMode
             }
         default:
             return state;
