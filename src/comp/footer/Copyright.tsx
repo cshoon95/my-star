@@ -11,7 +11,7 @@ function Copyright(props: any) {
             {new Date().getFullYear()}
             {'.'}
         </Typography>
-      );
+    );
 }
 
 // ex) <Copyright sx={{ pt: 4 }} />

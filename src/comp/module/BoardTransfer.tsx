@@ -46,15 +46,10 @@ const BoardTransfer = () => {
         setChecked(newChecked);
     };
 
-    const numberOfChecked = (items: readonly number[]) =>
-        intersection(checked, items).length;
+    const numberOfChecked = (items: readonly number[]) => intersection(checked, items).length;
 
     const handleToggleAll = (items: readonly number[]) => () => {
-        if (numberOfChecked(items) === items.length) {
-            setChecked(not(checked, items));
-        } else {
-            setChecked(union(checked, items));
-        }
+        (numberOfChecked(items) === items.length) ? setChecked(not(checked, items)) : setChecked(union(checked, items));
     };
 
     const handleCheckedRight = () => {

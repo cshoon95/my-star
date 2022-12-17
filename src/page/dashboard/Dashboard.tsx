@@ -2,6 +2,7 @@ import Chart from './Chart';
 import Deposits from './Deposits';
 import Board from '../../comp/module/Board';
 import InitPage from '../../comp/module/InitPage';
+import Copyright from "../../comp/footer/Copyright"
 
 // start -- MUI
 import Container from '@mui/material/Container';
@@ -48,6 +49,7 @@ function Dashboard() {
             </Grid>
           </Grid>
         </Container>
+        <Copyright/>
       </InitPage>
   );
 }
