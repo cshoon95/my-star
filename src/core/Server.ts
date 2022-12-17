@@ -26,9 +26,7 @@ class Server{
      * 합칠 수 있을 거 같은데 흐음..
      */
     public get(options: OptionsType) {
-        if (!options.hideLoading) {
-            ons.showLoading();
-        }
+        !options.hideLoading && ons.showLoading();
 
         this.axios.get(options.url, {
             params: options.data
@@ -37,11 +35,11 @@ class Server{
             ons.log('▨▨▨▨▨▨▨▨▨▨▨▨▶', res);
             ons.log('▨▨▨▨▨▨▨▨▨▨▨▨▶ 서버에서 가져온 정보 끝');
 
-            if (options.callbackFunc) options.callbackFunc(res);
+            options.callbackFunc && options.callbackFunc(res)
         }).catch(function (err) {
             throw new Error(err);
         }).then(function () {
-            if (!options.hideLoading) ons.hideLoading();
+            !options.hideLoading && ons.hideLoading();
         }); 
     }
 
@@ -54,23 +52,17 @@ class Server{
      * 합칠 수 있을 거 같은데 흐음..
      */
     public post(options: OptionsType) {
-        if (!options.hideLoading) {
-            ons.showLoading();
-        }
+        !options.hideLoading && ons.showLoading();
 
         this.axios.post(
             options.url, 
             options.data
         ).then((res: any) => {
-            ons.log('▨▨▨▨▨▨▨▨▨▨▨▨▶ 서버에서 가져온 정보 시작');
-            ons.log('▨▨▨▨▨▨▨▨▨▨▨▨▶', res.data);
-            ons.log('▨▨▨▨▨▨▨▨▨▨▨▨▶ 서버에서 가져온 정보 끝');
-
-            if (options.callbackFunc) options.callbackFunc(res);
+            options.callbackFunc && options.callbackFunc(res)
         }).catch((err: any) => {
             throw new Error(err);
         }).then(() => {
-            if (!options.hideLoading) ons.hideLoading();
+            !options.hideLoading && ons.hideLoading();
         }) 
     }
 }

@@ -64,8 +64,7 @@ function Alert() {
                         ref={refBtn}
                         onClick={() => {
                             ons.alert('');
-                            if (alertOption?.callbackFunc)
-                            alertOption.callbackFunc();
+                            alertOption.callbackFunc && alertOption.callbackFunc();
                         }}
                     >
                         {alertOption.confirm}

@@ -56,24 +56,11 @@ export class Ons {
     }
 
     public setState(key: StateType, value: any, isDispatch?: boolean, type: string = 'data'): void {
-        if (isDispatch) {
-            this._store.dispatch(setState({
-                [key]: value
-            }));
-        } else {
-            this._store.getState()[type][key] = value;
-        }
+        isDispatch ? this._store.dispatch(setState({ [key]: value })) : this._store.getState()[type][key] = value;
     }
     
     public alert(message: string, option?: AlertOptionType) {
-        if (message === 'hide') {
-            this._store.dispatch(hideAlert());
-        } else {
-            this._store.dispatch(showAlert({
-                message,
-                alertOption: option
-            }))
-        }
+        (message === 'hide') ? this._store.dispatch(hideAlert()) : this._store.dispatch(showAlert({ message, alertOption: option }))
     }
 
     public showLoading(type?: string, option?: LodingOptionType) {
