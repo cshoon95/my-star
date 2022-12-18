@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { StoreStateType } from '../../type/Type';
 import Title from './Title';
 import ons from '../../core/Ons';
+import utils from '../../core/Utils';
 import { useNavigate } from "react-router-dom";
 
 // start -- MUI 
@@ -66,8 +67,8 @@ const Board = () => {
                 <TableCell>{idx+1}</TableCell>
                 <TableCell>{row.NAME}</TableCell>
                 <TableCell>{row.SCHOOL}</TableCell>
-                <TableCell>{row.TEL}</TableCell>
-                <TableCell>{row.DATE}</TableCell>
+                <TableCell>{utils.replaceHypenFormat(row.TEL, 'phone')}</TableCell>
+                <TableCell>{utils.replaceHypenFormat(row.DATE, 'date')}</TableCell>
                 <TableCell align="right">{row.FEE}</TableCell>
                 <TableCell>{row.NOTE}</TableCell>
               </TableRow>

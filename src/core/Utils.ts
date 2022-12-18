@@ -1,3 +1,6 @@
+import { strictEqual } from "assert";
+import ons from "./Ons";
+
 class Utils {
     isMobile(): boolean {
         const userAgent = navigator.userAgent;
@@ -22,9 +25,22 @@ class Utils {
 
         return hh + mm + ss;
     }
-    changeToUpperCaseFirst(str: string): string {
+    replaceToUpperCaseFirst(str: string): string {
         return str.replace(/^[a-z]/, char => char.toUpperCase());
     }
+    replaceHypenFormat(str: string, type: string): string {
+        let result = str;
+
+        switch (type) {
+            case 'phone':
+                return result = str.replace(/(\d{3})(\d{4})(\d{2})/, '$1-$2-$3');
+            case 'date':
+                return result = str.replace(/(\d{4})(\d{2})(\d{2})/, '$1-$2-$3');
+        }
+
+        return result;
+    }
+    
 }
 
 export default new Utils();

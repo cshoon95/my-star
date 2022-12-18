@@ -21,7 +21,7 @@ const MasterList = () => {
     const onClick = (path: string) => {
         const currPage = ons.getState('pageName', 'view');
 
-        if (currPage === util.changeToUpperCaseFirst(path)) return;
+        if (currPage === util.replaceToUpperCaseFirst(path)) return;
         
         return (e: React.MouseEvent) => {
             navigate('/' + path);

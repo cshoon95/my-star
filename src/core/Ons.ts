@@ -98,7 +98,7 @@ export class Ons {
     }
 
     public route(path: string) {
-        const updatePath = path === '' ? 'Dashboard' : utils.changeToUpperCaseFirst(path);
+        const updatePath = path === '' ? 'Dashboard' : utils.replaceToUpperCaseFirst(path);
 
         this._store.dispatch(movePage({
             pageName: updatePath,
