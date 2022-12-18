@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { StoreStateType } from './type/Type';
@@ -27,6 +27,15 @@ const Main = () => {
         }
     });
     
+    useEffect(() => {
+        ons.server.get({
+            url: 'environment/list',
+            callbackFunc: (response: any) => {
+                ons.changeMode(response.data[0].MODE);
+            }
+        })
+    }, [])
+
     const lightTheme = createTheme();
     const darkTheme = createTheme({
         palette: {

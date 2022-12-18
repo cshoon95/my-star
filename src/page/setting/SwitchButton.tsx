@@ -9,7 +9,12 @@ import ons from "../../core/Ons";
 
 
 const SwitchButton = () => {
-    const [ checked, setCheckd ] = useState(false);
+    const { viewMode } = useSelector((state: StoreStateType) => {
+        return {
+            viewMode: state.view.viewMode
+        }
+    }); 
+    const [ checked, setCheckd ] = useState(viewMode === 'dark' ? true : false);
     const MaterialUISwitch = styled(Switch)(({ theme }) => ({
         width: 62,
         height: 34,
@@ -57,26 +62,43 @@ const SwitchButton = () => {
         },
     }));
 
-    useEffect(() => {
-        let mode: any = (checked) ? 'light' : 'dark';
+    // useEffect(() => {
+    //     let mode: any = (checked) ? 'light' : 'dark';
 
-        ons.server.post({
-            url: 'environment/update',
-            data: {mode: mode},
-            hideLoading: true,
-            callbackFunc: ((res: any) => {
-                ons.changeMode(mode);
-            })
-        })
+    //     ons.server.post({
+    //         url: 'environment/update',
+    //         data: {mode: mode},
+    //         hideLoading: true,
+    //         callbackFunc: ((res: any) => {
+    //             ons.changeMode(mode);
+    //         })
+    //     })
 
-    },[checked])
+    // },[checked])
+
     return (
         <FormGroup>
             <FormControlLabel 
-                control={<MaterialUISwitch sx={{ m: 3 }} 
-                onChange={(e: any) => {
-                    setCheckd(!checked);
-                }}/>}
+                control={
+                    <MaterialUISwitch 
+                        sx={{ m: 3 }} 
+                        onChange={(e: any) => {
+                            setCheckd(!checked);
+                        }
+                    }/>
+                }
+                onClick={(e: any) => {
+                    let mode: any = (checked) ? 'light' : 'dark';
+
+                    ons.server.post({
+                        url: 'environment/update',
+                        data: {mode: mode},
+                        hideLoading: true,
+                        callbackFunc: ((res: any) => {
+                            ons.changeMode(mode);
+                        })
+                    })
+                }}
                 label="MUI switch"
                 checked={checked} 
             />

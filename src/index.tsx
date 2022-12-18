@@ -9,11 +9,10 @@ import { RecoilRoot } from "recoil";
 import Main from "./main";
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+    document.getElementById('root') as HTMLElement
 );
 
 ons.init(store);
-
 
 root.render(
     <Provider store = {store}>
