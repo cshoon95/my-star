@@ -11,13 +11,13 @@ import Modal from '@mui/material/Modal';
 
 const boxStyle = {
     position: 'absolute',
-    top: '50%',
+    top: '30%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 200,
     height: 150,
     bgcolor: 'background.paper',
-    border: '2px solid #0D6EFC',
+    border: '2px solid #90CAF7',
     boxShadow: 24,
     pt: 2,
     px: 4,
@@ -26,7 +26,8 @@ const boxStyle = {
 
 const btnStyle = {
     position: 'absolute',
-    left: '60%',
+    height: 80,
+    left: '70%',
 };
 
 function Alert() {
