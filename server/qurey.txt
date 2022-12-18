@@ -19,7 +19,12 @@ VALUE(4, '박민영', '', '01012322322', '20221209', '김비서', '5000', 'SOOHO
 // 키 추가
 ALTER table customers
 add column showYn CHAR(2);
-;
+
+ALTER table customers
+add column parentPhone CHAR(12);
+
+ALTER table customers
+add column age int;;
 
 * 환경 테이블 *
 create table ENVIRONMENT (
