@@ -8,6 +8,8 @@ import DialogActions from '@mui/material/DialogActions';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
+import TextField from '@mui/material/TextField';
+import ons from '../core/Ons';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -21,10 +23,10 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 export interface DialogTitleProps {
   id: string;
   children?: React.ReactNode;
-  onClose: () => void;
+  onClose?: () => void;
 }
 
-function BootstrapDialogTitle(props: DialogTitleProps) {
+const BootstrapDialogTitle = (props: DialogTitleProps) => {
     const { children, onClose, ...other } = props;
 
     return (
@@ -48,31 +50,31 @@ function BootstrapDialogTitle(props: DialogTitleProps) {
     );
 }
 
-export default function CustomizedDialogs() {
-    const [open, setOpen] = React.useState(false);
-
-    const handleClickOpen = () => {
-        setOpen(true);
-    };
-    const handleClose = () => {
-        setOpen(false);
-    };
+const EditCustomers = (props: any) => {
+    ons.log(props);
 
     return (
         <div>
             <BootstrapDialog
-                onClose={handleClose}
                 aria-labelledby="customized-dialog-title"
                 open={true}
             >
-                <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
-                Modal title
+                <BootstrapDialogTitle id="customized-dialog-title">
+                회원 수정
                 </BootstrapDialogTitle>
                 <DialogContent dividers>
                 <Typography gutterBottom>
-                    Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-                    dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-                    consectetur ac, vestibulum at eros.
+                    <TextField sx={{ margin: 3}}id="outlined-basic" label="Outlined" variant="outlined" />
+                    <TextField sx={{ margin: 3}}id="outlined-basic" label="Outlined" variant="outlined" />
+                    <TextField sx={{ margin: 3}}id="outlined-basic" label="Outlined" variant="outlined" />
+                    <TextField sx={{ margin: 3}}id="outlined-basic" label="Outlined" variant="outlined" />
+                    <TextField sx={{ margin: 3}}id="outlined-basic" label="Outlined" variant="outlined" />
+                    <TextField sx={{ margin: 3}}id="outlined-basic" label="Outlined" variant="outlined" />
+                    <TextField sx={{ margin: 3}}id="outlined-basic" label="Outlined" variant="outlined" />
+                    <TextField sx={{ margin: 3}}id="outlined-basic" label="Outlined" variant="outlined" />
+                    <TextField sx={{ margin: 3}}id="outlined-basic" label="Outlined" variant="outlined" />
+                    <TextField sx={{ margin: 3}}id="outlined-basic" label="Outlined" variant="outlined" />
+                    
                 </Typography>
                 <Typography gutterBottom>
                     Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
@@ -85,11 +87,13 @@ export default function CustomizedDialogs() {
                 </Typography>
                 </DialogContent>
                 <DialogActions>
-                <Button autoFocus onClick={handleClose}>
-                    Save changes
+                <Button autoFocus>
+                    확인
                 </Button>
                 </DialogActions>
             </BootstrapDialog>
         </div>
     );
 }
+
+export default EditCustomers;
