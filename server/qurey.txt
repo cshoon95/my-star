@@ -24,7 +24,8 @@ ALTER table customers
 add column parentPhone CHAR(12);
 
 ALTER table customers
-add column age int;;
+add column age int;
+
 
 * 환경 테이블 *
 create table ENVIRONMENT (
@@ -40,3 +41,12 @@ INSERT INTO ENVIRONMENT (ID, MODE, REGISTER_ID, UPDATE_ID)
 VALUE(1, 'DARK', 'SOOHOON', 'SOOHOON');
 
 "UPDATE ENVIRONMENT SET MODE = " +  mode + "WHERE Name = '홍길동';";
+
+
+
+
+
+
+ALTER Table customers CHANGE age BIRTH CHAR(10);
+ALTER Table customers CHANGE parentPhone PARENTPHONE CHAR(12);
+ALTER Table customers CHANGE showYn SHOWYN CHAR(2);
