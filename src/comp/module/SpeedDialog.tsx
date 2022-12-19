@@ -23,9 +23,6 @@ const actions = [
 ];
 
 const SpeedDialog = () => {
-    const onClick = () => {
-        <CustomizedDialogs />
-    }
     return (
         <Box sx={{ height: 320, transform: 'translateZ(0px)', flexGrow: 1 }}>
             <SpeedDial
@@ -40,7 +37,7 @@ const SpeedDialog = () => {
                         tooltipTitle={action.name}
                         tooltipOpen
                         onClick={(e) => {
-                            ons.alert('asdas');
+                            ons.showPopup('EditCustomers');
                         }}
                     />
                 ))}

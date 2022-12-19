@@ -32,7 +32,6 @@ export type AlertOptionType = {
     title: string;
     confirm: string;
     color: 'error' | 'info' | 'success' | 'warning';
-    compFunc: Function;
     callbackFunc: Function;
 };
 
@@ -51,9 +50,7 @@ export type LodingOptionType = {
 };
 
 export type PopupOptionType = {
-    title: string;
     confirm: string;
-    compFunc: Function;
     callbackFunc: Function;
 }
 
@@ -62,7 +59,6 @@ export const initAlertOption: AlertOptionType = {
     title: '',
     confirm: '확인',
     color: 'success',
-    compFunc: () => {},
     callbackFunc: () => {},
 };
 
@@ -74,9 +70,7 @@ export const initLoadingOption: LodingOptionType = {
 };
 
 export const initPopupOption: PopupOptionType = {
-    title: '',
     confirm: '확인',
-    compFunc: () => {},
     callbackFunc: () => {},
 }
 

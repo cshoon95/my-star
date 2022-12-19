@@ -74,9 +74,7 @@ const viewReducer = (state = initialViewState, action: any) => {
                 title: (alertParam && alertParam.title) || '',
                 confirm: (alertParam && alertParam.confirm) || '확인',
                 color: (alertParam && alertParam.color) || 'success',
-                compFunc: (alertParam && alertParam.compFunc) || (() => {}),
-                callbackFunc:
-                    (alertParam && alertParam.callbackFunc) || (() => {}),
+                callbackFunc: (alertParam && alertParam.callbackFunc) || (() => {}),
             };
             return {
                 ...state,
@@ -98,9 +96,7 @@ const viewReducer = (state = initialViewState, action: any) => {
         case SHOW_POPUP:
             const popupParam: PopupOptionType = action.payload.popupOption;
             const popupOption: PopupOptionType = {
-                title: (popupParam && popupParam.title) || '',
                 confirm: (popupParam && popupParam.confirm) || '확인',
-                compFunc: (popupParam && popupParam.compFunc) || (() => {}),
                 callbackFunc: (popupParam && popupParam.callbackFunc) || (() => {}),
             };
             return {

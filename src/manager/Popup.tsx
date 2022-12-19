@@ -1,10 +1,9 @@
-import { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import ons from '../core/Ons';
 import { StoreStateType } from '../type/Type';
+import EditCustomers from "../modal/EditCustomers"
 
 // start -- MUI
-import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 // end -- MUI
@@ -24,55 +23,38 @@ const boxStyle = {
     pb: 3,
 };
 
-const btnStyle = {
-    position: 'absolute',
-    left: '60%',
-};
-
-function Alert() {
-    const refBtn = useRef<HTMLButtonElement>(null);
-    const { alertMessage, alertOption } = useSelector(
+const Popup = (props: any) => { 
+    const { popupName, popupOption } = useSelector(
         (state: StoreStateType) => {
             return {
-                alertMessage: state.view.alertMessage,
-                alertOption: state.view.alertOption,
+                popupName: state.view.popupName,
+                popupOption: state.view.popupOption,
             };
         },
     );
 
-    useEffect(() => {
-        setTimeout(() => {
-            refBtn.current?.focus();
-        }, 100);
-    }, [alertMessage]);
+    const loadPopup = () => { 
+        switch (popupName) {
+            case 'EditCustomers':
+                return <EditCustomers props={popupOption}/>;
+            default:
+                return;
+        }
+    }
 
     return (
         <div>
             <Modal
-                open={['','hide'].includes(alertMessage) ? false : true}
+                open={['','hide'].includes(popupName) ? false : true}
                 aria-labelledby="parent-modal-title"
                 aria-describedby="parent-modal-description"
-                color={alertOption.color}
             >
                 <Box sx={{ ...boxStyle, width: 300 }}>
-                    <h2 id="parent-modal-title">
-                        {alertOption?.title ? alertOption.title : ''}
-                    </h2>
-                    <p id="parent-modal-description">{alertMessage}</p>
-                    <Button
-                        sx={btnStyle}
-                        ref={refBtn}
-                        onClick={() => {
-                            ons.alert('');
-                            alertOption.callbackFunc && alertOption.callbackFunc();
-                        }}
-                    >
-                        {alertOption.confirm}
-                    </Button>
+                   {loadPopup()}
                 </Box>
             </Modal>
         </div>
     );
 }
 
-export default Alert;
+export default Popup;

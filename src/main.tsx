@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { StoreStateType } from './type/Type';
 import Alert from './manager/Alert';
 import Loading from './manager/Loading';
+import Popup from './manager/Popup';
 import Header from './comp/header/Header';
 import Drawer from './comp/navigation/Drawer';
 import Dashboard from './page/dashboard/Dashboard';
@@ -31,7 +32,8 @@ const Main = () => {
         ons.server.get({
             url: 'environment/list',
             callbackFunc: (response: any) => {
-                ons.changeMode(response.data[0].MODE);
+                const mode = response.data[0].MODE;
+                ons.changeMode(mode);
             }
         })
     }, [])
@@ -47,8 +49,9 @@ const Main = () => {
         <ThemeProvider theme={viewMode === 'dark' ? darkTheme : lightTheme}>
             <React.StrictMode>
                 <div>
-                    <Alert/>
-                    <Loading/>
+                    <Loading />
+                    <Alert />
+                    <Popup />
                 </div>
                 <Router>
                     <Box sx={{ display: 'flex' }}>
