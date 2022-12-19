@@ -63,29 +63,34 @@ const EditCustomers = (props: any) => {
                 회원 수정
                 </BootstrapDialogTitle>
                 <DialogContent dividers>
-                <Typography gutterBottom>
-                    <TextField sx={{ margin: 3}}id="outlined-basic" label="Outlined" variant="outlined" />
-                    <TextField sx={{ margin: 3}}id="outlined-basic" label="Outlined" variant="outlined" />
-                    <TextField sx={{ margin: 3}}id="outlined-basic" label="Outlined" variant="outlined" />
-                    <TextField sx={{ margin: 3}}id="outlined-basic" label="Outlined" variant="outlined" />
-                    <TextField sx={{ margin: 3}}id="outlined-basic" label="Outlined" variant="outlined" />
-                    <TextField sx={{ margin: 3}}id="outlined-basic" label="Outlined" variant="outlined" />
-                    <TextField sx={{ margin: 3}}id="outlined-basic" label="Outlined" variant="outlined" />
-                    <TextField sx={{ margin: 3}}id="outlined-basic" label="Outlined" variant="outlined" />
-                    <TextField sx={{ margin: 3}}id="outlined-basic" label="Outlined" variant="outlined" />
-                    <TextField sx={{ margin: 3}}id="outlined-basic" label="Outlined" variant="outlined" />
-                    
-                </Typography>
-                <Typography gutterBottom>
-                    Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-                    Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
-                </Typography>
-                <Typography gutterBottom>
-                    Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus
-                    magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec
-                    ullamcorper nulla non metus auctor fringilla.
-                </Typography>
-                </DialogContent>
+                    <Typography gutterBottom>
+                        <TextField sx={{ margin: 3, marginLeft: '11%'}}id="outlined-basic" label="Outlined" variant="outlined" />
+                        <TextField sx={{ margin: 3, marginLeft: '11%'}}id="outlined-basic" label="Outlined" variant="outlined" />
+                        <TextField sx={{ margin: 3, marginLeft: '11%'}}id="outlined-basic" label="Outlined" variant="outlined" />
+                        <TextField sx={{ margin: 3, marginLeft: '11%'}}id="outlined-basic" label="Outlined" variant="outlined" />
+                        <TextField sx={{ margin: 3, marginLeft: '11%'}}id="outlined-basic" label="Outlined" variant="outlined" />
+                        <TextField sx={{ margin: 3, marginLeft: '11%'}}id="outlined-basic" label="Outlined" variant="outlined" />
+                        <TextField sx={{ margin: 3, marginLeft: '11%'}}id="outlined-basic" label="Outlined" variant="outlined" />
+                        <TextField sx={{ margin: 3, marginLeft: '11%'}}id="outlined-basic" label="Outlined" variant="outlined" />
+                        <TextField
+                            id="outlined-multiline-static"
+                            label="Multiline"
+                            multiline
+                            rows={4}
+                            defaultValue="Default Value"
+                        />
+
+                    </Typography>
+                    <Typography gutterBottom>
+                        Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+                        Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
+                    </Typography>
+                    <Typography gutterBottom>
+                        Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus
+                        magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec
+                        ullamcorper nulla non metus auctor fringilla.
+                    </Typography>
+                    </DialogContent>
                 <DialogActions>
                 <Button autoFocus>
                     확인
