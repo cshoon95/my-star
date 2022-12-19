@@ -56,6 +56,7 @@ const Board = () => {
             <TableCell>학교</TableCell>
             <TableCell>휴대폰 번호</TableCell>
             <TableCell>등록 날짜</TableCell>
+            <TableCell>다닌지</TableCell>
             <TableCell>회비</TableCell>
             <TableCell>비고</TableCell>
           </TableRow>
@@ -69,7 +70,8 @@ const Board = () => {
                 <TableCell>{row.SCHOOL}</TableCell>
                 <TableCell>{utils.replaceHypenFormat(row.TEL, 'phone')}</TableCell>
                 <TableCell>{utils.replaceHypenFormat(row.DATE, 'date')}</TableCell>
-                <TableCell align="right">{row.FEE}</TableCell>
+                <TableCell>{`D+` + utils.daysBetween(row.DATE)}</TableCell>
+                <TableCell align="right">{utils.replaceUnitMoney(row.FEE)}</TableCell>
                 <TableCell>{row.NOTE}</TableCell>
               </TableRow>
             ))

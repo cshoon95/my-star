@@ -40,6 +40,29 @@ class Utils {
 
         return result;
     }
+    replaceUnitMoney(money: number){
+        if (money < 0) return;
+
+        const unitWords    = ['원', '만', '억', '조', '경'];
+        const splitUnit    = 10000;
+        let resultArray: any  = [];
+        let resultString = '';
+        
+        unitWords.forEach((item: any, i: number) => {
+            let unitResult = (money % Math.pow(splitUnit, i + 1)) / Math.pow(splitUnit, i);
+            unitResult = Math.floor(unitResult);
+
+            if (unitResult > 0) resultArray[i] = unitResult;
+        });
+        
+        for (var i = 0; i < resultArray.length; i++) {
+            if (!resultArray[i]) continue;
+
+            resultString = String(resultArray[i]) + unitWords[i];
+        }
+    
+        return resultString;
+    }
     /**
      * 학원 등록한 지 D+ 
      * @category 날짜/시간
@@ -59,6 +82,7 @@ class Utils {
 
         return Math.trunc(elapsedDay);
     }
+    
 }
 
 export default new Utils();
