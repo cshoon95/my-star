@@ -40,7 +40,25 @@ class Utils {
 
         return result;
     }
-    
+    /**
+     * 학원 등록한 지 D+ 
+     * @category 날짜/시간
+     * @param {string} strDate "YYYY-MM-DD" 형태의 문자열.
+     * @return {number} date2 - date1 일수. date2이 date1보다 이전 날짜면 음수값으로 반환.
+     */
+    daysBetween(strDate: string): number {
+        const yyyy  = Number(strDate.substring(0, 4));
+        const mm    = Number(strDate.substring(4, 6)) - 1;
+        const dd    = Number(strDate.substring(6, 8));
+
+        const date  = new Date(yyyy, mm, dd);
+        const today = new Date();
+
+        const elapsedMSec = today.getTime() - date.getTime();
+        const elapsedDay = elapsedMSec / 1000 / 60 / 60 / 24;
+
+        return Math.trunc(elapsedDay);
+    }
 }
 
 export default new Utils();

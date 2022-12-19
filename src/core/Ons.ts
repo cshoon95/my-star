@@ -51,6 +51,10 @@ export class Ons {
         return Server;
     }
 
+    public get utils() {
+        return utils;
+    }
+    
     public getState(key: StateType, type: string = 'data') {
         return this._store.getState()[type][key];
     }
