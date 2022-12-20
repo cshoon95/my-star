@@ -50,3 +50,9 @@ VALUE(1, 'DARK', 'SOOHOON', 'SOOHOON');
 ALTER Table customers CHANGE age BIRTH CHAR(10);
 ALTER Table customers CHANGE parentPhone PARENTPHONE CHAR(12);
 ALTER Table customers CHANGE showYn SHOWYN CHAR(2);
+
+ALTER table customers
+add column SEX CHAR(2);
+
+ALTER table customers
+add column CURRYN CHAR(2);
