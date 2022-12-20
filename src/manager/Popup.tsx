@@ -23,20 +23,17 @@ const boxStyle = {
     pb: 3,
 };
 
-const Popup = (props: any) => { 
-    const { popupName, popupOption } = useSelector(
-        (state: StoreStateType) => {
-            return {
-                popupName: state.view.popupName,
-                popupOption: state.view.popupOption,
-            };
-        },
-    );
+const Popup = () => { 
+    const { popupName } = useSelector((state: StoreStateType) => {
+        return {
+            popupName: state.view.popupName
+        };
+    });
 
     const loadPopup = () => { 
         switch (popupName) {
             case 'EditCustomers':
-                return <EditCustomers props={popupOption}/>;
+                return <EditCustomers/>;
             default:
                 return;
         }

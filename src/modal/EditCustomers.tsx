@@ -1,4 +1,9 @@
 import * as React from 'react';
+import ons from '../core/Ons';
+import { StoreStateType } from '../type/Type';
+import { useSelector } from 'react-redux';
+
+// start -- MUI
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 import Dialog from '@mui/material/Dialog';
@@ -9,7 +14,12 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
-import ons from '../core/Ons';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import Input from '@mui/material/Input';
+import InputAdornment from '@mui/material/InputAdornment';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+// end -- MUI
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -50,8 +60,12 @@ const BootstrapDialogTitle = (props: DialogTitleProps) => {
     );
 }
 
-const EditCustomers = (props: any) => {
-    ons.log(props);
+const EditCustomers = () => {
+    const { popupOption } = useSelector((state: StoreStateType) => {
+        return {
+            popupOption: state.view.popupOption
+        };
+    });
 
     return (
         <div>
@@ -60,25 +74,23 @@ const EditCustomers = (props: any) => {
                 open={true}
             >
                 <BootstrapDialogTitle id="customized-dialog-title">
-                회원 수정
+                    회원 수정
                 </BootstrapDialogTitle>
                 <DialogContent dividers>
                     <Typography gutterBottom>
-                        <TextField sx={{ margin: 3, marginLeft: '11%'}}id="outlined-basic" label="Outlined" variant="outlined" />
-                        <TextField sx={{ margin: 3, marginLeft: '11%'}}id="outlined-basic" label="Outlined" variant="outlined" />
-                        <TextField sx={{ margin: 3, marginLeft: '11%'}}id="outlined-basic" label="Outlined" variant="outlined" />
-                        <TextField sx={{ margin: 3, marginLeft: '11%'}}id="outlined-basic" label="Outlined" variant="outlined" />
-                        <TextField sx={{ margin: 3, marginLeft: '11%'}}id="outlined-basic" label="Outlined" variant="outlined" />
-                        <TextField sx={{ margin: 3, marginLeft: '11%'}}id="outlined-basic" label="Outlined" variant="outlined" />
-                        <TextField sx={{ margin: 3, marginLeft: '11%'}}id="outlined-basic" label="Outlined" variant="outlined" />
-                        <TextField sx={{ margin: 3, marginLeft: '11%'}}id="outlined-basic" label="Outlined" variant="outlined" />
-                        <TextField
-                            id="outlined-multiline-static"
-                            label="Multiline"
-                            multiline
-                            rows={4}
-                            defaultValue="Default Value"
+                    {/* <FormControl variant="standard">
+                        <InputLabel htmlFor="input-with-icon-adornment">
+                        이름
+                        </InputLabel>
+                        <Input
+                        id="input-with-icon-adornment"
+                        startAdornment={
+                            <InputAdornment position="start">
+                                <AccountCircle />
+                            </InputAdornment>
+                        }
                         />
+                    </FormControl> */}
 
                     </Typography>
                     <Typography gutterBottom>
@@ -92,8 +104,12 @@ const EditCustomers = (props: any) => {
                     </Typography>
                     </DialogContent>
                 <DialogActions>
-                <Button autoFocus>
-                    확인
+                <Button autoFocus 
+                    onClick={() => {
+                        ons.hidePopup();
+                        if (popupOption.callbackFunc) popupOption.callbackFunc();
+                    }}>
+                    {popupOption.confirm}
                 </Button>
                 </DialogActions>
             </BootstrapDialog>

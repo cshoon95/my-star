@@ -54,7 +54,7 @@ export class Ons {
     public get utils() {
         return utils;
     }
-    
+
     public getState(key: StateType, type: string = 'data') {
         return this._store.getState()[type][key];
     }
@@ -88,9 +88,7 @@ export class Ons {
     }
 
     public hidePopup(type: string ='normal') {
-        this._store.dispatch(hideLoading({
-            loadingType: type
-        }))
+        this._store.dispatch(hidePopup())
     }
     
     public showDrawer() {
