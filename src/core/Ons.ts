@@ -59,8 +59,8 @@ export class Ons {
         return this._store.getState()[type][key];
     }
 
-    public setState(key: StateType, value: any, isDispatch?: boolean, type: string = 'data'): void {
-        isDispatch ? this._store.dispatch(setState({ [key]: value })) : this._store.getState()[type][key] = value;
+    public setState(key: StateType, value: any, type: string = 'data'): void {
+        this._store.dispatch(setState({ [key]: value }));
     }
     
     public alert(message: string, option?: AlertOptionType) {
@@ -114,7 +114,12 @@ export class Ons {
         }));
     }
     
-    public log(message: any, message2?: any) {
+    public log(message: any, message2?: any, message3?: any) {
+        if (message3) {
+            console.log(message, message2, message3);
+            return;
+        }
+
         if (message2) {
             console.log(message, message2);
             return;

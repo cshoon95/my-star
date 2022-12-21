@@ -39,6 +39,7 @@ const Board = () => {
     ons.server.get({
       url: 'customers/list',
       callbackFunc: (response: any) => {
+        ons.setState('customers', response.data);
         setRows(response.data);
     }});
   }, [])
