@@ -10,6 +10,7 @@ export type StoreStateDataType = {
     systime: string;
     isMobile: boolean;
     academyName: string;
+    customers: [];
 }
 
 export type StoreStateViewType = {
@@ -92,5 +93,6 @@ export const initialDataState: StoreStateDataType = {
     sysdate: utils.sysdate(new Date()),
     systime: utils.systime(new Date()),
     isMobile: utils.isMobile(),
-    academyName: '랑아트 미술학원'
+    academyName: '랑아트 미술학원',
+    customers: []
 }

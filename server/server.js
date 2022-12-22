@@ -39,6 +39,17 @@ app.get("/api/customers/list", (req, res) => {
     });
 });
 
+app.post("/api/customers/update", (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    const mode = req.body.mode
+    const sqlQuery = "UPDATE CUSTOMERS SET MODE = ?, UPDATE_ID = 'SOOHOON' WHERE  = '1';";
+
+    db.query(sqlQuery, [mode], (err, result) => {
+        res.send(result);
+        printRes(err, result);
+    });
+});
+
 // environment
 app.get("/api/environment/list", (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");

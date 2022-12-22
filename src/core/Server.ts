@@ -32,7 +32,7 @@ class Server{
             params: options.data
         }).then(function (res) {
             ons.log('▨▨▨▨▨▨▨▨▨▨▨▨▶ 서버에서 가져온 정보 시작');
-            ons.log('▨▨▨▨▨▨▨▨▨▨▨▨▶', res);
+            ons.log(res);
             ons.log('▨▨▨▨▨▨▨▨▨▨▨▨▶ 서버에서 가져온 정보 끝');
 
             options.callbackFunc && options.callbackFunc(res)

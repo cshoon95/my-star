@@ -39,7 +39,17 @@ const Board = () => {
     ons.server.get({
       url: 'customers/list',
       callbackFunc: (response: any) => {
-        ons.setState('customers', response.data);
+        const setCustomers = response.data.map((item: any) => {
+          item.TEL = (item.TEL && utils.replaceHypenFormat(item.TEL, 'phone')) || '';
+          item.DDAY = (item.DATE && utils.daysBetween(item.DATE)) + '일' || '';
+          item.DATE = (item.DATE && utils.replaceHypenFormat(item.DATE, 'date')) || '';
+          item.FEE = (item.FEE && utils.replaceUnitMoney(item.FEE)) || '';
+          item.FARENTPHONE = (item.FARENTPHONE && utils.replaceHypenFormat(item.FARENTPHONE, 'phone')) || '';
+          // item.BIRTH = utils.replaceHypenFormat(item.BIRTH, 'date');
+
+          return item;
+        })
+        ons.setState('customers', setCustomers);
         setRows(response.data);
     }});
   }, [])
