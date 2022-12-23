@@ -56,9 +56,6 @@ const Board = () => {
 
   return (
     <>
-    {pageName === 'Dashboard' ? <Title>회원 정보</Title>
-    : ''
-    }
       <Table size="small">
         <TableHead>
           <TableRow>
