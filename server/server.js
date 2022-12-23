@@ -41,10 +41,12 @@ app.get("/api/customers/list", (req, res) => {
 
 app.post("/api/customers/update", (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
-    const mode = req.body.mode
-    const sqlQuery = "UPDATE CUSTOMERS SET MODE = ?, UPDATE_ID = 'SOOHOON' WHERE  = '1';";
-
-    db.query(sqlQuery, [mode], (err, result) => {
+    const key = req.body.key.replace(/\'/gi, "");
+    const value = req.body.value;
+    const id = req.body.id;
+    const sqlQuery = `UPDATE CUSTOMERS SET ${key} = ?, UPDATER_ID = 'SOOHOON' WHERE  ID = ? ;`;
+    console.log('제발제발', req.body);
+    db.query(sqlQuery, [value, id], (err, result) => {
         res.send(result);
         printRes(err, result);
     });

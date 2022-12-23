@@ -1,14 +1,13 @@
 import Board from "../../comp/module/Board";
 import InitPage from "../../comp/module/InitPage";
 import SpeedDialog from "../../comp/module/SpeedDialog";
-import Grid from "./Grid";
+import CustomersGrid from "./CustomersGrid";
 
 function Customers() {
     return (
         <InitPage>
-            <Board/>
+            <CustomersGrid/>
             <SpeedDialog/>
-            <Grid/>
         </InitPage>
     )
 }
