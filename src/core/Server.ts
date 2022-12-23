@@ -11,7 +11,7 @@ class Server{
     private initAxios = () => {
         return axios.create({
             baseURL: "http://127.0.0.1:3001/api",
-			// timeout: 5000,
+			timeout: 1000,
         });
     }
     
@@ -52,6 +52,29 @@ class Server{
      * 합칠 수 있을 거 같은데 흐음..
      */
     public post(options: OptionsType) {
+        !options.hideLoading && ons.showLoading();
+
+        this.axios.post(
+            options.url, 
+            options.data
+        ).then((res: any) => {
+            options.callbackFunc && options.callbackFunc(res)
+        }).catch((err: any) => {
+            throw new Error(err);
+        }).then(() => {
+            !options.hideLoading && ons.hideLoading();
+        }) 
+    }
+
+    /**
+     * put 방식으로 서버 호출
+     * @param options OptionsType
+     * 
+     * @see
+     * get, post, put 메소드 빼고는 코드가 일치하는데..
+     * 합칠 수 있을 거 같은데 흐음..
+     */
+     public put(options: OptionsType) {
         !options.hideLoading && ons.showLoading();
 
         this.axios.post(

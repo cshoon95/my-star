@@ -1,3 +1,5 @@
+import { GridColumns } from "@mui/x-data-grid";
+
 class List {
     headerTitle: any = {
         Dashboard: 'Dashboard',
@@ -6,7 +8,7 @@ class List {
         Reports: '보고서',
         Setting: '환경 설정'
     }
-    customersColumns: any = [
+    customersColumns: GridColumns = [
         { field: 'id',              headerName: 'id',               width: 50,  hide: true,     editable: false },
         { field: 'NAME',            headerName: '이름',             width: 70,  hide: false,    editable: true  },
         { field: 'SCHOOL',          headerName: '학교',             width: 70,  hide: false,    editable: true  },
