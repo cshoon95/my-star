@@ -24,12 +24,13 @@ interface AppBarProps extends MuiAppBarProps {
 }
 
 const Header = (open: any) => {
-    const { isShownDrawer, drawerWidth, headerTitle } = useSelector(
+    const { isShownDrawer, drawerWidth, headerTitle, pageName } = useSelector(
         (state: StoreStateType) => {
             return {
                 isShownDrawer: state.view.isShownDrawer,
                 drawerWidth: state.view.drawerWidth,
-                headerTitle: state.view.headerTitle
+                headerTitle: state.view.headerTitle,
+                pageName: state.view.pageName
             }
         }
     )
@@ -82,7 +83,7 @@ const Header = (open: any) => {
                 >
                     {headerTitle}
                 </Typography>
-                <SpeedDialog />
+                {pageName === 'Customers' ? <SpeedDialog /> : ''}
             </Toolbar>
         </StyledAppBar>
     )

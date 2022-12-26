@@ -39,14 +39,24 @@ app.get("/api/customers/list", (req, res) => {
     });
 });
 
-app.post("/api/customers/update", (req, res) => {
+app.put("/api/customers/update", (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
     const key = req.body.key.replace(/\'/gi, "");
     const value = req.body.value;
     const id = req.body.id;
     const sqlQuery = `UPDATE CUSTOMERS SET ${key} = ?, UPDATER_ID = 'SOOHOON' WHERE  ID = ? ;`;
-    console.log('제발제발', req.body);
+
     db.query(sqlQuery, [value, id], (err, result) => {
+        res.send(result);
+        printRes(err, result);
+    });
+});
+
+app.delete("/api/customers/delete", (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    const id = req.body.id;
+    const sqlQuery = `DELETE FROM CUSTOMERS WHERE id = ? ;`;
+    db.query(sqlQuery, [id], (err, result) => {
         res.send(result);
         printRes(err, result);
     });

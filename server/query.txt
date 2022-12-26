@@ -64,3 +64,5 @@ VALUE('새로운', '', '010-2565-2832', '20221222', '서울대', '85000', 'SOOHO
 
 
 ALTER Table customers CHANGE id id int not null auto_increment
+
+DELETE FROM customers WHERE id = '홍길동';

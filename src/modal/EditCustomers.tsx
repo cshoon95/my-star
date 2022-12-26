@@ -100,7 +100,7 @@ const EditCustomers = () => {
     }
     const setRef = (customer: any) => {
         if (!customer) return;
-debugger
+        
         customerRef.current = {
             birth: customer.BIRTH,
             date: customer.DATE,

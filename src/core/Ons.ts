@@ -114,6 +114,29 @@ export class Ons {
         }));
     }
     
+    public setCustomerList = (callbackFunc?: Function) => {
+        ons.server.get({
+            url: 'customers/list',
+            hideLoading: true,
+            callbackFunc: (response: any) => {
+              const setCustomers = response.data.map((item: any) => {
+                item.TEL = (item.TEL && utils.replaceHypenFormat(item.TEL, 'phone')) || '';
+                item.DDAY = (item.DATE && utils.daysBetween(item.DATE)) + '일' || '';
+                item.DATE = (item.DATE && utils.replaceHypenFormat(item.DATE, 'date')) || '';
+                item.FEE = (item.FEE && utils.replaceUnitMoney(item.FEE)) || '';
+                item.FARENTPHONE = (item.FARENTPHONE && utils.replaceHypenFormat(item.FARENTPHONE, 'phone')) || '';
+                item.BIRTH = (item.BIRTH && utils.replaceHypenFormat(item.BIRTH, 'date')) || '';
+      
+                return item;
+              })
+              ons.setState('customers', setCustomers);
+
+              if (callbackFunc) {
+                callbackFunc(response);
+              }
+              
+          }});
+    }
     public log(message: any, message2?: any, message3?: any) {
         if (message3) {
             console.log(message, message2, message3);

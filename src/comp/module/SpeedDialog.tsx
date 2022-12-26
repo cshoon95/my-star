@@ -5,7 +5,6 @@ import ons from "../../core/Ons";
 import SpeedDial from '@mui/material/SpeedDial';
 import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
-import PrintIcon from '@mui/icons-material/Print';
 import ShareIcon from '@mui/icons-material/Share';
 import SearchIcon from '@mui/icons-material/PersonSearch';
 import AddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
@@ -17,14 +16,13 @@ const actions = [
     { icon: <AddAlt1Icon />, name: 'Add' },
     { icon: <DeleteIcon />, name: 'Delete' },
     { icon: <SearchIcon />, name: 'Search' },
-    { icon: <PrintIcon />, name: 'Print' },
     { icon: <ShareIcon />, name: 'Share' },
 ];
 
 const SpeedDialog = () => {
     return (
         <SpeedDial
-            ariaLabel="SpeedDial openIcon example"
+            ariaLabel="SpeedDial openIcon"
             sx={{ position: 'absolute', bottom: -500, right: 32}}
             icon={<SpeedDialIcon openIcon={<AddIcon />} />}
         >
@@ -34,7 +32,54 @@ const SpeedDialog = () => {
                     icon={action.icon}
                     tooltipTitle={action.name}
                     tooltipOpen
-                    onClick={(e) => { ons.showPopup('EditCustomers'); }}
+                    onClick={(e: any) => { 
+                        const label = e.currentTarget.textContent;
+
+                        switch (label) {
+                            case 'Add':
+                                return
+                            case 'Delete':
+                                const selectedRows = ons.getState('selectedRows');
+
+                                if (!selectedRows || (selectedRows && selectedRows.length === 0)) {
+                                    ons.alert('선택된 데이터가 없습니다.');
+                                    return;
+                                }
+
+                                let selectedIDs: any = [];
+                                let selectedNames: any = [];
+                                
+                                for (const key in selectedRows) {
+                                    selectedIDs.push(selectedRows[key].id);
+                                    selectedNames.push(selectedRows[key].NAME);
+                                }
+                                
+                                ons.log('선택된 Rows: ', selectedRows);
+                                const msg = selectedNames.join(', ');
+
+                                ons.alert(msg + '의 정보를 삭제하시겠어요?', {
+                                    callbackFunc: () => {
+                                        selectedIDs.forEach((id: number) => {
+                                            ons.server.delete({
+                                                url: '/customers/delete',
+                                                data: {
+                                                    id: id
+                                                },
+                                                hideLoading: true,
+                                                callbackFunc: () => {
+        
+                                                }
+                                            })
+                                        })
+                                    }
+                                })
+                                return
+                            case 'Search':
+                                return
+                            case 'Share':
+                                return
+                        }
+                    }}
                 />
             ))}
         </SpeedDial>

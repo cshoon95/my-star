@@ -5,6 +5,7 @@ import { StoreStateType } from '../../type/Type';
 import { useSelector } from 'react-redux';
 import List from "../../core/List";
 import { DataGrid, GridCellModesModel, GridCellModes, GridCellParams, GridRowsProp } from '@mui/x-data-grid';
+import { debug } from "console";
 
 interface TitleProps {
     children?: any
@@ -35,6 +36,14 @@ const Grid = (props: TitleProps) => {
             columns={List.customersColumns}
             experimentalFeatures={{ newEditingApi: true }}
             checkboxSelection
+            onSelectionModelChange={(ids) => {
+                const selectedIDs = new Set(ids);
+                const selectedRows = rows.filter((row) =>
+                    selectedIDs.has(row.id)
+                )
+                
+                ons.setState('selectedRows', selectedRows);
+              }}
             onCellEditStop={(prev: any, curr: any) => {
                 const data = customers.filter((item: any) => { return (item.id) === prev.id; })[0];
 
@@ -61,22 +70,7 @@ const Grid = (props: TitleProps) => {
                     hideLoading: true,
                     callbackFunc: (res: any) => {
                         ons.log('post: ', res);
-                        ons.server.get({
-                            url: 'customers/list',
-                            hideLoading: true,
-                            callbackFunc: (response: any) => {
-                                const setCustomers = response.data.map((item: any) => {
-                                    item.TEL = (item.TEL && utils.replaceHypenFormat(item.TEL, 'phone')) || '';
-                                    item.DDAY = (item.DATE && utils.daysBetween(item.DATE)) + '일' || '0일';
-                                    item.DATE = (item.DATE && utils.replaceHypenFormat(item.DATE, 'date')) || '';
-                                    item.FEE = (item.FEE && utils.replaceUnitMoney(item.FEE)) || '';
-                                    item.FARENTPHONE = (item.FARENTPHONE && utils.replaceHypenFormat(item.FARENTPHONE, 'phone')) || '';
-                                    item.BIRTH = (item.BIRTH && utils.replaceHypenFormat(item.BIRTH, 'date')) || '';
-                            
-                                    return item;
-                                })
-                                ons.setState('customers', setCustomers);
-                        }});
+                        ons.setCustomerList();
                     }
                 })
             }}
