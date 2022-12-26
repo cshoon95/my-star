@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { hideAlert, showAlert, showLoading, hideLoading, movePage } from "../../store/View";
 import { StoreStateType } from '../../type/Type';
 import ons from '../../core/Ons';
+import SpeedDialog from "../module/SpeedDialog";
 
 // start -- MUI 
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
@@ -81,6 +82,7 @@ const Header = (open: any) => {
                 >
                     {headerTitle}
                 </Typography>
+                <SpeedDialog />
             </Toolbar>
         </StyledAppBar>
     )
