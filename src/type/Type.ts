@@ -30,14 +30,14 @@ export type StoreStateViewType = {
 
 // Option Types
 export type AlertOptionType = {
-    title: string;
-    confirm: string;
-    color: 'error' | 'info' | 'success' | 'warning';
-    callbackFunc: Function;
+    title?: string;
+    confirm?: string;
+    color?: 'error' | 'info' | 'success' | 'warning';
+    callbackFunc?: Function;
 };
 
 export type LodingOptionType = {
-    color:
+    color?:
         | 'inherit'
         | 'primary'
         | 'secondary'
@@ -45,14 +45,14 @@ export type LodingOptionType = {
         | 'info'
         | 'success'
         | 'warning';
-    disableShrink: boolean;
-    size: number | string;
-    thickness: number;
+    disableShrink?: boolean;
+    size?: number | string;
+    thickness?: number;
 };
 
 export type PopupOptionType = {
-    confirm: string;
-    callbackFunc: Function;
+    confirm?: string;
+    callbackFunc?: Function;
 }
 
 // init
