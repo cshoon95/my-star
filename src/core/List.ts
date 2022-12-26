@@ -20,7 +20,7 @@ class List {
         { field: 'REGISTER_ID',     headerName: 'REGISTER_ID',      width: 240, hide: true,     editable: false },
         { field: 'REGISTER_DATE',   headerName: 'REGISTER_DATE',    width: 240, hide: true,     editable: false },
         { field: 'UPDATER_ID',      headerName: 'UPDATER_ID',       width: 240, hide: true,     editable: false },
-        { field: 'SHOW_YN',         headerName: 'SHOW_YN',          width: 240, hide: false,    editable: true  },
+        { field: 'SHOW_YN',         headerName: '숨김여부',          width: 80, hide: false,    editable: true  },
         { field: 'PARENTPHONE',     headerName: '부모님 연락처',    width: 120, hide: false,    editable: true  },
         { field: 'BIRTH',           headerName: '생년월일',         width: 120, hide: false,    editable: true  },
         { field: 'CURRYN',          headerName: '재직여부',         width: 60,  hide: false,    editable: true  }
