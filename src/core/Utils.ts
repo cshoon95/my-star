@@ -2,6 +2,7 @@ import { strictEqual } from "assert";
 import ons from "./Ons";
 
 class Utils {
+    /** 모바일 여부. */
     isMobile(): boolean {
         const userAgent = navigator.userAgent;
 
@@ -11,6 +12,19 @@ class Utils {
         
         return false;
     }
+    /** 세로 모드 여부. */
+    isPortrait(): boolean {
+        if (window.matchMedia('(orientation: portrait)').matches) return true;
+
+        return false;
+    }
+    /** 가로 모드 여부. */
+    isLandScape(): boolean {
+        if (window.matchMedia('(orientation: landscape)').matches) return true;
+
+        return false;
+    }
+    /** 날짜 포맷 YYmdd. */
     sysdate(date: Date): string {
         const yy = date.getFullYear();
         const mm = ('0' + (date.getMonth() + 1)).slice(-2);
@@ -18,6 +32,7 @@ class Utils {
 
         return yy + mm + dd;
     }
+    /** 시간 포맷 hhmmss */
     systime(date: Date): string {
         const hh = ('0' + date.getHours()).slice(-2); 
         const mm = ('0' + date.getMinutes()).slice(-2);
@@ -25,9 +40,11 @@ class Utils {
 
         return hh + mm + ss;
     }
+    /** 첫 글자 대문자로 치환. */
     replaceToUpperCaseFirst(str: string): string {
         return str.replace(/^[a-z]/, char => char.toUpperCase());
     }
+    /** 휴대폰, 날짜 포맷. */
     replaceHypenFormat(str: string, type: string): string {
         let result = str;
 
@@ -40,6 +57,7 @@ class Utils {
 
         return result;
     }
+    /** 돈 단위 포맷. */
     replaceUnitMoney(money: number){
         if (money < 0) return;
 
@@ -64,7 +82,7 @@ class Utils {
         return resultString;
     }
     /**
-     * 학원 등록한 지 D+ 
+     * 학원 등록 D+Day 
      * @category 날짜/시간
      * @param {string} strDate "YYYY-MM-DD" 형태의 문자열.
      * @return {number} date2 - date1 일수. date2이 date1보다 이전 날짜면 음수값으로 반환.
