@@ -17,6 +17,13 @@ class Server{
     
     private axios = this.initAxios();
     
+    /** 로그 */
+    static printLog = (url: string, res: any) => {
+        ons.log('▨▨▨▨▨▨▨▨▨▨▨▨▶ ' +  url + ' 에서 가져온 정보 시작');
+        ons.log(res);
+        ons.log('▨▨▨▨▨▨▨▨▨▨▨▨▶ ' +  url + ' 에서 가져온 정보 종료');
+    }
+
     /**
      * get 방식으로 서버 호출
      * @param options OptionsType
@@ -30,15 +37,12 @@ class Server{
 
         this.axios.get(options.url, {
             params: options.data
-        }).then(function (res) {
-            ons.log('▨▨▨▨▨▨▨▨▨▨▨▨▶ 서버에서 가져온 정보 시작');
-            ons.log(res);
-            ons.log('▨▨▨▨▨▨▨▨▨▨▨▨▶ 서버에서 가져온 정보 끝');
-
+        }).then((res) => {
+            Server.printLog(options.url, res);
             options.callbackFunc && options.callbackFunc(res)
-        }).catch(function (err) {
+        }).catch((err) => {
             throw new Error(err);
-        }).then(function () {
+        }).then(() => {
             !options.hideLoading && ons.hideLoading();
         }); 
     }
@@ -58,6 +62,7 @@ class Server{
             options.url, 
             options.data
         ).then((res: any) => {
+            Server.printLog(options.url, res);
             options.callbackFunc && options.callbackFunc(res)
         }).catch((err: any) => {
             throw new Error(err);
@@ -81,6 +86,7 @@ class Server{
             options.url, 
             options.data
         ).then((res: any) => {
+            Server.printLog(options.url, res);
             options.callbackFunc && options.callbackFunc(res)
         }).catch((err: any) => {
             throw new Error(err);
