@@ -35,6 +35,11 @@ const Board = () => {
       }
   });
 
+  const onClick = () => {
+    navigate('/customers');
+    ons.route('customers')
+  }
+
   useEffect(() => {
     ons.server.get({
       url: 'customers/list',
@@ -56,7 +61,7 @@ const Board = () => {
 
   return (
     <>
-      <Table size="small">
+      <Table size="small" onClick={onClick}>
         <TableHead>
           <TableRow>
             <TableCell>No</TableCell>
@@ -87,10 +92,7 @@ const Board = () => {
         </TableBody>
       </Table>
       {pageName === 'Dashboard' ? 
-        <Link color="primary" onClick={() => {
-          navigate('/customers');
-          ons.route('customers')
-        }} sx={{ mt: 3 }}>
+        <Link color="primary" onClick={onClick} sx={{ mt: 3 }}>
           더보기
         </Link> 
         : 
