@@ -26,7 +26,7 @@ export const showAlert = createAction<{
     alertOption?: AlertOptionType;
 }>(SHOW_ALERT);
 
-export const hideAlert = createAction(HIDE_LOADING);
+export const hideAlert = createAction(HIDE_ALERT);
 
 export const showLoading = createAction<{
     loadingType?: string;
@@ -73,6 +73,7 @@ const viewReducer = (state = initialViewState, action: any) => {
             const alertOption: AlertOptionType = {
                 title: (alertParam && alertParam.title) || '',
                 confirm: (alertParam && alertParam.confirm) || '확인',
+                cancel: (alertParam && alertParam.cancel) || '취소',
                 color: (alertParam && alertParam.color) || 'success',
                 callbackFunc: (alertParam && alertParam.callbackFunc) || (() => {}),
             };

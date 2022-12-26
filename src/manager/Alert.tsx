@@ -11,11 +11,11 @@ import Modal from '@mui/material/Modal';
 
 const boxStyle = {
     position: 'absolute',
-    top: '30%',
+    top: '45%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 200,
-    height: 150,
+    width: 250,
+    height: 200,
     bgcolor: 'background.paper',
     border: '2px solid #90CAF7',
     boxShadow: 24,
@@ -26,7 +26,7 @@ const boxStyle = {
 
 const btnStyle = {
     position: 'absolute',
-    height: 80,
+    height: 180,
     left: '70%',
 };
 
@@ -55,7 +55,7 @@ function Alert() {
                 aria-describedby="parent-modal-description"
                 color={alertOption.color}
             >
-                <Box sx={{ ...boxStyle, width: 300 }}>
+                <Box sx={{ ...boxStyle, width: 400 }}>
                     <h2 id="parent-modal-title">
                         {alertOption?.title ? alertOption.title : ''}
                     </h2>
@@ -63,12 +63,34 @@ function Alert() {
                     <Button
                         sx={btnStyle}
                         ref={refBtn}
+                    >
+                     <Button
+                        sx={{
+                            position: 'absolute',
+                            height: 80,
+                            left: '0%',
+                            fontSize: 15,
+                        }}
+                        ref={refBtn}
                         onClick={() => {
-                            ons.alert('');
+                            ons.alert('hide');
                             alertOption.callbackFunc && alertOption.callbackFunc();
                         }}
-                    >
+                     >
                         {alertOption.confirm}
+                    </Button>
+                     <Button
+                         sx={{
+                            position: 'absolute',
+                            height: 120,
+                            left: '70%',
+                            fontSize: 15
+                        }}
+                        onClick={() => {
+                            ons.alert('hide');
+                        }}
+                     >
+                        {alertOption.cancel}</Button>
                     </Button>
                 </Box>
             </Modal>

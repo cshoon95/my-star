@@ -32,6 +32,7 @@ export type StoreStateViewType = {
 export type AlertOptionType = {
     title?: string;
     confirm?: string;
+    cancel?: string
     color?: 'error' | 'info' | 'success' | 'warning';
     callbackFunc?: Function;
 };
@@ -59,6 +60,7 @@ export type PopupOptionType = {
 export const initAlertOption: AlertOptionType = {
     title: '',
     confirm: '확인',
+    cancel: '취소',
     color: 'success',
     callbackFunc: () => {},
 };
