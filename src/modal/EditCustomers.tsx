@@ -13,7 +13,7 @@ import DialogActions from '@mui/material/DialogActions';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
-import TextField from '@mui/material/TextField';
+import TextField, { TextFieldProps } from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
@@ -27,18 +27,18 @@ import { motion } from "framer-motion";
 // end -- MUI
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
-  '& .MuiDialogContent-root': {
+'& .MuiDialogContent-root': {
     padding: theme.spacing(2),
-  },
-  '& .MuiDialogActions-root': {
+},
+'& .MuiDialogActions-root': {
     padding: theme.spacing(1),
-  },
+},
 }));
 
 export interface DialogTitleProps {
-  id: string;
-  children?: React.ReactNode;
-  onClose?: () => void;
+    id: string;
+    children?: React.ReactNode;
+    onClose?: () => void;
 }
 
 const BootstrapDialogTitle = (props: DialogTitleProps) => {
@@ -71,19 +71,18 @@ const EditCustomers = () => {
             popupOption: state.view.popupOption
         };
     });
-    const birthRef = useRef();
-    const customerRef = useRef({
-        birth: '',
-        date: '',
-        fee: '',
-        note: '',
-        parentPhone: '',
-        school: '',
-        sex: '',
-        showYn: '',
-        tel: '',
-        name: ''
-    })
+
+    const inputRef = useRef<null[] | TextFieldProps[]>([]);
+    const nameRef = useRef<TextFieldProps>(null);
+    const phoneRef = useRef<TextFieldProps>(null);
+    const birthRef = useRef<TextFieldProps>(null);
+    const regDateRef = useRef<TextFieldProps>(null);
+    const schoolRef = useRef<TextFieldProps>(null);
+    const feeRef = useRef<TextFieldProps>(null);
+    const parentPhoneRef = useRef<TextFieldProps>(null);
+    const noteRef = useRef<TextFieldProps>(null);
+    const currYnRef = useRef<TextFieldProps>(null);
+
     const [ isClick, setIsClick ] = useState(false);
     const [ isEnter, setIsEnter ] = useState(false);
     const [age, setAge] = React.useState('');
@@ -100,23 +99,6 @@ const EditCustomers = () => {
         const infoArr = customers.filter((item: any) => { return item.NAME === name })    
         return infoArr[0];
     }
-    const setRef = (customer: any) => {
-        if (!customer) return;
-
-        customerRef.current = {
-            birth: customer.BIRTH,
-            date: customer.DATE,
-            fee: customer.FEE,
-            note: customer.NOTE,
-            parentPhone: customer.PARENTPHONE,
-            school: customer.SCHOOL,
-            sex: customer.SEX,
-            showYn: customer.SHOWYN,
-            tel: customer.TEL,
-            name: customer.NAME
-        }
-        setIsClick(!isClick);
-    }
 
     return (
         <BootstrapDialog
@@ -132,10 +114,12 @@ const EditCustomers = () => {
                     <TextField 
                         id="outlined-multiline-flexible"
                         label="이름"
-                        inputRef={customerRef}
+                        type="text"
+                        inputRef={el => (inputRef.current[0] = el)}
                         maxRows={1}
                         sx={{m: 0, ml: 0}}
                         onKeyUp={(e: any) => {
+                            console.log(inputRef.current[0]?.value || '');
                             if (e.key === 'Enter') setIsEnter(true);
                         }}
                     />
@@ -155,59 +139,63 @@ const EditCustomers = () => {
                             <TextField 
                                 id="outlined-multiline-flexible"
                                 label="휴대폰"
-                                inputRef={customerRef}
+                                inputRef={phoneRef}
                                 maxRows={1}
-                                sx={{m: 1, ml: 6}}
+                                sx={{m: 1, ml: 6, mt: 0}}
+                                defaultValue="010"
                             />
                             <TextField
                                 id="date"
                                 label="생년월일"
                                 type="date"
                                 inputRef={birthRef}
-                                sx={{m: 1, ml: 6}}
+                                sx={{m: 1, ml: 6, mt: 0, width: 195}}
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
+                            />
+                            <TextField
+                                id="date"
+                                label="등록일"
+                                type="date"
+                                inputRef={regDateRef}
+                                sx={{m: 1, ml: 6, mt: 2, width: 195}}
                                 InputLabelProps={{
                                     shrink: true,
                                 }}
                             />
                             <TextField
                                 id="outlined-multiline-flexible"
-                                label="등록일"
-                                multiline
-                                maxRows={1}
-                                inputRef={customerRef}
-                                sx={{m: 3, ml: 5}}
-                            />
-                            <TextField
-                                id="outlined-multiline-flexible"
                                 label="학교"
                                 multiline
                                 maxRows={1}
-                                inputRef={customerRef}
-                                sx={{m: 1, ml: 6}}
+                                inputRef={schoolRef}
+                                sx={{m: 1, mt: 2, ml: 6}}
                             />
                             <TextField
                                 id="outlined-multiline-flexible"
                                 label="회비"
                                 multiline
                                 maxRows={1}
-                                inputRef={customerRef}
-                                sx={{m: 3, ml: 5}}
+                                inputRef={feeRef}
+                                sx={{m: 1, mt: 2, ml: 6}}
                             />
                             <TextField
                                 id="outlined-multiline-flexible"
                                 label="부모님 연락처"
                                 multiline
-                                inputRef={customerRef}
+                                inputRef={parentPhoneRef}
                                 maxRows={1}
-                                sx={{m: 3, ml: 5}}
+                                sx={{m: 1, mt: 2, ml: 6}}
+                                defaultValue="010"
                             />
                             <TextField
                                 id="outlined-textarea"
                                 label="비고"
-                                inputRef={customerRef}
+                                inputRef={noteRef}
                                 multiline
                                 maxRows={3}
-                                sx={{m: 1, ml: 6}}
+                                sx={{m: 1, ml: 6, mb: 3, mt: 2}}
                             />
                             <Select
                                 labelId="demo-select-small"
@@ -215,7 +203,8 @@ const EditCustomers = () => {
                                 value={age}
                                 label="수강 여부"
                                 onChange={handleChange}
-                                sx={{m: 3, ml: 5}}
+                                ref={currYnRef}
+                                sx={{m: 1, ml: 6, mt: 2, width: 195}}
                             >
                                 <MenuItem value="">
                                 <em>None</em>
@@ -224,13 +213,6 @@ const EditCustomers = () => {
                                 <MenuItem value={20}>Twenty</MenuItem>
                                 <MenuItem value={30}>Thirty</MenuItem>
                             </Select>
-                            <TextField
-                                id="outlined-multiline-flexible"
-                                label="수강 여부"
-                                multiline
-                                maxRows={1}
-                                sx={{m: 1, ml: 6, mb: 2}}
-                            />
                     </motion.div>
                 : ''}
                 </Box>
