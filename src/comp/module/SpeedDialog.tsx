@@ -6,7 +6,6 @@ import SpeedDial from '@mui/material/SpeedDial';
 import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
 import ShareIcon from '@mui/icons-material/Share';
-import SearchIcon from '@mui/icons-material/PersonSearch';
 import AddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/PersonOff';
@@ -15,7 +14,6 @@ import DeleteIcon from '@mui/icons-material/PersonOff';
 const actions = [
     { icon: <AddAlt1Icon />, name: 'Add' },
     { icon: <DeleteIcon />, name: 'Delete' },
-    { icon: <SearchIcon />, name: 'Search' },
     { icon: <ShareIcon />, name: 'Share' },
 ];
 
@@ -34,9 +32,10 @@ const SpeedDialog = () => {
                     tooltipOpen
                     onClick={(e: any) => { 
                         const label = e.currentTarget.textContent;
-
+                        
                         switch (label) {
                             case 'Add':
+                                ons.showPopup('EditCustomers');
                                 return
                             case 'Delete':
                                 const selectedRows = ons.getState('selectedRows');
@@ -57,24 +56,20 @@ const SpeedDialog = () => {
                                 ons.log('선택된 Rows: ', selectedRows);
                                 const msg = selectedNames.join(', ');
 
-                                ons.alert(msg + '의 정보를 삭제하시겠어요?', {
+                                ons.alert(msg + '의 정보를 정말 삭제하시겠어요?', {
                                     callbackFunc: () => {
                                         selectedIDs.forEach((id: number) => {
                                             ons.server.delete({
                                                 url: '/customers/delete',
-                                                data: {
-                                                    id: id
-                                                },
+                                                data: { id: id },
                                                 hideLoading: true,
                                                 callbackFunc: () => {
-        
+                                                    ons.setCustomerList();
                                                 }
                                             })
                                         })
                                     }
                                 })
-                                return
-                            case 'Search':
                                 return
                             case 'Share':
                                 return

@@ -1,4 +1,3 @@
-import Board from "../../comp/module/Board";
 import InitPage from "../../comp/module/InitPage";
 import CustomersGrid from "./CustomersGrid";
 
