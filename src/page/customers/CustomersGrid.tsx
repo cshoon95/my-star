@@ -4,7 +4,14 @@ import utils from "../../core/Utils";
 import { StoreStateType } from '../../type/Type';
 import { useSelector } from 'react-redux';
 import List from "../../core/List";
-import { DataGrid, GridCellModesModel, GridCellModes, GridCellParams, GridRowsProp } from '@mui/x-data-grid';
+import { 
+    DataGrid, 
+    GridCellModesModel, 
+    GridCellModes, 
+    GridCellParams, 
+    GridRowsProp,
+    GridToolbar
+} from '@mui/x-data-grid';
 import { debug } from "console";
 
 interface TitleProps {
@@ -36,6 +43,7 @@ const Grid = (props: TitleProps) => {
             columns={List.customersColumns}
             experimentalFeatures={{ newEditingApi: true }}
             checkboxSelection
+            components={{ Toolbar: GridToolbar }}
             onSelectionModelChange={(ids) => {
                 const selectedIDs = new Set(ids);
                 const selectedRows = rows.filter((row) =>
