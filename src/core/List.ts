@@ -1,7 +1,10 @@
 import { GridColumns } from "@mui/x-data-grid";
 
+interface HeaderTitleType {
+    [key: string]: string
+}
 class List {
-    headerTitle: any = {
+    headerTitle: HeaderTitleType = {
         Dashboard: 'Dashboard',
         Customers: '고객 정보',
         Attendance: '출석 정보',
@@ -27,3 +30,15 @@ class List {
 }
 
 export default new List();
+
+
+// <TextField
+//     id="date"
+//     label="등록일"
+//     type="date"
+//     inputRef={regDateRef}
+//     sx={{m: 1, ml: 6, mt: 2, width: 195}}
+//     InputLabelProps={{
+//         shrink: true,
+//     }}
+// />
