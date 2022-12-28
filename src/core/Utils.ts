@@ -25,10 +25,12 @@ class Utils {
         return false;
     }
     /** 날짜 포맷 YYmdd. */
-    sysdate(date: Date): string {
+    sysdate(date: Date, format?: string): string {
         const yy = date.getFullYear();
         const mm = ('0' + (date.getMonth() + 1)).slice(-2);
         const dd = ('0' + date.getDate()).slice(-2);
+
+        if (format) return yy + format + mm + format + dd;
 
         return yy + mm + dd;
     }
