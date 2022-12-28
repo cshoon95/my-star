@@ -15,8 +15,6 @@ const boxStyle = {
     transform: 'translate(-50%, -50%)',
     width: 200,
     height: 150,
-    bgcolor: 'background.paper',
-    border: '2px solid #0D6EFC',
     boxShadow: 24,
     pt: 2,
     px: 4,

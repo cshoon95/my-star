@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import ons from '../core/Ons';
 import { StoreStateType } from '../type/Type';
 import { useSelector } from 'react-redux';
+import list from "../core/List";
 
 // start -- MUI
 import Button from '@mui/material/Button';
@@ -36,31 +37,27 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 }));
 
 export interface DialogTitleProps {
-    id: string;
     children?: React.ReactNode;
-    onClose?: () => void;
 }
 
 const BootstrapDialogTitle = (props: DialogTitleProps) => {
-    const { children, onClose, ...other } = props;
+    const { children, ...other } = props;
 
     return (
-        <DialogTitle sx={{ m: 0, p: 2 }} {...other}>
+        <DialogTitle sx={{ m: 0, p: 2, pb: 1 }} {...other}>
             {children}
-            {onClose ? (
-                <IconButton
+            <IconButton
                 aria-label="close"
-                onClick={onClose}
+                onClick={() => { ons.hidePopup(); }}
                 sx={{
                     position: 'absolute',
                     right: 8,
-                    top: 8,
+                    top: 10,
                     color: (theme) => theme.palette.grey[500],
                 }}
-                >
+            >
                 <CloseIcon />
-                </IconButton>
-            ) : null}
+            </IconButton>
         </DialogTitle>
     );
 }
@@ -71,56 +68,28 @@ const EditCustomers = () => {
             popupOption: state.view.popupOption
         };
     });
-
-    const inputRef = useRef<null[] | TextFieldProps[]>([]);
-    const nameRef = useRef<TextFieldProps>(null);
-    const phoneRef = useRef<TextFieldProps>(null);
-    const birthRef = useRef<TextFieldProps>(null);
-    const regDateRef = useRef<TextFieldProps>(null);
-    const schoolRef = useRef<TextFieldProps>(null);
-    const feeRef = useRef<TextFieldProps>(null);
-    const parentPhoneRef = useRef<TextFieldProps>(null);
-    const noteRef = useRef<TextFieldProps>(null);
-    const currYnRef = useRef<TextFieldProps>(null);
-
-    const [ isClick, setIsClick ] = useState(false);
-    const [ isEnter, setIsEnter ] = useState(false);
-    const [age, setAge] = React.useState('');
+    const inputRef = useRef<TextFieldProps[]>([]);
+    const [isEnter, setIsEnter] = useState(false);
+    const [age, setAge] = useState('');
     const handleChange = (event: SelectChangeEvent) => {
         setAge(event.target.value);
     };
-    
-    const customers = ons.getState('customers');
-    const customersName = customers.map((el: any) => {
-        return el.NAME;
-    })
-
-    const info = (name: string) => {
-        const infoArr = customers.filter((item: any) => { return item.NAME === name })    
-        return infoArr[0];
-    }
 
     return (
-        <BootstrapDialog
-            aria-labelledby="customized-dialog-title"
-            open={true}
-        >
-            <BootstrapDialogTitle id="customized-dialog-title">
-                회원 추가
-            </BootstrapDialogTitle>
+        <BootstrapDialog open={true}>
+            <BootstrapDialogTitle>회원 추가</BootstrapDialogTitle>
             <DialogContent dividers>
                 <Box sx={{ display: 'flex', alignItems: 'flex-end', m: 3, ml: 2 }}>
                     <AccountCircle sx={{ color: 'action.active', mr: 1, my: 2  }} />
-                    <TextField 
-                        id="outlined-multiline-flexible"
+                    <TextField
+                        autoFocus={true}
                         label="이름"
                         type="text"
                         inputRef={el => (inputRef.current[0] = el)}
                         maxRows={1}
                         sx={{m: 0, ml: 0}}
                         onKeyUp={(e: any) => {
-                            console.log(inputRef.current[0]?.value || '');
-                            if (e.key === 'Enter') setIsEnter(true);
+                            if (e.key === 'Enter' && inputRef.current[0]?.value !== '') setIsEnter(true);
                         }}
                     />
                 </Box>
@@ -135,75 +104,28 @@ const EditCustomers = () => {
                                 delay: 0.5,
                                 ease: [0, 0.71, 0.2, 1.01]
                             }}
-                        >
-                            <TextField 
-                                id="outlined-multiline-flexible"
-                                label="휴대폰"
-                                inputRef={phoneRef}
-                                maxRows={1}
-                                sx={{m: 1, ml: 6, mt: 0}}
-                                defaultValue="010"
-                            />
-                            <TextField
-                                id="date"
-                                label="생년월일"
-                                type="date"
-                                inputRef={birthRef}
-                                sx={{m: 1, ml: 6, mt: 0, width: 195}}
-                                InputLabelProps={{
-                                    shrink: true,
-                                }}
-                            />
-                            <TextField
-                                id="date"
-                                label="등록일"
-                                type="date"
-                                inputRef={regDateRef}
-                                sx={{m: 1, ml: 6, mt: 2, width: 195}}
-                                InputLabelProps={{
-                                    shrink: true,
-                                }}
-                            />
-                            <TextField
-                                id="outlined-multiline-flexible"
-                                label="학교"
-                                multiline
-                                maxRows={1}
-                                inputRef={schoolRef}
-                                sx={{m: 1, mt: 2, ml: 6}}
-                            />
-                            <TextField
-                                id="outlined-multiline-flexible"
-                                label="회비"
-                                multiline
-                                maxRows={1}
-                                inputRef={feeRef}
-                                sx={{m: 1, mt: 2, ml: 6}}
-                            />
-                            <TextField
-                                id="outlined-multiline-flexible"
-                                label="부모님 연락처"
-                                multiline
-                                inputRef={parentPhoneRef}
-                                maxRows={1}
-                                sx={{m: 1, mt: 2, ml: 6}}
-                                defaultValue="010"
-                            />
-                            <TextField
-                                id="outlined-textarea"
-                                label="비고"
-                                inputRef={noteRef}
-                                multiline
-                                maxRows={3}
-                                sx={{m: 1, ml: 6, mb: 3, mt: 2}}
-                            />
+                        >   
+                            {list.customersInput.map((item: any, idx: number) => {
+                                return <TextField
+                                    label={item.label}
+                                    type={item.type}
+                                    maxRows={item.maxRows}
+                                    sx={item.sx}
+                                    defaultValue={item.defaultValue}
+                                    inputRef={(el: TextFieldProps) => (inputRef.current[idx+1] = el)}
+                                    multiline={item.multiline || false}
+                                    InputLabelProps={{shrink: true}}
+                                    key={idx + '-' + item.label}
+                                    autoFocus={item.autoFocus || false}
+                                />
+                            })}
                             <Select
                                 labelId="demo-select-small"
                                 id="demo-select-small"
                                 value={age}
                                 label="수강 여부"
                                 onChange={handleChange}
-                                ref={currYnRef}
+                                // ref={currYnRef}
                                 sx={{m: 1, ml: 6, mt: 2, width: 195}}
                             >
                                 <MenuItem value="">
@@ -214,19 +136,22 @@ const EditCustomers = () => {
                                 <MenuItem value={30}>Thirty</MenuItem>
                             </Select>
                     </motion.div>
-                : ''}
+                    : ''}
                 </Box>
                 
-                </DialogContent>
+            </DialogContent>
             <DialogActions>
-            <Button  
-                onClick={() => {
-                    debugger
-                    ons.hidePopup();
-                    if (popupOption.callbackFunc) popupOption.callbackFunc();
-                }}>
-                {popupOption.confirm}
-            </Button>
+                <Button  
+                    onClick={() => {
+                        if (inputRef.current[0]?.value !== '') {
+                            setIsEnter(true);
+                        } else {
+                            ons.hidePopup();
+                            if (popupOption.callbackFunc) popupOption.callbackFunc();
+                        }
+                    }}>
+                    {popupOption.confirm}
+                </Button>
             </DialogActions>
         </BootstrapDialog>
     );
