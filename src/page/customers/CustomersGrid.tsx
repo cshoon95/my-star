@@ -21,22 +21,23 @@ const Grid = (props: TitleProps) => {
     const { customers } = useSelector((state: StoreStateType) => {
         return { customers: state.data.customers };
     });
-    const rows: GridRowsProp = Object.values(customers);
+   
+    // const updatedRows = customers.map((item: any, idx) => {
+    //     item.SEX = item.SEX === 'M' ? '남자' : '여자';
+    //     if (item.CURRYN === 'Y') {
+    //         item.CURRYN = '다니는 중';
+    //     } else if (item.CURRYN === 'N') {
+    //         item.CURRYN = '그만 둠'
+    //     } else if (item.CURRYN === 'T') {
+    //         item.CURRYN = '휴식중'
+    //     }
 
-    const handleDeleteRow = () => {
-        // setRows((prevRows) => {
-        // const rowToDeleteIndex = randomInt(0, prevRows.length - 1);
-        // return [
-        //     ...rows.slice(0, rowToDeleteIndex),
-        //     ...rows.slice(rowToDeleteIndex + 1),
-        // ];
-        // });
-    };
-    
+    //     return item
+    // })
+    const rows: GridRowsProp = Object.values(customers);
     return (
         <>
          <DataGrid 
-            // autoHeight={true}
             autoPageSize={true}
             sx={{height: 740}}
             rows={rows}

@@ -18,15 +18,16 @@ class List {
     customersColumns: GridColumns = [
         { field: 'id',              headerName: 'id',               width: 50,  hide: true,     editable: false },
         { field: 'NAME',            headerName: '이름',             width: 70,  hide: false,    editable: true  },
-        { field: 'SCHOOL',          headerName: '학교',             width: 70,  hide: false,    editable: true  },
+        { field: 'SEX',             headerName: '성별',             width: 70,  hide: false,    editable: true  },
         { field: 'TEL',             headerName: '연락처',           width: 120, hide: false,    editable: true  },
+        { field: 'BIRTH',           headerName: '생년월일',         width: 120, hide: false,    editable: true  },
         { field: 'DATE',            headerName: '등록일',           width: 120, hide: false,    editable: true  },
         { field: 'DDAY',            headerName: 'D+DAY',            width: 70,  hide: false,    editable: false },
-        { field: 'NOTE',            headerName: '비고',             width: 180, hide: false,    editable: true  },
+        { field: 'SCHOOL',          headerName: '학교',             width: 70,  hide: false,    editable: true  },
         { field: 'FEE',             headerName: '회비',             width: 100, hide: false,    editable: true  },
         { field: 'PARENTPHONE',     headerName: '부모님 연락처',    width: 120, hide: false,    editable: true  },
-        { field: 'BIRTH',           headerName: '생년월일',         width: 120, hide: false,    editable: true  },
-        { field: 'CURRYN',          headerName: '재직여부',         width: 60,  hide: false,    editable: true  }
+        { field: 'CURRYN',          headerName: '재직여부',         width: 100,  hide: false,    editable: true  },
+        { field: 'NOTE',            headerName: '비고',             width: 180, hide: false,    editable: true  }
     ]
     customersInput: any = [
         { label: '휴대폰',      type: 'tel',   maxRows: 1, sx: {m: 1, ml: 6, mt: 0}, defaultValue: '010', autoFocus: true, maxLength: 11 },

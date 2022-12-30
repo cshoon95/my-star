@@ -124,7 +124,7 @@ export class Ons {
                 item.DDAY = (item.DATE && utils.daysBetween(item.DATE)) + '일' || '';
                 item.DATE = (item.DATE && utils.replaceHypenFormat(item.DATE, 'date')) || '';
                 item.FEE = (item.FEE && utils.replaceUnitMoney(item.FEE)) || '';
-                item.FARENTPHONE = (item.FARENTPHONE && utils.replaceHypenFormat(item.FARENTPHONE, 'phone')) || '';
+                item.PARENTPHONE = (item.PARENTPHONE && utils.replaceHypenFormat(item.PARENTPHONE, 'phone')) || '';
                 item.BIRTH = (item.BIRTH && utils.replaceHypenFormat(item.BIRTH, 'date')) || '';
       
                 return item;

@@ -105,7 +105,7 @@ const EditCustomers = () => {
                     onKeyUp={(e: any) => {
                         if (e.key === 'Enter') setIsEnter(true);
                     }}
-                    key={0 +'-name'}
+                    key={'0-name'}
                 />
             </FormControl>
             </>
@@ -118,10 +118,11 @@ const EditCustomers = () => {
                 <InputLabel shrink>성별</InputLabel>
                 <Select
                     inputRef={(el: TextFieldProps) => {inputRef.current[1] = el}}
-                    defaultValue="F"
+                    defaultValue="여자"
+                    key={'1-gender'}
                 > 
-                    <MenuItem value="F">여자</MenuItem>
-                    <MenuItem value="M">남자</MenuItem>
+                    <MenuItem value="여자">여자</MenuItem>
+                    <MenuItem value="남자">남자</MenuItem>
                 </Select>
             </FormControl>
         )
@@ -130,21 +131,21 @@ const EditCustomers = () => {
     const FormInputs = () => {
         return (list.customersInput.map((item: any, idx: number) => {
             return <FormControl sx={{ m: 2, ml: 6, mt: 1, minWidth: 195, maxWidth: 300 }}>
-                <TextField
-                    label={item.label}
-                    type={item.type}
-                    maxRows={item.maxRows}
-                    // sx={item.sx}
-                    defaultValue={item.defaultValue}
-                    inputRef={(el: TextFieldProps) => (inputRef.current[idx+2] = el)}
-                    multiline={item.multiline || false}
-                    InputLabelProps={{shrink: true}}
-                    key={idx+2 + '-' + item.label}
-                    autoFocus={item.autoFocus || false}
-                    inputProps={{maxLength: item.maxLength}}
-                />
-            </FormControl>
-        })
+                    <TextField
+                        label={item.label}
+                        type={item.type}
+                        maxRows={item.maxRows}
+                        // sx={item.sx}
+                        defaultValue={item.defaultValue}
+                        inputRef={(el: TextFieldProps) => (inputRef.current[idx+2] = el)}
+                        multiline={item.multiline || false}
+                        InputLabelProps={{shrink: true}}
+                        key={idx+2 + '-' + item.label}
+                        autoFocus={item.autoFocus || false}
+                        inputProps={{maxLength: item.maxLength}}
+                    />
+                </FormControl>
+            })
         )
     }
 
@@ -154,11 +155,12 @@ const EditCustomers = () => {
                 <InputLabel shrink sx={{mt: 0.2}}>재직여부</InputLabel>
                 <Select
                     inputRef={(el: TextFieldProps) => {inputRef.current[10] = el}}
-                    defaultValue="Y"
+                    defaultValue="재직"
+                    key={'10-curryn'}
                 > 
-                    <MenuItem value="Y">다니고 있어요</MenuItem>
-                    <MenuItem value="N">그만 뒀어요</MenuItem>
-                    <MenuItem value="T">쉬고 있어요</MenuItem>
+                    <MenuItem value="재직">다니고 있어요</MenuItem>
+                    <MenuItem value="사직">그만 뒀어요</MenuItem>
+                    <MenuItem value="휴직">쉬고 있어요</MenuItem>
                 </Select>
             </FormControl>
         )
@@ -180,42 +182,30 @@ const EditCustomers = () => {
             <DialogActions>
                 <Button  
                     onClick={() => {
-                        let refs: any = [];
+                        if (!inputRef.current[0]?.value) {
+                            ons.alert('이름을 입력해주세요.');
+                            return;
+                        }
 
-                        inputRef.current.forEach((el, idx) => {
+                        let values: any = [];
+
+                        inputRef.current.forEach((el) => {
                             if (el.type === 'date') {
                                 const result = String(el.value).replace(/[^0-9]/g, "");
-                                refs.push(result);
+                                values.push(result);
                                 return;
                             }
-                            refs.push(el.value);
+                            values.push(el.value);
                         })
-                        ons.log(refs);
-                            
-                        if (inputRef.current[0]?.value !== '') {
-                            setIsEnter(true);
-                            ons.server.post({
-                                url: '/customers/insert',
-                                data: refs,
-                                hideLoading: true,
-                                callbackFunc: ((res: any) => {
-                                    ons.hidePopup();
-                                })
+                        ons.server.post({
+                            url: '/customers/insert',
+                            data: values,
+                            hideLoading: true,
+                            callbackFunc: ((res: any) => {
+                                ons.setCustomerList();
+                                ons.hidePopup();
                             })
-                            
-                        } else {
-                           
-                            // ons.server.post({
-                            //     url: '/customers/insert',
-                            //     data: refs,
-                            //     hideLoading: true,
-                            //     callbackFunc: ((res: any) => {
-                            //         ons.hidePopup();
-                            //     })
-                            // })
-                            // ons.hidePopup();
-                            // if (popupOption.callbackFunc) popupOption.callbackFunc();
-                        }
+                        })
                     }}>
                     {popupOption.confirm}
                 </Button>

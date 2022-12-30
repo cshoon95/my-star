@@ -42,7 +42,7 @@ app.get("/api/customers/list", (req, res) => {
 app.post("/api/customers/insert", (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
     const refs = req.body;
-    const sqlQuery = `INSERT INTO CUSTOMERS(NAME, SEX, BIRTH, TEL, DATE, SCHOOL, FEE, PARENTPHONE, NOTE, CURRYN) VALUES(?);`;
+    const sqlQuery = `INSERT INTO CUSTOMERS(NAME, SEX, TEL, BIRTH, DATE, SCHOOL, FEE, PARENTPHONE, NOTE, CURRYN) VALUES(?);`;
 
     db.query(sqlQuery, [refs], (err, result) => {
         res.send(result);
