@@ -2,7 +2,7 @@ import React from 'react';
 import ons from '../../core/Ons';
 import util from '../../core/Utils';
 import { useNavigate } from "react-router-dom";
-import { useClick, useClickRouter } from "../../core/Hooks";
+// import { useClick, useClickRouter } from "../../core/Hooks";
 
 // start -- MUI 
 import ListItemButton from '@mui/material/ListItemButton';
