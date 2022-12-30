@@ -100,7 +100,7 @@ class Utils {
         const elapsedMSec = today.getTime() - date.getTime();
         const elapsedDay = elapsedMSec / 1000 / 60 / 60 / 24;
 
-        return Math.trunc(elapsedDay);
+        return Math.trunc(elapsedDay) + 1;
     }
     
 }
