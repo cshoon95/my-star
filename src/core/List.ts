@@ -29,12 +29,12 @@ class List {
         { field: 'CURRYN',          headerName: '재직여부',         width: 60,  hide: false,    editable: true  }
     ]
     customersInput: any = [
-        { label: '휴대폰',      type: 'text',   maxRows: 1, sx: {m: 1, ml: 6, mt: 0}, defaultValue: '010', autoFocus: true },
+        { label: '휴대폰',      type: 'tel',   maxRows: 1, sx: {m: 1, ml: 6, mt: 0}, defaultValue: '010', autoFocus: true, maxLength: 11 },
         { label: '생년월일',     type: 'date',  maxRows: 1, sx: {m: 1, ml: 6, mt: 0, width: 195},   defaultValue: '2015-05-03' },
         { label: "등록일",      type: 'date',   sx: {m: 1, ml: 6, mt: 2, width: 195}, defaultValue: Utils.sysdate(new Date(), '-') },
-        { label: '학교',        type: 'text',   maxRows: 1, sx: {m: 1, mt: 2, ml: 6}   },
+        { label: '학교',        type: 'text',   maxRows: 1, sx: {m: 1, mt: 2, ml: 6}, maxLength: 10   },
         { label: '회비',        type: 'text',   maxRows: 1, sx: {m: 1, mt: 2, ml: 6},   },
-        { label: '부모님 연락처', type: 'text',     maxRows: 1, sx: {m: 1, mt: 2, ml: 6},   defaultValue: '010' },
+        { label: '부모님 연락처', type: 'text', maxRows: 1, sx: {m: 1, mt: 2, ml: 6},   defaultValue: '010', maxLength: 11 },
         { label: '비고',        type: 'text',   maxRows: 3, sx: {m: 1, ml: 6, mb: 3, mt: 2}, multiline: true },
     ]
 }

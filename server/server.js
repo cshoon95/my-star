@@ -39,7 +39,17 @@ app.get("/api/customers/list", (req, res) => {
     });
 });
 
-app.put("/api/customers/update", (req, res) => {
+app.post("/api/customers/insert", (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    const refs = req.body;
+    const sqlQuery = `INSERT INTO CUSTOMERS(NAME, SEX, BIRTH, TEL, DATE, SCHOOL, FEE, PARENTPHONE, NOTE, CURRYN) VALUES(?);`;
+
+    db.query(sqlQuery, [refs], (err, result) => {
+        res.send(result);
+        printRes(err, result);
+    });
+});
+app.post("/api/customers/update", (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
     const key = req.body.key.replace(/\'/gi, "");
     const value = req.body.value;

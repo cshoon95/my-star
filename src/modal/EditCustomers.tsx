@@ -15,6 +15,7 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
 import TextField, { TextFieldProps } from '@mui/material/TextField';
+import OutlinedInput from '@mui/material/OutlinedInput';
 import Box from '@mui/material/Box';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
@@ -36,11 +37,11 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 },
 }));
 
-export interface DialogTitleProps {
+export interface ChildrenNodeProps {
     children?: React.ReactNode;
 }
 
-const BootstrapDialogTitle = (props: DialogTitleProps) => {
+const BootstrapDialogTitle = (props: ChildrenNodeProps) => {
     const { children, ...other } = props;
 
     return (
@@ -62,6 +63,24 @@ const BootstrapDialogTitle = (props: DialogTitleProps) => {
     );
 }
 
+const MotionSlide = (props: ChildrenNodeProps) => {
+    const { children } = props;
+
+    return (
+        <motion.span
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{
+                duration: 0.8,
+                delay: 0.5,
+                ease: [0, 0.71, 0.2, 1.01]
+            }}
+        >
+            {children}
+        </motion.span>
+    )
+}
+
 const EditCustomers = () => {
     const { popupOption } = useSelector((state: StoreStateType) => {
         return {
@@ -70,84 +89,132 @@ const EditCustomers = () => {
     });
     const inputRef = useRef<TextFieldProps[]>([]);
     const [isEnter, setIsEnter] = useState(false);
-    const [age, setAge] = useState('');
-    const handleChange = (event: SelectChangeEvent) => {
-        setAge(event.target.value);
-    };
+
+    const FormName = () => {
+        return (
+            <>
+            <AccountCircle sx={{ color: 'action.active', ml: 0, m: 2, mr: 1, my: 4  }} />
+            <FormControl sx={{ m: 2, ml: 0, mb: 0, minWidth: 195, maxWidth: 300 }}>
+                <TextField
+                    InputLabelProps={{shrink: true}}
+                    label="이름"
+                    type="text"
+                    inputRef={el => (inputRef.current[0] = el)}
+                    maxRows={1}
+                    value={inputRef.current[0]?.value}
+                    onKeyUp={(e: any) => {
+                        if (e.key === 'Enter') setIsEnter(true);
+                    }}
+                    key={0 +'-name'}
+                />
+            </FormControl>
+            </>
+        )
+    }
+
+    const FormGender = () => {
+        return (
+            <FormControl sx={{ m: 2, ml: 6, mt: 2, minWidth: 195, maxWidth: 300 }}>
+                <InputLabel shrink>성별</InputLabel>
+                <Select
+                    inputRef={(el: TextFieldProps) => {inputRef.current[1] = el}}
+                    defaultValue="F"
+                > 
+                    <MenuItem value="F">여자</MenuItem>
+                    <MenuItem value="M">남자</MenuItem>
+                </Select>
+            </FormControl>
+        )
+    }
+
+    const FormInputs = () => {
+        return (list.customersInput.map((item: any, idx: number) => {
+            return <FormControl sx={{ m: 2, ml: 6, mt: 1, minWidth: 195, maxWidth: 300 }}>
+                <TextField
+                    label={item.label}
+                    type={item.type}
+                    maxRows={item.maxRows}
+                    // sx={item.sx}
+                    defaultValue={item.defaultValue}
+                    inputRef={(el: TextFieldProps) => (inputRef.current[idx+2] = el)}
+                    multiline={item.multiline || false}
+                    InputLabelProps={{shrink: true}}
+                    key={idx+2 + '-' + item.label}
+                    autoFocus={item.autoFocus || false}
+                    inputProps={{maxLength: item.maxLength}}
+                />
+            </FormControl>
+        })
+        )
+    }
+
+    const FormCurrYn = () => {
+        return (
+            <FormControl sx={{ m: 2, ml: 6, mt: 1, minWidth: 195, maxWidth: 300 }}>
+                <InputLabel shrink sx={{mt: 0.2}}>재직여부</InputLabel>
+                <Select
+                    inputRef={(el: TextFieldProps) => {inputRef.current[10] = el}}
+                    defaultValue="Y"
+                > 
+                    <MenuItem value="Y">다니고 있어요</MenuItem>
+                    <MenuItem value="N">그만 뒀어요</MenuItem>
+                    <MenuItem value="T">쉬고 있어요</MenuItem>
+                </Select>
+            </FormControl>
+        )
+    }
 
     return (
         <BootstrapDialog open={true}>
             <BootstrapDialogTitle>회원 추가</BootstrapDialogTitle>
             <DialogContent dividers>
-                <Box sx={{ display: 'flex', alignItems: 'flex-end', m: 3, ml: 2 }}>
-                    <AccountCircle sx={{ color: 'action.active', mr: 1, my: 2  }} />
-                    <TextField
-                        autoFocus={true}
-                        label="이름"
-                        type="text"
-                        inputRef={el => (inputRef.current[0] = el)}
-                        maxRows={1}
-                        sx={{m: 0, ml: 0}}
-                        onKeyUp={(e: any) => {
-                            if (e.key === 'Enter' && inputRef.current[0]?.value !== '') setIsEnter(true);
-                        }}
-                    />
-                </Box>
-                <Box>
-                    { isEnter ? 
-                        <motion.div
-                            className="box"
-                            initial={{ opacity: 0, scale: 0.5 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{
-                                duration: 0.8,
-                                delay: 0.5,
-                                ease: [0, 0.71, 0.2, 1.01]
-                            }}
-                        >   
-                            {list.customersInput.map((item: any, idx: number) => {
-                                return <TextField
-                                    label={item.label}
-                                    type={item.type}
-                                    maxRows={item.maxRows}
-                                    sx={item.sx}
-                                    defaultValue={item.defaultValue}
-                                    inputRef={(el: TextFieldProps) => (inputRef.current[idx+1] = el)}
-                                    multiline={item.multiline || false}
-                                    InputLabelProps={{shrink: true}}
-                                    key={idx + '-' + item.label}
-                                    autoFocus={item.autoFocus || false}
-                                />
-                            })}
-                            <Select
-                                labelId="demo-select-small"
-                                id="demo-select-small"
-                                value={age}
-                                label="수강 여부"
-                                onChange={handleChange}
-                                // ref={currYnRef}
-                                sx={{m: 1, ml: 6, mt: 2, width: 195}}
-                            >
-                                <MenuItem value="">
-                                <em>None</em>
-                                </MenuItem>
-                                <MenuItem value={10}>Ten</MenuItem>
-                                <MenuItem value={20}>Twenty</MenuItem>
-                                <MenuItem value={30}>Thirty</MenuItem>
-                            </Select>
-                    </motion.div>
-                    : ''}
-                </Box>
-                
+                <FormName/>
+            { isEnter ?
+                <MotionSlide>
+                    <FormGender/>
+                    <FormInputs/>
+                    <FormCurrYn/>
+                </MotionSlide>
+            : '' }
             </DialogContent>
             <DialogActions>
                 <Button  
                     onClick={() => {
+                        let refs: any = [];
+
+                        inputRef.current.forEach((el, idx) => {
+                            if (el.type === 'date') {
+                                const result = String(el.value).replace(/[^0-9]/g, "");
+                                refs.push(result);
+                                return;
+                            }
+                            refs.push(el.value);
+                        })
+                        ons.log(refs);
+                            
                         if (inputRef.current[0]?.value !== '') {
                             setIsEnter(true);
+                            ons.server.post({
+                                url: '/customers/insert',
+                                data: refs,
+                                hideLoading: true,
+                                callbackFunc: ((res: any) => {
+                                    ons.hidePopup();
+                                })
+                            })
+                            
                         } else {
-                            ons.hidePopup();
-                            if (popupOption.callbackFunc) popupOption.callbackFunc();
+                           
+                            // ons.server.post({
+                            //     url: '/customers/insert',
+                            //     data: refs,
+                            //     hideLoading: true,
+                            //     callbackFunc: ((res: any) => {
+                            //         ons.hidePopup();
+                            //     })
+                            // })
+                            // ons.hidePopup();
+                            // if (popupOption.callbackFunc) popupOption.callbackFunc();
                         }
                     }}>
                     {popupOption.confirm}
