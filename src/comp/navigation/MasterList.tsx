@@ -13,6 +13,7 @@ import PeopleIcon from '@mui/icons-material/People';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import CreateIcon from '@mui/icons-material/Create';
 import SettingsIcon from '@mui/icons-material/Settings';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 // end -- MUI
 
 const MasterList = () => {
@@ -28,39 +29,26 @@ const MasterList = () => {
             ons.route(path)
         }
     }
-    
+
+    const listItem= [
+        { page: '', icon: <DashboardIcon />},
+        { page: 'Attendance', icon: <CreateIcon />},
+        { page: 'Calendar', icon: <CalendarMonthIcon />},
+        { page: 'Customers', icon: <PeopleIcon />},
+        { page: 'Reports', icon: <BarChartIcon />},
+        { page: 'Setting', icon: <SettingsIcon />}
+    ]
+
     return (
         <React.Fragment>
-            <ListItemButton onClick={onClick('')}>
-                <ListItemIcon>
-                    <DashboardIcon />
-                </ListItemIcon>
-                <ListItemText primary="Dashboard" />
-            </ListItemButton>
-            <ListItemButton onClick={onClick('attendance')}>
-                <ListItemIcon>
-                    <CreateIcon />
-                </ListItemIcon>
-                <ListItemText primary="Attendance" />
-            </ListItemButton>
-            <ListItemButton onClick={onClick('customers')}>
-                <ListItemIcon>
-                    <PeopleIcon />
-                </ListItemIcon>
-                    <ListItemText primary="Customers" />
-            </ListItemButton>
-            <ListItemButton onClick={onClick('reports')}>
-                <ListItemIcon>
-                    <BarChartIcon />
-                </ListItemIcon>
-                    <ListItemText primary="Reports" />
-            </ListItemButton>
-            <ListItemButton onClick={onClick('setting')}>
-                <ListItemIcon>
-                    <SettingsIcon />
-                </ListItemIcon>
-                <ListItemText primary="Setting" />
-            </ListItemButton>
+            {listItem.map((el: { page: string; icon: JSX.Element }) => {
+                return <ListItemButton onClick={onClick(el.page)}>
+                            <ListItemIcon>
+                                {el.icon}
+                            </ListItemIcon>
+                            <ListItemText primary={el.page} />
+                        </ListItemButton>
+            })}
         </React.Fragment>
     )
 }

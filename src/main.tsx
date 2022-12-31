@@ -12,6 +12,7 @@ import Customers from './page/customers/Customers';
 import Attendance from './page/attendance/Attendance';
 import Setting from './page/setting/Setting';
 import Reports from './page/reports/Reports';
+import Calendar from './page/calendar/Calendar';
 
 // start -- MUI 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -60,8 +61,9 @@ const Main = () => {
                         <Drawer />
                         <Routes>
                             <Route path="/" element={ <Dashboard /> } />
-                            <Route path="/customers" element={ <Customers /> } />
                             <Route path="/attendance" element={ <Attendance /> } />
+                            <Route path="/calendar" element={ <Calendar /> } />
+                            <Route path="/customers" element={ <Customers /> } />
                             <Route path="/reports" element={ <Reports /> } />
                             <Route path="/setting" element={ <Setting /> } />
                         </Routes>

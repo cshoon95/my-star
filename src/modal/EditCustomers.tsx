@@ -102,9 +102,7 @@ const EditCustomers = () => {
                     inputRef={el => (inputRef.current[0] = el)}
                     maxRows={1}
                     value={inputRef.current[0]?.value}
-                    onKeyUp={(e: any) => {
-                        if (e.key === 'Enter') setIsEnter(true);
-                    }}
+                    onKeyUp={(e: any) => { if (e.key === 'Enter') setIsEnter(true); }}
                     key={'0-name'}
                 />
             </FormControl>
@@ -135,7 +133,6 @@ const EditCustomers = () => {
                         label={item.label}
                         type={item.type}
                         maxRows={item.maxRows}
-                        // sx={item.sx}
                         defaultValue={item.defaultValue}
                         inputRef={(el: TextFieldProps) => (inputRef.current[idx+2] = el)}
                         multiline={item.multiline || false}

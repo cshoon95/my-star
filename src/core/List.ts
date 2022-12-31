@@ -11,6 +11,7 @@ class List {
     headerTitle: HeaderTitleType = {
         Dashboard: 'Dashboard',
         Customers: '고객 정보',
+        Calendar: '캘린더',
         Attendance: '출석 정보',
         Reports: '보고서',
         Setting: '환경 설정'
