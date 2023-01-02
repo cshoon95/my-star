@@ -46,7 +46,7 @@ const MasterList = () => {
                             <ListItemIcon>
                                 {el.icon}
                             </ListItemIcon>
-                            <ListItemText primary={el.page} />
+                            <ListItemText primary={el.page === '' ? 'Dashboard' : el.page} />
                         </ListItemButton>
             })}
         </React.Fragment>

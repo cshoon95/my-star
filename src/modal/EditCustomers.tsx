@@ -69,9 +69,9 @@ const MotionSlide = (props: ChildrenNodeProps) => {
     return (
         <motion.span
             initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
+            animate={{ opacity: 5, scale: 1 }}
             transition={{
-                duration: 0.8,
+                duration: 1.5,
                 delay: 0.5,
                 ease: [0, 0.71, 0.2, 1.01]
             }}

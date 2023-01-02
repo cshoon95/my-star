@@ -10,25 +10,25 @@ interface HeaderTitleType {
 class List {
     headerTitle: HeaderTitleType = {
         Dashboard: 'Dashboard',
-        Customers: '고객 정보',
+        Customers: '회원 정보',
         Calendar: '캘린더',
         Attendance: '출석 정보',
         Reports: '보고서',
         Setting: '환경 설정'
     }
     customersColumns: GridColumns = [
-        { field: 'id',              headerName: 'id',               width: 50,  hide: true,     editable: false, type: 'number' },
-        { field: 'NAME',            headerName: '이름',             width: 70,  hide: false,    editable: true,  type: 'text'},
-        { field: 'SEX',             headerName: '성별',             width: 70,  hide: false,    editable: true, type: 'text'  },
-        { field: 'TEL',             headerName: '연락처',           width: 120, hide: false,    editable: true, type: 'text'  },
-        { field: 'BIRTH',           headerName: '생년월일',         width: 120, hide: false,    editable: true, type: 'text'  },
-        { field: 'DATE',            headerName: '등록일',           width: 120, hide: false,    editable: true, type: 'text'  },
-        { field: 'DDAY',            headerName: 'D+DAY',            width: 70,  hide: false,    editable: false, type: 'number' },
-        { field: 'SCHOOL',          headerName: '학교',             width: 110,  hide: false,    editable: true, type: 'text'  },
-        { field: 'FEE',             headerName: '회비',             width: 100, hide: false,    editable: true, type: 'number'  },
+        { field: 'id',              headerName: 'No',            width: 50,  hide: true,     editable: false, type: 'number' },
+        { field: 'NAME',            headerName: '이름',           width: 70,  hide: false,    editable: true,  type: 'text'},
+        { field: 'SEX',             headerName: '성별',           width: 70,  hide: false,    editable: true, type: 'text'  },
+        { field: 'TEL',             headerName: '연락처',         width: 120, hide: false,    editable: true, type: 'text'  },
+        { field: 'BIRTH',           headerName: '생년월일',        width: 120, hide: false,    editable: true, type: 'text'  },
+        { field: 'DATE',            headerName: '등록일',          width: 120, hide: false,    editable: true, type: 'text'  },
+        { field: 'DDAY',            headerName: 'D+DAY',          width: 70,  hide: false,    editable: false, type: 'number' },
+        { field: 'SCHOOL',          headerName: '학교',           width: 110,  hide: false,    editable: true, type: 'text'  },
+        { field: 'FEE',             headerName: '회비',           width: 100, hide: false,    editable: true, type: 'number'  },
         { field: 'PARENTPHONE',     headerName: '부모님 연락처',    width: 120, hide: false,    editable: true, type: 'text'  },
-        { field: 'CURRYN',          headerName: '재직여부',         width: 100,  hide: false,    editable: true, type: 'text'  },
-        { field: 'NOTE',            headerName: '비고',             width: 180, hide: false,    editable: true, type: 'text'  }
+        { field: 'CURRYN',          headerName: '재직여부',        width: 100,  hide: false,    editable: true, type: 'text'  },
+        { field: 'NOTE',            headerName: '비고',           width: 180, hide: false,    editable: true, type: 'text'  }
     ]
     customersInput: any = [
         { label: '휴대폰',      type: 'tel',   maxRows: 1, sx: {m: 1, ml: 6, mt: 0}, defaultValue: '010', autoFocus: true, maxLength: 11 },
