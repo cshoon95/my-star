@@ -7,10 +7,6 @@ const Setting = () => {
     return(
         <InitPage>
             <div>
-                <Title>목록 선택</Title>
-                <BoardTransfer/>
-            </div>
-            <div>
                 <Title>화면 모드</Title>
                 <Switch/>
             </div>

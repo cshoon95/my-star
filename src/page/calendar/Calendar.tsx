@@ -35,8 +35,8 @@ const MyCalnedar = () => {
             yyyy: `${Number(item.BIRTH.substring(0, 4))}`,
             mm: `${Number(item.BIRTH.substring(5, 7))}`,
             dd: `${Number(item.BIRTH.substring(8, 10))}`,
-            start: new Date(Number(item.BIRTH.substring(0, 4)), Number(item.BIRTH.substring(5, 7)) -1, Number(item.BIRTH.substring(8, 10))),
-            end: new Date(Number(item.BIRTH.substring(0, 4)), Number(item.BIRTH.substring(5, 7)) -1, Number(item.BIRTH.substring(8, 10)))
+            start: new Date(today.yyyy, Number(item.BIRTH.substring(5, 7)) -1, Number(item.BIRTH.substring(8, 10))),
+            end: new Date(today.yyyy, Number(item.BIRTH.substring(5, 7)) -1, Number(item.BIRTH.substring(8, 10)))
         }
     })
 
@@ -47,9 +47,6 @@ const MyCalnedar = () => {
                 localizer={localizer}
                 defaultDate={new Date(today.yyyy, today.mm, today.dd)}
                 style={{ height: 750, marginTop: 3 }}
-                onView={(e) => {
-                    debugger
-                }}
             />
         </InitPage>
     )
