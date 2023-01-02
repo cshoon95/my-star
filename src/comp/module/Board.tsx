@@ -66,9 +66,6 @@ const Board = () => {
             <TableCell>D+DAY</TableCell>
             <TableCell>학교</TableCell>
             <TableCell>회비</TableCell>
-            <TableCell>부모님 휴대폰</TableCell>
-            <TableCell>재직여부</TableCell>
-            <TableCell>비고</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -84,9 +81,6 @@ const Board = () => {
                 <TableCell align="right">{row.DDAY}</TableCell>
                 <TableCell>{row.SCHOOL}</TableCell>
                 <TableCell align="right">{row.FEE}</TableCell>
-                <TableCell>{row.PARENTPHONE}</TableCell>
-                <TableCell>{row.CURRYN}</TableCell>
-                <TableCell>{row.NOTE}</TableCell>
               </TableRow>
             ))
           }
