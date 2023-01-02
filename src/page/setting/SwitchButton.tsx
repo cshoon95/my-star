@@ -99,7 +99,7 @@ const SwitchButton = () => {
                         })
                     })
                 }}
-                label="MUI switch"
+                label={(checked) ? '라이트 모드로 변경하려면 클릭' : '다크 모드로 변경하려면 클릭'}
                 checked={checked} 
             />
         </FormGroup>
