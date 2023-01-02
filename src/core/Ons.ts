@@ -121,10 +121,10 @@ export class Ons {
             callbackFunc: (response: any) => {
               const setCustomers = response.data.map((item: any) => {
                 item.TEL = (item.TEL && utils.replaceHypenFormat(item.TEL, 'phone')) || '';
-                item.DDAY = (item.DATE && utils.daysBetween(item.DATE)) + '일' || '';
+                item.DDAY = 'D+' + (item.DATE && utils.daysBetween(item.DATE)) || '';
                 item.DATE = (item.DATE && utils.replaceHypenFormat(item.DATE, 'date')) || '';
                 item.FEE = (item.FEE && utils.replaceUnitMoney(item.FEE)) || '';
-                item.PARENTPHONE = (item.PARENTPHONE && utils.replaceHypenFormat(item.PARENTPHONE, 'phone')) || '';
+                item.PARENTPHONE = (item.PARENTPHONE && item.PARENTPHONE !== '010 '&& utils.replaceHypenFormat(item.PARENTPHONE, 'phone')) || '';
                 item.BIRTH = (item.BIRTH && utils.replaceHypenFormat(item.BIRTH, 'date')) || '';
       
                 return item;

@@ -42,8 +42,8 @@ function Dashboard() {
               </Paper>
             </Grid>
             {/* Recent Orders */}
-            <Grid item xs={12}>
-              <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
+            <Grid item xs={15}>
+              <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column'}}>
                 <Board />
               </Paper>
             </Grid>

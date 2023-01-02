@@ -37,9 +37,8 @@ const Grid = (props: TitleProps) => {
     const rows: GridRowsProp = Object.values(customers);
     return (
         <>
-         <DataGrid 
+         <DataGrid
             autoPageSize={true}
-            sx={{height: 740}}
             rows={rows}
             columns={List.customersColumns}
             experimentalFeatures={{ newEditingApi: true }}

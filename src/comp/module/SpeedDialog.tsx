@@ -21,7 +21,7 @@ const SpeedDialog = () => {
     return (
         <SpeedDial
             ariaLabel="SpeedDial openIcon"
-            sx={{ position: 'absolute', bottom: -500, right: 32}}
+            sx={{ position: 'absolute', bottom: -600, right: 82}}
             icon={<SpeedDialIcon openIcon={<AddIcon />} />}
         >
             {actions.map((action) => (

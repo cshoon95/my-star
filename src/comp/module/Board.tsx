@@ -23,6 +23,12 @@ type customersType = {
   FEE: number;
   SCHOOL: string;
   TEL: string;
+  SEX: string;
+  BIRTH: string;
+  PHONE: string;
+  DDAY: string;
+  PARENTPHONE: string;
+  CURRYN: string;
 }
 
 const Board = () => {
@@ -53,11 +59,15 @@ const Board = () => {
           <TableRow>
             <TableCell>No</TableCell>
             <TableCell>이름</TableCell>
+            <TableCell>성별</TableCell>
+            <TableCell>휴대폰</TableCell>
+            <TableCell>생년월일</TableCell>
+            <TableCell>등록일</TableCell>
+            <TableCell>D+DAY</TableCell>
             <TableCell>학교</TableCell>
-            <TableCell>휴대폰 번호</TableCell>
-            <TableCell>등록 날짜</TableCell>
-            <TableCell>다닌지</TableCell>
             <TableCell>회비</TableCell>
+            <TableCell>부모님 휴대폰</TableCell>
+            <TableCell>재직여부</TableCell>
             <TableCell>비고</TableCell>
           </TableRow>
         </TableHead>
@@ -67,11 +77,15 @@ const Board = () => {
               <TableRow key={row.ID + '-' + idx}>
                 <TableCell>{idx+1}</TableCell>
                 <TableCell>{row.NAME}</TableCell>
+                <TableCell>{row.SEX}</TableCell>
+                <TableCell>{row.TEL}</TableCell>
+                <TableCell>{row.BIRTH}</TableCell>
+                <TableCell>{row.DATE}</TableCell>
+                <TableCell align="right">{row.DDAY}</TableCell>
                 <TableCell>{row.SCHOOL}</TableCell>
-                <TableCell>{utils.replaceHypenFormat(row.TEL, 'phone')}</TableCell>
-                <TableCell>{utils.replaceHypenFormat(row.DATE, 'date')}</TableCell>
-                <TableCell>{`D+` + utils.daysBetween(row.DATE)}</TableCell>
-                <TableCell align="right">{utils.replaceUnitMoney(row.FEE)}</TableCell>
+                <TableCell align="right">{row.FEE}</TableCell>
+                <TableCell>{row.PARENTPHONE}</TableCell>
+                <TableCell>{row.CURRYN}</TableCell>
                 <TableCell>{row.NOTE}</TableCell>
               </TableRow>
             ))
@@ -79,7 +93,7 @@ const Board = () => {
         </TableBody>
       </Table>
       {pageName === 'Dashboard' ? 
-        <Link color="primary" onClick={onClick} sx={{ mt: 3 }}>
+        <Link color="primary" onClick={onClick} sx={{ mt: 3, textAlign: 'right' }}>
           더보기
         </Link> 
         : 
