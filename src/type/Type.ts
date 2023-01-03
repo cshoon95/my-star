@@ -83,7 +83,7 @@ export const initialViewState: StoreStateViewType = {
     loadingType: "",
     loadingOption: initLoadingOption,
     pageName: "Dashboard",
-    headerTitle: "랑아트 미술학원",
+    headerTitle: "Dashboard",
     popupName: "",
     popupOption: initPopupOption,
     isShownDrawer: false,
