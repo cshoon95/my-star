@@ -47,6 +47,10 @@ const MyCalnedar = () => {
                 localizer={localizer}
                 defaultDate={new Date(today.yyyy, today.mm, today.dd)}
                 style={{ height: 750, marginTop: 3 }}
+                onSelectEvent={(e) => {
+                    ons.log(e)
+
+                }}
             />
         </InitPage>
     )
