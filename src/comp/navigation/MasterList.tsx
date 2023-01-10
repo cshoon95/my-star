@@ -40,14 +40,14 @@ const MasterList = () => {
     ]
 
     return (
-        <React.Fragment>
+        <>
             {listItem.map((el: { page: string; icon: JSX.Element }) => {
                 return <ListItemButton onClick={onClick(el.page)} key={el.page}>
                             <ListItemIcon>{el.icon}</ListItemIcon>
                             <ListItemText primary={el.page} />
                         </ListItemButton>
             })}
-        </React.Fragment>
+        </>
     )
 }
 
