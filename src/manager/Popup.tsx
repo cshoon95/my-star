@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux';
 import ons from '../core/Ons';
 import { StoreStateType } from '../type/Type';
 import EditCustomers from "../modal/EditCustomers"
+import AddCalendar from "../modal/AddCalendar"
 
 // start -- MUI
 import Box from '@mui/material/Box';
@@ -30,10 +31,9 @@ const Popup = () => {
 
     const loadPopup = () => { 
         switch (popupName) {
-            case 'EditCustomers':
-                return <EditCustomers/>;
-            default:
-                return;
+            case 'EditCustomers':   return <EditCustomers/>;
+            case 'AddCalendar':     return <AddCalendar/>;
+            default:                return;
         }
     }
 

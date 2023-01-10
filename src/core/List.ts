@@ -39,6 +39,10 @@ class List {
         { label: '부모님 연락처', type: 'text', maxRows: 1, sx: {m: 1, mt: 2, ml: 6},   defaultValue: '010', maxLength: 11 },
         { label: '비고',        type: 'text',   maxRows: 3, sx: {m: 1, ml: 6, mb: 3, mt: 2}, multiline: true },
     ]
+    calendarInput: any = [
+        { label: '시작일',     type: 'date',  maxRows: 1, sx: {m: 1, ml: 6, mt: 0, width: 195},   defaultValue: Utils.sysdate(new Date(), '-') },
+        { label: "종료일",     type: 'date',   sx: {m: 1, ml: 3, mt: 2, width: 195}, defaultValue: Utils.sysdate(new Date(), '-') },
+    ]
 }
 
 export default new List();

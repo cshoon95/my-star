@@ -1,10 +1,10 @@
 import InitPage from "../../comp/module/InitPage";
-import CustomersGrid from "./CustomersGrid";
+import TableInfo from "./TableInfo";
 
 function Customers() {
     return (
         <InitPage>
-            <CustomersGrid />
+            <TableInfo />
         </InitPage>
     )
 }
