@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { hideAlert, showAlert, showLoading, hideLoading, movePage } from "../../store/View";
 import { StoreStateType } from '../../type/Type';
 import ons from '../../core/Ons';
-import SpeedDialog from "../module/SpeedDialog";
+import CustomersSpeedDialog from "../../page/customers/SpeedDialog";
+import CalendarSpeedDialog from "../../page/calendar/SpeedDialog";
 
 // start -- MUI 
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
@@ -48,6 +49,16 @@ const Header = (open: any) => {
     }),
     }));
 
+    const SpeedDialog = () => {
+        switch(pageName) {
+            case 'Customers':
+                return <CustomersSpeedDialog />
+            case 'Calendar':
+                return <CalendarSpeedDialog />
+            default:
+                return
+        }
+    }
     return(
         <StyledAppBar position="absolute" open={isShownDrawer}>
              <Toolbar
@@ -78,7 +89,7 @@ const Header = (open: any) => {
                 >
                     {headerTitle}
                 </Typography>
-                {pageName === 'Customers' ? <SpeedDialog /> : ''}
+                {SpeedDialog()}
             </Toolbar>
         </StyledAppBar>
     )
