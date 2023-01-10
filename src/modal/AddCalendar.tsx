@@ -63,72 +63,38 @@ const BootstrapDialogTitle = (props: ChildrenNodeProps) => {
     );
 }
 
-const MotionSlide = (props: ChildrenNodeProps) => {
-    const { children } = props;
 
-    return (
-        <motion.span
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 5, scale: 1 }}
-            transition={{
-                duration: 1.5,
-                delay: 0.5,
-                ease: [0, 0.71, 0.2, 1.01]
-            }}
-        >
-            {children}
-        </motion.span>
-    )
-}
-
-const EditCustomers = () => {
+const AddCalendar = () => {
     const { popupOption } = useSelector((state: StoreStateType) => {
         return {
             popupOption: state.view.popupOption
         };
     });
     const inputRef = useRef<TextFieldProps[]>([]);
-    const [isEnter, setIsEnter] = useState(false);
 
-    const FormName = () => {
+    const StartTimePicker = () => {
         return (
-            <>
-            <AccountCircle sx={{ color: 'action.active', ml: 0, m: 2, mr: 1, my: 4  }} />
-            <FormControl sx={{ m: 2, ml: 0, mb: 0, minWidth: 195, maxWidth: 300 }}>
+            <FormControl sx={{ m: 2, ml: 6, mt: 2, minWidth: 300, maxWidth: 300 }}>
                 <TextField
-                    InputLabelProps={{shrink: true}}
-                    label="이름"
-                    type="text"
-                    inputRef={el => (inputRef.current[0] = el)}
-                    maxRows={1}
-                    value={inputRef.current[0]?.value}
-                    onKeyUp={(e: any) => { if (e.key === 'Enter') setIsEnter(true); }}
-                    key={'0-name'}
+                    id="time"
+                    label="시작시간"
+                    type="time"
+                    defaultValue="07:30"
+                    InputLabelProps={{
+                    shrink: true,
+                    }}
+                    inputProps={{
+                    step: 300, // 5 min
+                    }}
+                    sx={{ width: 150 }}
                 />
-            </FormControl>
-            </>
-        )
-    }
-
-    const FormGender = () => {
-        return (
-            <FormControl sx={{ m: 2, ml: 6, mt: 2, minWidth: 195, maxWidth: 300 }}>
-                <InputLabel shrink>성별</InputLabel>
-                <Select
-                    inputRef={(el: TextFieldProps) => {inputRef.current[1] = el}}
-                    defaultValue="여자"
-                    key={'1-gender'}
-                > 
-                    <MenuItem value="여자">여자</MenuItem>
-                    <MenuItem value="남자">남자</MenuItem>
-                </Select>
             </FormControl>
         )
     }
 
     const FormInputs = () => {
-        return (list.customersInput.map((item: any, idx: number) => {
-            return <FormControl sx={{ m: 2, ml: 6, mt: 1, minWidth: 195, maxWidth: 300 }}>
+        return (list.calendarInput.map((item: any, idx: number) => {
+            return <FormControl sx={item.sx}>
                     <TextField
                         label={item.label}
                         type={item.type}
@@ -146,41 +112,17 @@ const EditCustomers = () => {
         )
     }
 
-    const FormCurrYn = () => {
-        return (
-            <FormControl sx={{ m: 2, ml: 6, mt: 1, minWidth: 195, maxWidth: 300 }}>
-                <InputLabel shrink sx={{mt: 0.2}}>재직여부</InputLabel>
-                <Select
-                    inputRef={(el: TextFieldProps) => {inputRef.current[10] = el}}
-                    defaultValue="재직"
-                    key={'10-curryn'}
-                > 
-                    <MenuItem value="재직">다니고 있어요</MenuItem>
-                    <MenuItem value="사직">그만 뒀어요</MenuItem>
-                    <MenuItem value="휴직">쉬고 있어요</MenuItem>
-                </Select>
-            </FormControl>
-        )
-    }
-
     return (
         <BootstrapDialog open={true}>
-            <BootstrapDialogTitle>회원 추가</BootstrapDialogTitle>
+            <BootstrapDialogTitle>일정</BootstrapDialogTitle>
             <DialogContent dividers>
-                <FormName/>
-            { isEnter ?
-                <MotionSlide>
-                    <FormGender/>
-                    <FormInputs/>
-                    <FormCurrYn/>
-                </MotionSlide>
-            : '' }
+                <FormInputs/>
             </DialogContent>
             <DialogActions>
                 <Button  
                     onClick={() => {
                         if (!inputRef.current[0]?.value) {
-                            ons.alert('이름을 입력해주세요.');
+                            ons.alert('내용을 입력해주세요.');
                             return;
                         }
 
@@ -211,4 +153,4 @@ const EditCustomers = () => {
     );
 }
 
-export default EditCustomers;
+export default AddCalendar;

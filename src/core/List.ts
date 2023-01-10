@@ -40,8 +40,11 @@ class List {
         { label: '비고',        type: 'text',   maxRows: 3, sx: {m: 1, ml: 6, mb: 3, mt: 2}, multiline: true },
     ]
     calendarInput: any = [
-        { label: '시작일',     type: 'date',  maxRows: 1, sx: {m: 1, ml: 6, mt: 0, width: 195},   defaultValue: Utils.sysdate(new Date(), '-') },
-        { label: "종료일",     type: 'date',   sx: {m: 1, ml: 3, mt: 2, width: 195}, defaultValue: Utils.sysdate(new Date(), '-') },
+        { label: '내용',        type: 'text',   maxRows: 1, sx: {m: 1, mt: 2, ml: 6, width: 500}, maxLength: 100   },
+        { label: '시작일',     type: 'date',  sx: {m: 1, ml: 6, mt: 0, width: 190},   defaultValue: Utils.sysdate(new Date(), '-') },
+        { label: "시작시간",     type: 'time',   sx: {m: 1, ml: 3, mt: 2, width: 190}, defaultValue: Utils.systime(new Date(), ':') },
+        { label: "종료일",     type: 'date',   sx: {m: 1, ml: 3, mt: 2, width: 100}, defaultValue: Utils.sysdate(new Date(), '-') },
+        { label: "종료시간",     type: 'time',   sx: {m: 1, ml: 3, mt: 2, width: 100}, defaultValue: Utils.systime(new Date(), ':') },
     ]
 }
 
