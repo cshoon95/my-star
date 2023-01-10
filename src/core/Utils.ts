@@ -1,3 +1,4 @@
+import { format } from 'date-fns';
 import { strictEqual } from "assert";
 import ons from "./Ons";
 
@@ -35,12 +36,14 @@ class Utils {
         return yy + mm + dd;
     }
     /** 시간 포맷 hhmmss */
-    systime(date: Date): string {
+    systime(date: Date, format?: string): string {
         const hh = ('0' + date.getHours()).slice(-2); 
         const mm = ('0' + date.getMinutes()).slice(-2);
-        const ss = ('0' + date.getSeconds()).slice(-2); 
+        // const ss = ('0' + date.getSeconds()).slice(-2); 
 
-        return hh + mm + ss;
+        if (format) return hh + format + mm + format + '00';
+
+        return hh + mm;
     }
     /** 첫 글자 대문자로 치환. */
     replaceToUpperCaseFirst(str: string): string {
